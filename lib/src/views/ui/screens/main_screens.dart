@@ -1,9 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:pigamers/src/views/ui/screens/main_screens/home_screen.dart';
+import 'package:get/get.dart';
+import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
+import 'package:pigamers/src/views/ui/widgets/my_bottom_nav_bar.dart';
+import 'package:pigamers/src/views/utils/constants.dart';
 
-class MainScreens extends StatelessWidget {
+class MainScreens extends GetWidget {
+  final navcontroller = Get.find<MyBottomNavBarController>();
+
   @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return Scaffold(
+      backgroundColor: kContentColorLightTheme,
+      body: Obx(
+        () => Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            navcontroller.getCurentPage,
+            MyBottomNavBar(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Wrapperx extends GetWidget {
+  final navcontroller = Get.find<MyBottomNavBarController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: kContentColorLightTheme,
+      body: Obx(
+        () => Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            navcontroller.getCurentPage,
+            MyBottomNavBar(),
+          ],
+        ),
+      ),
+    );
   }
 }

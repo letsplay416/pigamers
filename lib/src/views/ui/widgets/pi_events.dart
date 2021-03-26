@@ -5,14 +5,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
+import 'package:pigamers/src/logic/controllers/pi_events_controller.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
-class PiNewsWidget extends StatelessWidget {
+class PiEventsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final piNewsController = Get.put<PiNewsController>(PiNewsController());
+    final piEventsController =
+        Get.put<PiEventsController>(PiEventsController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,11 +21,12 @@ class PiNewsWidget extends StatelessWidget {
           padding:
               const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
           child: Text(
-            "Pi'News",
+            "Pi'Events",
             style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: kPrimaryColor),
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: kThirdColor,
+            ),
           ),
         ),
         SizedBox(height: kDefaultPadding * 0.2),
@@ -35,7 +37,7 @@ class PiNewsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Obx(() => Text(
-                    piNewsController!.currentTitle.string,
+                    piEventsController!.currentTitle.string,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -53,9 +55,10 @@ class PiNewsWidget extends StatelessWidget {
                 child: Text(
                   "Voir plus",
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      color: kPrimaryColor),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                    color: kThirdColor,
+                  ),
                 ),
               ),
             ],
@@ -77,18 +80,18 @@ class PiNewsWidget extends StatelessWidget {
               enableInfiniteScroll: true,
               reverse: false,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayInterval: Duration(seconds: 6),
+              autoPlayAnimationDuration: Duration(milliseconds: 1000),
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
-                piNewsController!.changeTitle(
-                  newTitle: piNewsController.news![index].title.toString(),
+                piEventsController!.changeTitle(
+                  newTitle: piEventsController.news![index].title.toString(),
                 );
               },
               scrollDirection: Axis.horizontal,
             ),
-            itemCount: piNewsController!.news!.length,
+            itemCount: piEventsController!.news!.length,
             itemBuilder: (context, index, realIndex) => Stack(
               alignment: Alignment.topRight,
               children: [
@@ -105,7 +108,8 @@ class PiNewsWidget extends StatelessWidget {
                     width: double.infinity,
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl: piNewsController.news![index].imgUrl.toString(),
+                      imageUrl:
+                          piEventsController.news![index].imgUrl.toString(),
                     ),
                   ),
                 ),
@@ -120,8 +124,8 @@ class PiNewsWidget extends StatelessWidget {
                         width: 40,
                         child: IconButton(
                           icon: SvgPicture.asset(
-                            "lib/src/assets/svg/apps.svg",
-                            color: kPrimaryColor,
+                            "lib/src/assets/svg/expand.svg",
+                            color: kThirdColor,
                           ),
                           onPressed: () => Database().addNews(),
                         ),

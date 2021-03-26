@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/models/pi_ads_model.dart';
+import 'package:pigamers/src/logic/models/pi_events_model.dart';
 import 'package:pigamers/src/logic/models/pi_news_model.dart';
 import 'package:pigamers/src/logic/models/user_model.dart';
 
@@ -49,12 +50,12 @@ class Database {
   Future<bool> addNews() async {
     try {
       await _firestore
-          .collection("piAds")
+          .collection("piEvents")
           .add({
             "timeStamp": Timestamp.now(),
-            "title": "Finale Sale",
+            "title": "Yellow Mab'Hello",
             "imgUrl":
-                "https://fr.freepik.com/vecteurs-libre/vente-finale-jaune-details-offre_12686637.htm",
+                "https://image.freepik.com/photos-gratuite/charismatique-impressionne-femme-afro-americaine-se-tient-arriere-plan-trou-papier_273609-34320.jpg",
           })
           .then(
             (value) => Get.snackbar(
@@ -98,6 +99,20 @@ class Database {
       List<PiAdsModel> retVal = [];
       piNews.docs.forEach((element) {
         retVal.add(PiAdsModel.fromSnapshot(element));
+      });
+      return retVal;
+    });
+  }
+
+  Stream<List<PiEventsModel>> piEventsStream() {
+    return _firestore
+        .collection("piEvents")
+        .orderBy("timeStamp", descending: true)
+        .snapshots()
+        .map((QuerySnapshot piNews) {
+      List<PiEventsModel> retVal = [];
+      piNews.docs.forEach((element) {
+        retVal.add(PiEventsModel.fromSnapshot(element));
       });
       return retVal;
     });
