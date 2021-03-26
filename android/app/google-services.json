@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "708495264626",
+    "project_id": "pigamers",
+    "storage_bucket": "pigamers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708495264626:android:7589dca09003f48d412beb",
+        "android_client_info": {
+          "package_name": "poison.inc.pigamers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708495264626-hvl3j73rmu4geoqjtm0rd4bp6itt35oj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArXVn-_AQESUKzUZotavB05Psghat9AW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708495264626-hvl3j73rmu4geoqjtm0rd4bp6itt35oj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
