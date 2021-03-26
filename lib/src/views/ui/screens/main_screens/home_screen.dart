@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 import 'package:pigamers/src/views/ui/widgets/home_top_text.dart';
 import 'package:pigamers/src/views/ui/widgets/mini_game_row.dart';
+import 'package:pigamers/src/views/ui/widgets/pi_ads_widget.dart';
 import 'package:pigamers/src/views/ui/widgets/pi_news_widget.dart';
 import 'package:pigamers/src/views/ui/widgets/search_widget.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
@@ -33,6 +34,8 @@ class HomeScreen extends GetWidget<AuthController> {
           MiniGamesRow(),
           SizedBox(height: kDefaultPadding * 1.5),
           PiNewsWidget(),
+          SizedBox(height: kDefaultPadding * 1.5),
+          PiAdsWidget(),
           SizedBox(height: kDefaultPadding * 1.5),
         ],
       ),

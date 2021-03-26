@@ -5,14 +5,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
+import 'package:pigamers/src/logic/controllers/pi_ads_controller.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
-class PiNewsWidget extends StatelessWidget {
+class PiAdsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final piNewsController = Get.put<PiNewsController>(PiNewsController());
+    final piAdsController = Get.put<PiAdsController>(PiAdsController());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,7 +20,7 @@ class PiNewsWidget extends StatelessWidget {
           padding:
               const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
           child: Text(
-            "Pi'News",
+            "Pi'Ads",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 15,
@@ -35,7 +35,7 @@ class PiNewsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Obx(() => Text(
-                    piNewsController!.currentTitle.string,
+                    piAdsController!.currentTitle.string,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -66,13 +66,13 @@ class PiNewsWidget extends StatelessWidget {
           () => CarouselSlider.builder(
             options: CarouselOptions(
               height: context.orientation == Orientation.portrait
-                  ? Get.size.height / 4
+                  ? Get.size.height / 2
                   : Get.size.width / 3,
               pauseAutoPlayOnManualNavigate: true,
               pauseAutoPlayOnTouch: true,
               aspectRatio: 9 / 16,
               viewportFraction:
-                  context.orientation == Orientation.portrait ? 0.8 : 0.4,
+                  context.orientation == Orientation.portrait ? 0.8 : 0.2,
               initialPage: 0,
               enableInfiniteScroll: true,
               reverse: false,
@@ -82,13 +82,13 @@ class PiNewsWidget extends StatelessWidget {
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
-                piNewsController!.changeTitle(
-                  newTitle: piNewsController.news![index].title.toString(),
+                piAdsController!.changeTitle(
+                  newTitle: piAdsController.news![index].title.toString(),
                 );
               },
               scrollDirection: Axis.horizontal,
             ),
-            itemCount: piNewsController!.news!.length,
+            itemCount: piAdsController!.news!.length,
             itemBuilder: (context, index, realIndex) => Stack(
               alignment: Alignment.topRight,
               children: [
@@ -97,7 +97,7 @@ class PiNewsWidget extends StatelessWidget {
                   child: Container(
                     height: context.orientation == Orientation.portrait
                         ? Get.size.height / 2
-                        : Get.size.width / 2,
+                        : Get.size.width / 3,
                     decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(30),
@@ -105,7 +105,7 @@ class PiNewsWidget extends StatelessWidget {
                     width: double.infinity,
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl: piNewsController.news![index].imgUrl.toString(),
+                      imageUrl: piAdsController.news![index].imgUrl.toString(),
                     ),
                   ),
                 ),

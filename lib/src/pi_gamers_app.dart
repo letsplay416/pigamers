@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pigamers/src/logic/controllers/pi_ads_controller.dart';
 import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
 import 'package:pigamers/src/views/ui/widgets/auth_wrapper.dart';
 import 'package:pigamers/src/views/utils/app_strings.dart';
@@ -11,6 +12,7 @@ class PiGamersApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(AuthController());
+    Get.put(PiAdsController());
     // Get.put(MyBottomNavBarController());
     Get.put(UserController());
     Get.put(PiNewsController());

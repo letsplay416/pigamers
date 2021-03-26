@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:pigamers/src/logic/models/pi_ads_model.dart';
 import 'package:pigamers/src/logic/models/pi_news_model.dart';
 import 'package:pigamers/src/logic/models/user_model.dart';
 
@@ -48,12 +49,12 @@ class Database {
   Future<bool> addNews() async {
     try {
       await _firestore
-          .collection("piNews")
+          .collection("piAds")
           .add({
             "timeStamp": Timestamp.now(),
-            "title": "Ohaho",
+            "title": "Finale Sale",
             "imgUrl":
-                "https://image.freepik.com/vecteurs-libre/modele-cv-moderne_23-2148773356.jpg",
+                "https://fr.freepik.com/vecteurs-libre/vente-finale-jaune-details-offre_12686637.htm",
           })
           .then(
             (value) => Get.snackbar(
@@ -83,6 +84,20 @@ class Database {
       List<PiNewsModel> retVal = [];
       piNews.docs.forEach((element) {
         retVal.add(PiNewsModel.fromSnapshot(element));
+      });
+      return retVal;
+    });
+  }
+
+  Stream<List<PiAdsModel>> piAdsStream() {
+    return _firestore
+        .collection("piAds")
+        .orderBy("timeStamp", descending: true)
+        .snapshots()
+        .map((QuerySnapshot piNews) {
+      List<PiAdsModel> retVal = [];
+      piNews.docs.forEach((element) {
+        retVal.add(PiAdsModel.fromSnapshot(element));
       });
       return retVal;
     });
