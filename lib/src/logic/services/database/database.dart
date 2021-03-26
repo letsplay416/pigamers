@@ -1,6 +1,3 @@
-
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/models/pi_news_model.dart';
@@ -54,9 +51,9 @@ class Database {
           .collection("piNews")
           .add({
             "timeStamp": Timestamp.now(),
-            "title": "Cottoumbro",
+            "title": "Ohaho",
             "imgUrl":
-                "https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg?cs=srgb&dl=pexels-cottonbro-3945683.jpg&fm=jpg",
+                "https://image.freepik.com/vecteurs-libre/modele-cv-moderne_23-2148773356.jpg",
           })
           .then(
             (value) => Get.snackbar(

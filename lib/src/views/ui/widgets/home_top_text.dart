@@ -14,7 +14,7 @@ class HomeTopText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Obx(() => Text(
-                "Hi ${userCtrl.user.name ?? "Newbie"},",
+                "Hi ${userCtrl.user.name},",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
