@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/models/user_model.dart';
+import 'package:pigamers/src/logic/services/database/database.dart';
 
 import 'user_controller.dart';
 
@@ -25,8 +26,8 @@ class AuthController extends GetxController {
         password: password,
       );
 
-      // Get.find<UserController>().user =
-      //     await Database().getUser(uid: authResult.user!.uid);
+      Get.find<UserController>().user =
+          await Database().getUser(uid: authResult.user!.uid);
       Get.snackbar("Connexion", "Vous êtes connecté",
           snackPosition: SnackPosition.BOTTOM);
     } on FirebaseAuthException catch (e) {
@@ -54,14 +55,20 @@ class AuthController extends GetxController {
           id: value.user!.uid,
           name: name,
         );
-        // if (await Database().createNewUser(user: _user)) {
-        //   Get.find<UserController>().user = _user;
-        //   Get.snackbar(
-        //     "User mis à jour",
-        //     value.user!.uid,
-        //     snackPosition: SnackPosition.BOTTOM,
-        //   );
-        // }
+        if (await Database().createNewUser(user: _user)) {
+          Get.find<UserController>().user = _user;
+          Get.snackbar(
+            "User mis à jour",
+            value.user!.uid,
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        } else {
+          Get.snackbar(
+            "Echec",
+            "une erreur s'est produite",
+            snackPosition: SnackPosition.BOTTOM,
+          );
+        }
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Echec de création de compte", e.message.toString(),
