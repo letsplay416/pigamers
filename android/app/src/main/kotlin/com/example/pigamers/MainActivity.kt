@@ -1,4 +1,4 @@
-package com.example.pigamers
+package poison.inc.pigamers
 
 import io.flutter.embedding.android.FlutterActivity
 
