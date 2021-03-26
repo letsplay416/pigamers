@@ -105,6 +105,15 @@ class PiNewsWidget extends StatelessWidget {
                     width: double.infinity,
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
+                      progressIndicatorBuilder: (context, url, progress) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: progress.progress,
+                            color: kThirdColor,
+                            backgroundColor: kContentColorLightTheme,
+                          ),
+                        );
+                      },
                       imageUrl: piNewsController.news![index].imgUrl.toString(),
                     ),
                   ),

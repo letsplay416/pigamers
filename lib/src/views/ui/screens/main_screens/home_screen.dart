@@ -1,9 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
-import 'package:pigamers/src/logic/controllers/pi_events_controller.dart';
-import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/ui/widgets/home_top_text.dart';
 import 'package:pigamers/src/views/ui/widgets/mini_game_row.dart';
 import 'package:pigamers/src/views/ui/widgets/pi_ads_widget.dart';
@@ -17,18 +17,34 @@ class HomeScreen extends GetWidget<AuthController> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      drawer: HomeScreen(),
+      drawer: SafeArea(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+            child: Container(
+              height: double.infinity,
+              width: Get.size.width * 0.7,
+              color: kPrimaryColor.withOpacity(0.2),
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: kContentColorLightTheme,
         elevation: 0.0,
         bottomOpacity: 0.0,
         foregroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: SvgPicture.asset(
-            "lib/src/assets/svg/menu.svg",
-            color: kPrimaryColor,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: SvgPicture.asset(
+              "lib/src/assets/svg/menu.svg",
+              color: kPrimaryColor,
+            ),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
           ),
-          onPressed: () async {},
         ),
         actions: [
           Padding(
