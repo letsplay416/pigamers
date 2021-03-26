@@ -24,8 +24,45 @@ class HomeScreen extends GetWidget<AuthController> {
             filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
             child: Container(
               height: double.infinity,
+              child: ListView(
+                children: [
+                  DrawerHeader(
+                    child: Center(child: Text("Pi'Gamers")),
+                  ),
+                  ListTile(
+                    title: Text("Déconexion"),
+                    trailing: Icon(Icons.logout),
+                    onTap: () => controller.signOut(),
+                  )
+                ],
+              ),
               width: Get.size.width * 0.7,
               color: kPrimaryColor.withOpacity(0.2),
+            ),
+          ),
+        ),
+      ),
+      endDrawer: SafeArea(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+            child: Container(
+              height: double.infinity,
+              child: ListView(
+                children: [
+                  DrawerHeader(
+                    child: Center(child: Text("Notifs")),
+                  ),
+                  ListTile(
+                    title: Text("Déconexion"),
+                    trailing: Icon(Icons.logout),
+                    onTap: () => controller.signOut(),
+                  )
+                ],
+              ),
+              width: Get.size.width * 0.7,
+              color: kThirdColor.withOpacity(0.2),
             ),
           ),
         ),
@@ -49,12 +86,16 @@ class HomeScreen extends GetWidget<AuthController> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                "lib/src/assets/svg/bell.svg",
-                color: kPrimaryColor,
+            child: Builder(
+              builder: (context) => IconButton(
+                icon: SvgPicture.asset(
+                  "lib/src/assets/svg/bell.svg",
+                  color: kPrimaryColor,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
               ),
-              onPressed: () => controller.signOut(),
             ),
           ),
         ],
