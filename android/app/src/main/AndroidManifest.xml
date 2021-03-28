@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="poison.inc.pigamers">
+    package="inc.poison.pigamers">
    <application
         android:label="Pi'Gamers"
         android:icon="@mipmap/ic_launcher">

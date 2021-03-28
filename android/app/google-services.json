@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "708495264626",
-    "project_id": "pigamers",
-    "storage_bucket": "pigamers.appspot.com"
+    "project_number": "417552623614",
+    "project_id": "pi-gamers",
+    "storage_bucket": "pi-gamers.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:708495264626:android:7589dca09003f48d412beb",
+        "mobilesdk_app_id": "1:417552623614:android:0c8d686df412c951ce02af",
         "android_client_info": {
-          "package_name": "poison.inc.pigamers"
+          "package_name": "inc.poison.pigamers"
         }
       },
       "oauth_client": [
         {
-          "client_id": "708495264626-hvl3j73rmu4geoqjtm0rd4bp6itt35oj.apps.googleusercontent.com",
+          "client_id": "417552623614-02v02h48qdvq9pgaopa15kokq8f7c4gp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyArXVn-_AQESUKzUZotavB05Psghat9AW0"
+          "current_key": "AIzaSyChvXI0rgmr_natIjbwDRE27g6EsOaZuoM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "708495264626-hvl3j73rmu4geoqjtm0rd4bp6itt35oj.apps.googleusercontent.com",
+              "client_id": "417552623614-02v02h48qdvq9pgaopa15kokq8f7c4gp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
