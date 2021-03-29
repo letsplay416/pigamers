@@ -39,7 +39,7 @@ class Database {
     try {
       DocumentSnapshot doc =
           await _firestore.collection("users").doc(uid).get();
-      Get.snackbar("Bienvenue à toi", doc["name"]);
+      // Get.snackbar("Bienvenue à toi", doc["name"]);
       return UserModel.fromDocumentSnapshot(doc: doc);
     } catch (e) {
       Get.snackbar("Error getting User", e.toString());
@@ -50,12 +50,12 @@ class Database {
   Future<bool> addNews() async {
     try {
       await _firestore
-          .collection("piEvents")
+          .collection("piAds")
           .add({
             "timeStamp": Timestamp.now(),
-            "title": "Yellow Mab'Hello",
+            "title": "Sherina",
             "imgUrl":
-                "https://image.freepik.com/photos-gratuite/charismatique-impressionne-femme-afro-americaine-se-tient-arriere-plan-trou-papier_273609-34320.jpg",
+                "https://image.freepik.com/free-psd/luxury-minimalist-logo-mockup-dark-business-card_225928-113.jpg",
           })
           .then(
             (value) => Get.snackbar(

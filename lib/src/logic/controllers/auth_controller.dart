@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pigamers/src/logic/models/user_model.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
-
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'user_controller.dart';
 
 class AuthController extends GetxController {
@@ -72,6 +73,34 @@ class AuthController extends GetxController {
       });
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Echec de création de compte", e.message.toString(),
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount googleUser = (await GoogleSignIn().signIn())!;
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Create a new credential
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      UserCredential authResult =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      Get.find<UserController>().user =
+          await Database().getUser(uid: authResult.user!.uid);
+      Get.snackbar("Connexion", "Vous êtes connecté",
+          snackPosition: SnackPosition.BOTTOM);
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar("Echec de connexion", e.message.toString(),
           snackPosition: SnackPosition.BOTTOM);
     }
   }

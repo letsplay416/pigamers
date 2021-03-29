@@ -4,7 +4,6 @@ import 'package:pigamers/src/logic/controllers/user_controller.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class HomeTopText extends StatelessWidget {
-  // final appBottomBarController = Get.find<MyBottomNavBarController>();
   final userCtrl = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
