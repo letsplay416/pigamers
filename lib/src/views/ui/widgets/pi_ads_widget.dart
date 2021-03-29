@@ -83,12 +83,12 @@ class PiAdsWidget extends StatelessWidget {
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
                 piAdsController!.changeTitle(
-                  newTitle: piAdsController.news![index].title.toString(),
+                  newTitle: piAdsController.news[index].title.toString(),
                 );
               },
               scrollDirection: Axis.horizontal,
             ),
-            itemCount: piAdsController!.news!.length,
+            itemCount: piAdsController!.news.length,
             itemBuilder: (context, index, realIndex) => Stack(
               alignment: Alignment.topRight,
               children: [
@@ -114,7 +114,7 @@ class PiAdsWidget extends StatelessWidget {
                           ),
                         );
                       },
-                      imageUrl: piAdsController.news![index].imgUrl.toString(),
+                      imageUrl: piAdsController.news[index].imgUrl.toString(),
                     ),
                   ),
                 ),

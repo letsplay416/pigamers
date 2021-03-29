@@ -86,12 +86,12 @@ class PiEventsWidget extends StatelessWidget {
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
                 piEventsController!.changeTitle(
-                  newTitle: piEventsController.news![index].title.toString(),
+                  newTitle: piEventsController.news[index].title.toString(),
                 );
               },
               scrollDirection: Axis.horizontal,
             ),
-            itemCount: piEventsController!.news!.length,
+            itemCount: piEventsController!.news.length,
             itemBuilder: (context, index, realIndex) => Stack(
               alignment: Alignment.topRight,
               children: [
@@ -118,7 +118,7 @@ class PiEventsWidget extends StatelessWidget {
                         );
                       },
                       imageUrl:
-                          piEventsController.news![index].imgUrl.toString(),
+                          piEventsController.news[index].imgUrl.toString(),
                     ),
                   ),
                 ),

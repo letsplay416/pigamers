@@ -83,12 +83,12 @@ class PiNewsWidget extends StatelessWidget {
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
                 piNewsController!.changeTitle(
-                  newTitle: piNewsController.news![index].title.toString(),
+                  newTitle: piNewsController.news[index].title.toString(),
                 );
               },
               scrollDirection: Axis.horizontal,
             ),
-            itemCount: piNewsController!.news!.length,
+            itemCount: piNewsController!.news.length,
             itemBuilder: (context, index, realIndex) => Stack(
               alignment: Alignment.topRight,
               children: [
@@ -114,7 +114,7 @@ class PiNewsWidget extends StatelessWidget {
                           ),
                         );
                       },
-                      imageUrl: piNewsController.news![index].imgUrl.toString(),
+                      imageUrl: piNewsController.news[index].imgUrl.toString(),
                     ),
                   ),
                 ),
