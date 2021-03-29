@@ -29,10 +29,10 @@ class RegistrationScreen extends GetWidget<AuthController> {
                     color: kPrimaryColor, fontWeight: FontWeight.bold),
               ),
               SizedBox(
-                height: Get.size.height * 0.12,
+                height: Get.size.height * 0.012,
               ),
               SvgPicture.asset(
-                "lib/src/assets/images/calm.svg",
+                "lib/src/assets/svg/undraw_mobile_inbox_3h46.svg",
                 height: Get.size.height * 0.35,
               ),
               SizedBox(

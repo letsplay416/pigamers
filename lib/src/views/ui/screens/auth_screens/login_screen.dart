@@ -32,7 +32,7 @@ class LoginScreen extends GetWidget<AuthController> {
                 height: Get.size.height * 0.12,
               ),
               SvgPicture.asset(
-                "lib/src/assets/images/read.svg",
+                "lib/src/assets/svg/undraw_Mobile_life_re_jtih.svg",
                 height: Get.size.height * 0.35,
               ),
               SizedBox(

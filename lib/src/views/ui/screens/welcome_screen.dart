@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
               height: Get.size.height * 0.1,
             ),
             SvgPicture.asset(
-              "lib/src/assets/logo/pig2.svg",
+              "lib/src/assets/svg/undraw_video_game_night_8h8m.svg",
               height: Get.size.height * 0.45,
             ),
             SizedBox(

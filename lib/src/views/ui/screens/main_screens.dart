@@ -23,23 +23,3 @@ class MainScreens extends GetWidget {
     );
   }
 }
-
-class Wrapperx extends GetWidget {
-  final navcontroller = Get.find<MyBottomNavBarController>();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kContentColorLightTheme,
-      body: Obx(
-        () => Stack(
-          alignment: AlignmentDirectional.bottomCenter,
-          children: [
-            navcontroller.getCurentPage,
-            MyBottomNavBar(),
-          ],
-        ),
-      ),
-    );
-  }
-}
