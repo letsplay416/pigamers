@@ -31,7 +31,7 @@ class AuthController extends GetxController {
           await Database().getUser(uid: authResult.user!.uid);
       Get.snackbar("Connexion", "Vous êtes connecté",
           snackPosition: SnackPosition.BOTTOM);
-      Get.back();
+      // Get.back();
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Echec de connexion", e.message.toString(),
           snackPosition: SnackPosition.BOTTOM);

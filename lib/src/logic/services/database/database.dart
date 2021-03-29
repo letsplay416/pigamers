@@ -39,6 +39,7 @@ class Database {
     try {
       DocumentSnapshot doc =
           await _firestore.collection("users").doc(uid).get();
+      Get.back();
       // Get.snackbar("Bienvenue à toi", doc["name"]);
       return UserModel.fromDocumentSnapshot(doc: doc);
     } catch (e) {
