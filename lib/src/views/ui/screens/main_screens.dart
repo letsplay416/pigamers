@@ -12,14 +12,18 @@ class MainScreens extends GetWidget {
     return Scaffold(
       backgroundColor: kContentColorLightTheme,
       body: Obx(
-        () => Stack(
-          alignment: AlignmentDirectional.bottomCenter,
-          children: [
-            navcontroller.getCurentPage,
-            MyBottomNavBar(),
-          ],
-        ),
+        () => navcontroller.getCurentPage,
       ),
+      floatingActionButton: MyBottomNavBar(),
+      // body: Obx(
+      //   () => Stack(
+      //     alignment: AlignmentDirectional.bottomCenter,
+      //     children: [
+      //       navcontroller.getCurentPage,
+      //       MyBottomNavBar(),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

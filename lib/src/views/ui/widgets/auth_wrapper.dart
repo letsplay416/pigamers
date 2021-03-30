@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
-import 'package:pigamers/src/views/ui/screens/auth_screens/login_screen.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens.dart';
 import 'package:pigamers/src/views/ui/screens/welcome_screen.dart';
 

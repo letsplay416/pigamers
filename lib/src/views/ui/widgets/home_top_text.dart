@@ -9,29 +9,51 @@ class HomeTopText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Obx(() => Text(
-                "Hi ${userCtrl.user.name},",
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Obx(() => Text(
+                    "Hi ${userCtrl.user.name},",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                      color: kContentColorDarkTheme,
+                    ),
+                  )),
+              SizedBox(
+                height: kDefaultPadding / 3,
+              ),
+              Text(
+                "Good day for gaming!",
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                  color: kContentColorDarkTheme,
-                ),
-              )),
-          SizedBox(
-            height: kDefaultPadding / 3,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
+                    color: kContentColorDarkTheme),
+              ),
+            ],
           ),
-          Text(
-            "Good day for gaming!",
-            textAlign: TextAlign.left,
-            style: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 18,
-                color: kContentColorDarkTheme),
-          ),
+          Expanded(child: Container()),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                image: DecorationImage(
+                    image: NetworkImage(userCtrl.user.profilPic.toString()),
+                    fit: BoxFit.cover),
+              ),
+              // child: CachedNetworkImage(
+              //   imageUrl:
+              //       "https://image.freepik.com/photos-gratuite/femme-triste-sombre-se-sent-rancuniere-insatisfaite-porte-sac-main-levre-inferieure-bouleversee-ne-pas-recevoir-message-amant_273609-39159.jpg",
+              // ),
+            ),
+          )
         ],
       ),
     );

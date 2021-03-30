@@ -15,39 +15,41 @@ class PageIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: IconButton(
-        // ignore: unrelated_type_equality_checks
-        icon: Get.find<MyBottomNavBarController>().curentPage == target
-            ? SvgPicture.asset(
-                icon,
-                color: kFourthColor,
-              )
-            : target == PageEnum.PROFILE
-                ? FaIcon(
-                    FontAwesomeIcons.user,
-                    color: kThirdColor.withOpacity(0.5),
-                    size: 20,
-                  )
-                : target == PageEnum.APPS
-                    ? FaIcon(
-                        FontAwesomeIcons.mobile,
-                        color: kThirdColor.withOpacity(0.5),
-                        size: 20,
-                      )
-                    : target == PageEnum.SETTINGS
-                        ? FaIcon(
-                            FontAwesomeIcons.cog,
-                            color: kThirdColor.withOpacity(0.5),
-                            size: 20,
-                          )
-                        : FaIcon(
-                            FontAwesomeIcons.home,
-                            color: kThirdColor.withOpacity(0.5),
-                            size: 20,
-                          ),
-        onPressed: () =>
-            Get.find<MyBottomNavBarController>().changeScreen(screen: target),
+    return Obx(
+      () => Expanded(
+        child: IconButton(
+          // ignore: unrelated_type_equality_checks
+          icon: Get.find<MyBottomNavBarController>().curentPage == target
+              ? SvgPicture.asset(
+                  icon,
+                  color: kFourthColor,
+                )
+              : target == PageEnum.RANKING
+                  ? FaIcon(
+                      FontAwesomeIcons.fire,
+                      color: kThirdColor.withOpacity(0.5),
+                      size: 20,
+                    )
+                  : target == PageEnum.APPS
+                      ? FaIcon(
+                          FontAwesomeIcons.mobile,
+                          color: kThirdColor.withOpacity(0.5),
+                          size: 20,
+                        )
+                      : target == PageEnum.SETTINGS
+                          ? FaIcon(
+                              FontAwesomeIcons.cog,
+                              color: kThirdColor.withOpacity(0.5),
+                              size: 20,
+                            )
+                          : FaIcon(
+                              FontAwesomeIcons.home,
+                              color: kThirdColor.withOpacity(0.5),
+                              size: 20,
+                            ),
+          onPressed: () =>
+              Get.find<MyBottomNavBarController>().changeScreen(screen: target),
+        ),
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens/apps_screen.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens/home_screen.dart';
-import 'package:pigamers/src/views/ui/screens/main_screens/profile_screen.dart';
+import 'package:pigamers/src/views/ui/screens/main_screens/ranking_screen.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens/settings_screen.dart';
 
 class MyBottomNavBarController extends GetxController {
@@ -9,8 +9,8 @@ class MyBottomNavBarController extends GetxController {
   RxBool showIt = true.obs;
   get getCurentPage {
     switch (curentPage.value) {
-      case PageEnum.PROFILE:
-        return ProfileScreen();
+      case PageEnum.RANKING:
+        return RankingScreen();
       case PageEnum.APPS:
         return AppsScreen();
       case PageEnum.SETTINGS:
@@ -41,4 +41,4 @@ class MyBottomNavBarController extends GetxController {
   }
 }
 
-enum PageEnum { HOME, PROFILE, SETTINGS, APPS }
+enum PageEnum { HOME, RANKING, SETTINGS, APPS }

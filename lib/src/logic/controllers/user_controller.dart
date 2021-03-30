@@ -4,10 +4,11 @@ import 'package:pigamers/src/logic/models/user_model.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
 
 class UserController extends GetxController {
-  Rx<UserModel> _user = UserModel(email: "", id: "", name: "Newbie").obs;
+  Rx<UserModel> _user =
+      UserModel(email: "", id: "", name: "Newbie", exp: 0, profilPic: '').obs;
   set user(UserModel theUser) => this._user.value = theUser;
   UserModel get user =>
-      _user.value ?? UserModel(email: "", id: "", name: "Newbie");
+      _user.value ?? UserModel(email: "", id: "", name: "Newbie", exp: 0, profilPic: '');
   @override
   Future<void> onInit() async {
     _user.value =
@@ -16,6 +17,6 @@ class UserController extends GetxController {
   }
 
   void clear() {
-    _user.value = UserModel(email: "", id: "", name: "");
+    _user.value = UserModel(email: "", id: "", name: "", exp: 0, profilPic: '');
   }
 }

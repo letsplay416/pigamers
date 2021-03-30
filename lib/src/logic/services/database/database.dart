@@ -17,6 +17,8 @@ class Database {
             "name": user.name,
             "email": user.email,
             "uid": user.id,
+            "exp": user.exp,
+            "profilPic": user.profilPic,
           })
           .then(
             (value) => Get.snackbar(

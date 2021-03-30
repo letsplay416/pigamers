@@ -22,11 +22,11 @@ class PiGamersApp extends StatelessWidget {
     Get.put(PiNewsController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthWrapper(), color: kPrimaryColor,
-      theme: ThemeData(
-          accentColor: kPrimaryColor,
-          primaryColor: kPrimaryColor,
-          primarySwatch: Colors.orange),
+      home: AuthWrapper(), color: kPrimaryColor, theme: ThemeData.dark(),
+      // theme: ThemeData(
+      //     accentColor: kPrimaryColor,
+      //     primaryColor: kPrimaryColor,
+      //     primarySwatch: Colors.orange),
       title: AppStrings.appTitle,
       // initialBinding: AuthBinding(),
       // theme: lightThemeData(context),
