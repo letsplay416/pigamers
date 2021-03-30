@@ -30,14 +30,17 @@ class RankingScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment(0.0, 0.5),
-                              colors: [
-                                kPrimaryColor.withOpacity(0.3),
-                                Color(0x00000000)
-                              ],
-                              end: Alignment(0.0, 0.0))))
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(0.0, 0.5),
+                        colors: [
+                          kPrimaryColor.withOpacity(0.3),
+                          Color(0x00000000)
+                        ],
+                        end: Alignment(0.0, 0.0),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               centerTitle: true,
@@ -46,7 +49,7 @@ class RankingScreen extends StatelessWidget {
           SliverList(
               delegate: SliverChildListDelegate([
             Container(
-              color: kFourthColor,
+              color: kContentColorLightTheme,
               height: 999,
             ),
           ]))

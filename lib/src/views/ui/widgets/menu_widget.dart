@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
+import 'package:pigamers/src/views/ui/screens/menu_screens/profile_screen.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'menu_title_widget.dart';
@@ -27,80 +28,86 @@ class Menu extends StatelessWidget {
             height: double.infinity,
             child: Padding(
               padding: const EdgeInsets.all(21.0),
-              child: SingleChildScrollView(
-                child: Container(
-                  height: Get.size.height - 70,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: kPrimaryColor.withOpacity(0.5)),
-                  child: ListView(
+              child: Container(
+                height: Get.size.height - 70,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: kContentColorLightTheme.withOpacity(0.2)),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       DrawerHeader(
-                        child: Center(
-                            child: Text(
-                          "Pi'Gamers",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kPrimaryColor.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                        )),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              "Pi'Gamers",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                       MenuTile(
                         title: "Profile",
-                        action: () {},
+                        action: () => Get.to(ProfileScreen()),
                         icon: FontAwesomeIcons.userCog,
+                        desc: "Modifier les informations du compte",
                       ),
                       MenuTile(
                         title: "Porte-monnaie",
-                        action: () {},
+                        action: () => Get.to(ProfileScreen()),
                         icon: FontAwesomeIcons.wallet,
+                        desc: "Acces aux ressources: Exp, Coins, etc.",
                       ),
                       MenuTile(
                         title: "Inviter un ami",
-                        action: () {},
+                        action: () => Get.to(ProfileScreen()),
                         icon: FontAwesomeIcons.userCog,
+                        desc: "Agrandis nos rangs et gagne des récompenses",
                       ),
                       MenuTile(
                         title: "Saisir un code",
-                        action: () {},
+                        action: () => Get.to(ProfileScreen()),
                         icon: FontAwesomeIcons.barcode,
+                        desc:
+                            "Saisit un code de promo et gagne de superbes lots",
                       ),
                       MenuTile(
                         title: "A propos",
-                        action: () {},
+                        action: () => Get.to(ProfileScreen()),
                         icon: FontAwesomeIcons.info,
+                        desc: "Tout sur Pi'Gammers et l'entreprise",
                       ),
                       MenuTile(
                         title: "Aide",
-                        action: () {},
+                        action: () => Get.to(ProfileScreen()),
                         icon: FontAwesomeIcons.question,
+                        desc: "Besoin d'aide? C'est ici",
                       ),
-                      // Expanded(child: Container()),
                       GestureDetector(
                         onTap: () => controller.signOut(),
                         child: Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 70, horizontal: 20),
                           padding: EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Déconnexion",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              Expanded(child: Container()),
-                              FaIcon(
-                                FontAwesomeIcons.doorOpen,
-                                color: Colors.white,
-                              ),
-                            ],
+                          margin: EdgeInsets.only(top: 20, right: 20),
+                          child: Text(
+                            "Déconnexion",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
                           decoration: BoxDecoration(
-                              color: Colors.cyan.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(12)),
+                            color: Colors.red.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                     ],

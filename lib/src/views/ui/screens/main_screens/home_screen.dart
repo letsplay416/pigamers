@@ -21,63 +21,142 @@ class HomeScreen extends GetWidget<AuthController> {
       extendBodyBehindAppBar: true,
       drawer: Menu(controller: controller),
       endDrawer: Notifications(controller: controller),
-      appBar: AppBar(
-        backgroundColor: kContentColorLightTheme,
-        elevation: 0.0,
-        bottomOpacity: 0.0,
-        foregroundColor: Colors.transparent,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: SvgPicture.asset(
-              "lib/src/assets/svg/menu.svg",
-              color: kPrimaryColor,
-            ),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Builder(
-              builder: (context) => IconButton(
-                icon: SvgPicture.asset(
-                  "lib/src/assets/svg/bell.svg",
-                  color: kPrimaryColor,
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: kContentColorLightTheme,
+      //   elevation: 0.0,
+      //   bottomOpacity: 0.0,
+      //   foregroundColor: Colors.transparent,
+      //   leading: Builder(
+      //     builder: (context) => IconButton(
+      //       icon: SvgPicture.asset(
+      //         "lib/src/assets/svg/menu.svg",
+      //         color: kPrimaryColor,
+      //       ),
+      //       onPressed: () {
+      //         Scaffold.of(context).openDrawer();
+      //       },
+      //     ),
+      //   ),
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.all(8.0),
+      //       child: Builder(
+      //         builder: (context) => IconButton(
+      //           icon: SvgPicture.asset(
+      //             "lib/src/assets/svg/bell.svg",
+      //             color: kPrimaryColor,
+      //           ),
+      //           onPressed: () {
+      //             Scaffold.of(context).openEndDrawer();
+      //           },
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
       backgroundColor: Colors.transparent,
       onDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
       onEndDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
-      body: ListView(
-        children: [
-          SizedBox(height: kDefaultPadding * 2),
-          HomeTopText(),
-          SizedBox(height: kDefaultPadding * 2),
-          SearchWidget(),
-          SizedBox(height: kDefaultPadding * 1.5),
-          MiniGamesRow(),
-          SizedBox(height: kDefaultPadding * 1.5),
-          PiEventsWidget(),
-          SizedBox(height: kDefaultPadding * 1.5),
-          PiNewsWidget(),
-          SizedBox(height: kDefaultPadding * 1.5),
-          PiAdsWidget(),
-          SizedBox(height: kDefaultPadding * 1.5),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Social footer"),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: SvgPicture.asset(
+                  "lib/src/assets/svg/menu.svg",
+                  color: kPrimaryColor,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Builder(
+                  builder: (context) => IconButton(
+                    icon: SvgPicture.asset(
+                      "lib/src/assets/svg/bell.svg",
+                      color: kPrimaryColor,
+                    ),
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                  ),
+                ),
+              ),
+            ],
+            expandedHeight: Get.size.height * 0.2,
+            backgroundColor: kPrimaryColor.withOpacity(0.2),
+            stretch: true,
+            centerTitle: true,
+            floating: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("Pi'Gamers"),
+              stretchModes: [
+                StretchMode.zoomBackground,
+                StretchMode.fadeTitle,
+                // StretchMode.blurBackground
+              ],
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  SvgPicture.asset(
+                    "lib/src/assets/logo/pig1.svg",
+                    fit: BoxFit.contain,
+                  ),
+                  DecoratedBox(
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          // color: Colors.amber,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(40))),
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(0.0, 1),
+                        colors: [
+                          kPrimaryColor.withOpacity(0.1),
+                          Color(0x00000000)
+                        ],
+                        end: Alignment(0.0, 0.0),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              centerTitle: true,
             ),
           ),
+          SliverList(
+              delegate: SliverChildListDelegate([
+            Column(
+              children: [
+                SizedBox(height: kDefaultPadding * 2),
+                HomeTopText(),
+                SizedBox(height: kDefaultPadding * 2),
+                SearchWidget(),
+                SizedBox(height: kDefaultPadding * 1.5),
+                MiniGamesRow(),
+                SizedBox(height: kDefaultPadding * 1.5),
+                PiEventsWidget(),
+                SizedBox(height: kDefaultPadding * 1.5),
+                PiNewsWidget(),
+                SizedBox(height: kDefaultPadding * 1.5),
+                PiAdsWidget(),
+                SizedBox(height: kDefaultPadding * 1.5),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Social footer"),
+                  ),
+                ),
+              ],
+            ),
+          ]))
         ],
       ),
     );

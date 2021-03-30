@@ -10,19 +10,129 @@ class AppsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectionReference apps = FirebaseFirestore.instance.collection('apps');
-    List<AppModel> lit = [
-      AppModel(desc: "desc", isGame: true, link: "link", title: "PUBG"),
-      AppModel(
-          imgUrl:
-              "https://image.freepik.com/vecteurs-libre/fond-style-bande-dessinee-plat_52683-54375.jpg",
-          isGame: false),
-      AppModel(),
-      AppModel(),
-      AppModel(),
-    ];
     return SafeArea(
       child: Scaffold(
-        body: Column(
+        backgroundColor: kContentColorLightTheme,
+        body: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              expandedHeight: Get.size.height * 0.3,
+              backgroundColor: kPrimaryColor.withOpacity(0.2),
+              stretch: true,
+              centerTitle: true,
+              floating: true,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text("Applications & Jeux",
+                    textAlign: TextAlign.left,
+                    style: Theme.of(context).textTheme.headline5),
+                stretchModes: [
+                  StretchMode.zoomBackground,
+                  StretchMode.fadeTitle,
+                ],
+                background: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.asset(
+                      "lib/src/assets/images/trioPic.jpeg",
+                      fit: BoxFit.cover,
+                    ),
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment(0.0, 0.5),
+                          colors: [
+                            kPrimaryColor.withOpacity(0.3),
+                            Color(0x00000000)
+                          ],
+                          end: Alignment(0.0, 0.0),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                centerTitle: true,
+              ),
+            ),
+            SliverList(
+                delegate: SliverChildListDelegate([
+              Column(
+                children: [
+                  Container(
+                    height: Get.size.height * 0.85,
+                    child: FutureBuilder<QuerySnapshot>(
+                      future: apps.get(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Something went wrong');
+                        }
+
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Text("Loading");
+                        }
+
+                        return StaggeredGridView.countBuilder(
+                          itemCount: snapshot.data!.docs.length,
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20,
+                          padding: EdgeInsets.all(15),
+                          itemBuilder: (context, index) => Container(
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(2, 2),
+                                  blurRadius: 4,
+                                  color: kThirdColor,
+                                ),
+                              ],
+                              color: kFourthColor.withOpacity(0.2),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    snapshot.data!.docs[index]["imgUrl"]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            height: snapshot.data!.docs[index]["isGame"]
+                                ? 300
+                                : 250,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  snapshot.data!.docs[index]["title"],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6, // TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Container(
+                                  // width: 19,
+                                  height: 20,
+                                  child: Text(
+                                    snapshot.data!.docs[index]["desc"],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        color: kThirdColor),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              )
+            ]))
+          ],
+        ),
+        /*  body: Column(
           children: [
             Container(
               height: Get.size.height * 0.15,
@@ -133,7 +243,7 @@ class AppsScreen extends StatelessWidget {
               },
             )
           ],
-        ),
+        ),*/
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             apps
