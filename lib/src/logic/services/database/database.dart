@@ -50,6 +50,12 @@ class Database {
     }
   }
 
+  // Stream<UserModel> realTimeUser({required String uid}) {
+  //   return _firestore.collection("user").doc(uid).snapshots().map((event) {
+  //     return UserModel.fromDocumentSnapshot(doc: event);
+  //   });
+  // }
+
   Future<bool> addNews() async {
     try {
       await _firestore

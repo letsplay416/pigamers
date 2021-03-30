@@ -19,6 +19,12 @@ class PiNewsController extends GetxController {
   }
 
   @override
+  void onReady() {
+    list.bindStream(Database().piNewsStream());
+    super.onReady();
+  }
+
+  @override
   void onInit() {
     // list.value = [
     //   PiNewsModel(

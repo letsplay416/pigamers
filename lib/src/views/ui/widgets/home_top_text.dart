@@ -48,10 +48,6 @@ class HomeTopText extends StatelessWidget {
                     image: NetworkImage(userCtrl.user.profilPic.toString()),
                     fit: BoxFit.cover),
               ),
-              // child: CachedNetworkImage(
-              //   imageUrl:
-              //       "https://image.freepik.com/photos-gratuite/femme-triste-sombre-se-sent-rancuniere-insatisfaite-porte-sac-main-levre-inferieure-bouleversee-ne-pas-recevoir-message-amant_273609-39159.jpg",
-              // ),
             ),
           )
         ],
