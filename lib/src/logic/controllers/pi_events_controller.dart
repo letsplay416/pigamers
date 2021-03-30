@@ -5,15 +5,7 @@ import 'package:pigamers/src/logic/services/database/database.dart';
 class PiEventsController extends GetxController {
   var currentTitle = "".obs;
   Rx<List<PiEventsModel>> list = Rx<List<PiEventsModel>>();
-  List<PiEventsModel> get news =>
-      list.value ??
-      [
-        PiEventsModel(
-          imgUrl:
-              "https://image.freepik.com/vecteurs-libre/game-over-effet-glitch_225004-661.jpg",
-          title: "Game Over",
-        ),
-      ];
+  List<PiEventsModel>? get news => list.value;
   void changeTitle({required String newTitle}) {
     currentTitle.value = newTitle;
   }
