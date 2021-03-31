@@ -4,7 +4,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      // drawer: Drawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,

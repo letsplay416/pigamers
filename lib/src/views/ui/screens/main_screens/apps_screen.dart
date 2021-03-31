@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/models/app_model.dart';
+import 'package:pigamers/src/views/ui/screens/app_detail_screen.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class AppsScreen extends StatelessWidget {
@@ -79,47 +80,56 @@ class AppsScreen extends StatelessWidget {
                           crossAxisSpacing: 20,
                           mainAxisSpacing: 20,
                           padding: EdgeInsets.all(15),
-                          itemBuilder: (context, index) => Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(2, 2),
-                                  blurRadius: 4,
-                                  color: kThirdColor,
-                                ),
-                              ],
-                              color: kFourthColor.withOpacity(0.2),
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                    snapshot.data!.docs[index]["imgUrl"]),
-                                fit: BoxFit.cover,
+                          itemBuilder: (context, index) => GestureDetector(
+                            onTap: () => Get.to(
+                              AppDetail(
+                                imagUrl: snapshot.data!.docs[index]["imgUrl"],
+                                desc: snapshot.data!.docs[index]["desc"],
+                                title: snapshot.data!.docs[index]["title"],
                               ),
                             ),
-                            height: snapshot.data!.docs[index]["isGame"]
-                                ? 300
-                                : 250,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  snapshot.data!.docs[index]["title"],
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline6, // TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Container(
-                                  // width: 19,
-                                  height: 20,
-                                  child: Text(
-                                    snapshot.data!.docs[index]["desc"],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        color: kThirdColor),
+                            child: Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: Offset(2, 2),
+                                    blurRadius: 4,
+                                    color: kThirdColor,
                                   ),
+                                ],
+                                color: kFourthColor.withOpacity(0.2),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      snapshot.data!.docs[index]["imgUrl"]),
+                                  fit: BoxFit.cover,
                                 ),
-                              ],
+                              ),
+                              height: snapshot.data!.docs[index]["isGame"]
+                                  ? 300
+                                  : 250,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    snapshot.data!.docs[index]["title"],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline6, // TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Container(
+                                    // width: 19,
+                                    height: 20,
+                                    child: Text(
+                                      snapshot.data!.docs[index]["desc"],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.normal,
+                                          color: kThirdColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           staggeredTileBuilder: (index) => StaggeredTile.fit(1),
