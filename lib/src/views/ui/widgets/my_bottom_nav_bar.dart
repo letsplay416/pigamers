@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
 import 'package:pigamers/src/views/ui/widgets/page_icon.dart';

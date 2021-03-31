@@ -14,16 +14,8 @@ class MainScreens extends GetWidget {
       body: Obx(
         () => navcontroller.getCurentPage,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: MyBottomNavBar(),
-      // body: Obx(
-      //   () => Stack(
-      //     alignment: AlignmentDirectional.bottomCenter,
-      //     children: [
-      //       navcontroller.getCurentPage,
-      //       MyBottomNavBar(),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

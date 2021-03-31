@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
@@ -63,13 +66,14 @@ class AppDetail extends StatelessWidget {
                           ),
                         ),
                         child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                          child: ListView(
+                            // crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(15.0),
                                 child: Text(
                                   title,
+                                  textAlign: TextAlign.end,
                                   style: Theme.of(context).textTheme.headline2,
                                 ),
                               ),
@@ -84,11 +88,6 @@ class AppDetail extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Container(
-                        decoration:
-                            BoxDecoration(color: kFourthColor.withOpacity(0.3)),
-                        height: 30,
-                      )
                     ],
                   ),
                 ),
@@ -97,10 +96,65 @@ class AppDetail extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(70),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.3),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(70),
+                ),
+              ),
+              // width: Get.width / 1.1,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: Get.width * 0.2,
+                      decoration: BoxDecoration(
+                          color: kContentColorLightTheme,
+                          border: Border.all(width: 1, color: kThirdColor),
+                          borderRadius: BorderRadius.circular(70)),
+                      child: Center(
+                          child: FaIcon(
+                        FontAwesomeIcons.accusoft,
+                        color: kThirdColor,
+                      )),
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: Get.width * 0.5,
+                      decoration: BoxDecoration(
+                          color: kContentColorLightTheme.withOpacity(0.2),
+                          border: Border.all(width: 1, color: kPrimaryColor),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.download,
+                          color: kContentColorDarkTheme,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              height: Get.size.height * 0.06,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
-
 
 //  return Scaffold(
 //       body: Column(

@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/src/logic/models/app_model.dart';
 import 'package:pigamers/src/views/ui/screens/app_detail_screen.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
