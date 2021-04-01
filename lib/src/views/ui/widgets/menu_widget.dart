@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
+import 'package:pigamers/src/logic/services/theme_service.dart';
 import 'package:pigamers/src/views/ui/screens/menu_screens/profile_screen.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
@@ -87,8 +88,9 @@ class Menu extends StatelessWidget {
                       ),
                       MenuTile(
                         title: "Aide",
-                        action: () => Get.changeThemeMode(
-                            Get.isDarkMode ? ThemeMode.light : ThemeMode.dark),
+                        action: () {
+                          ThemeService().changeThemeMode();
+                        },
                         icon: FontAwesomeIcons.question,
                         desc: "Besoin d'aide? C'est ici",
                       ),
