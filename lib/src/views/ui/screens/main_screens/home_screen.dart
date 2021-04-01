@@ -21,40 +21,7 @@ class HomeScreen extends GetWidget<AuthController> {
       extendBodyBehindAppBar: true,
       drawer: Menu(controller: controller),
       endDrawer: Notifications(controller: controller),
-      // appBar: AppBar(
-      //   backgroundColor: kContentColorLightTheme,
-      //   elevation: 0.0,
-      //   bottomOpacity: 0.0,
-      //   foregroundColor: Colors.transparent,
-      //   leading: Builder(
-      //     builder: (context) => IconButton(
-      //       icon: SvgPicture.asset(
-      //         "lib/src/assets/svg/menu.svg",
-      //         color: kPrimaryColor,
-      //       ),
-      //       onPressed: () {
-      //         Scaffold.of(context).openDrawer();
-      //       },
-      //     ),
-      //   ),
-      //   actions: [
-      //     Padding(
-      //       padding: const EdgeInsets.all(8.0),
-      //       child: Builder(
-      //         builder: (context) => IconButton(
-      //           icon: SvgPicture.asset(
-      //             "lib/src/assets/svg/bell.svg",
-      //             color: kPrimaryColor,
-      //           ),
-      //           onPressed: () {
-      //             Scaffold.of(context).openEndDrawer();
-      //           },
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      backgroundColor: Colors.transparent,
+      backgroundColor: kContentColorLightTheme,
       onDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
       onEndDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
       body: CustomScrollView(
@@ -89,12 +56,12 @@ class HomeScreen extends GetWidget<AuthController> {
               ),
             ],
             expandedHeight: Get.size.height * 0.2,
-            backgroundColor: kPrimaryColor.withOpacity(0.2),
+            backgroundColor: kContentColorLightTheme,
             stretch: true,
             centerTitle: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text("Pi'Gamers"),
+              title: Text(""),
               stretchModes: [
                 StretchMode.zoomBackground,
                 StretchMode.fadeTitle,
@@ -111,21 +78,22 @@ class HomeScreen extends GetWidget<AuthController> {
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
-                          // color: Colors.amber,
+                          color: kSecondaryColor.withOpacity(0.1),
                           borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(40))),
+                              bottomLeft: Radius.circular(40),
+                              bottomRight: Radius.circular(40))),
                     ),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment(0.0, 1),
                         colors: [
-                          kPrimaryColor.withOpacity(0.1),
-                          Color(0x00000000)
+                          Color(0x00000000),
+                          kPrimaryColor.withOpacity(0.05),
                         ],
                         end: Alignment(0.0, 0.0),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               centerTitle: true,

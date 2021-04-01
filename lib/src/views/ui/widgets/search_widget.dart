@@ -11,14 +11,19 @@ class SearchWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       height: 45,
       decoration: BoxDecoration(
-        color: kContentColorLightTheme,
+        color: kContentColorDarkTheme.withOpacity(0.2),
         border: Border.all(color: kContentColorDarkTheme.withOpacity(0.1)),
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, 5),
-            blurRadius: 10,
+            offset: Offset(3, 3),
+            blurRadius: 1,
             color: kPrimaryColor.withOpacity(0.23),
+          ),
+          BoxShadow(
+            offset: Offset(0, 0),
+            // blurRadius: 10,
+            color: kContentColorLightTheme,
           ),
         ],
       ),

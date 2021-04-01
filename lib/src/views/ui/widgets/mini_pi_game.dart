@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class MiniPiGames extends StatelessWidget {
@@ -10,31 +11,33 @@ class MiniPiGames extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-          horizontal: kDefaultPadding * 0.5, vertical: kDefaultPadding),
-      width: kDefaultPadding * 4,
-      height: kDefaultPadding * 2.5,
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(
-              color: kContentColorDarkTheme,
-              fontWeight: activ ? FontWeight.bold : FontWeight.normal),
-        ),
-      ),
-      decoration: BoxDecoration(
-        color: activ ? kPrimaryColor : Colors.transparent,
-        border: Border.all(color: kPrimaryColor.withOpacity(0.8)),
-        boxShadow: [
-          BoxShadow(
-            offset: Offset(4, 4),
-            blurRadius: 2,
-            color:
-                activ ? kSecondaryColor.withOpacity(0.23) : Colors.transparent,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: Get.width * 0.25,
+        child: Center(
+          child: Text(
+            text.toUpperCase(),
+            style: TextStyle(
+              color: activ ? kContentColorLightTheme : kContentColorDarkTheme,
+              fontWeight: activ ? FontWeight.bold : FontWeight.normal,
+            ),
           ),
-        ],
-        borderRadius: BorderRadius.circular(20),
+        ),
+        decoration: BoxDecoration(
+          color: activ ? kPrimaryColor : Colors.transparent,
+          border: Border.all(color: kPrimaryColor.withOpacity(0.8)),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(4, 4),
+              blurRadius: 2,
+              color: activ
+                  ? kSecondaryColor.withOpacity(0.23)
+                  : Colors.transparent,
+            ),
+          ],
+          borderRadius: BorderRadius.circular(20),
+        ),
       ),
     );
   }

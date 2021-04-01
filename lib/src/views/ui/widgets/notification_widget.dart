@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -29,7 +25,21 @@ class Notifications extends StatelessWidget {
             child: ListView(
               children: [
                 DrawerHeader(
-                  child: Center(child: Text("Notifs")),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: kThirdColor.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        "Mes notifications",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 ListTile(
                   title: Text("Déconexion"),
