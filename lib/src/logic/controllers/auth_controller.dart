@@ -7,14 +7,6 @@ import 'user_controller.dart';
 class AuthController extends GetxController {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Rx<User> _firebaseUser = Rx<User>();
-
-  get user => this._firebaseUser.value;
-  @override
-  void onInit() {
-    _firebaseUser.bindStream(_firebaseAuth.authStateChanges());
-    super.onInit();
-  }
 
   void signIn({required String email, required String password}) async {
     try {

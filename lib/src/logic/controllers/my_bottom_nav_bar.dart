@@ -20,7 +20,7 @@ class MyBottomNavBarController extends GetxController {
     }
   }
 
-  bool get isShowen => showIt.value!;
+  bool get isShowen => showIt.value;
   @override
   void onInit() {
     curentPage.value = PageEnum.HOME;

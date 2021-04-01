@@ -35,7 +35,7 @@ class PiAdsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Obx(() => Text(
-                    piAdsController!.currentTitle.string,
+                    piAdsController.currentTitle.string,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -82,13 +82,13 @@ class PiAdsWidget extends StatelessWidget {
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
-                piAdsController!.changeTitle(
+                piAdsController.changeTitle(
                   newTitle: piAdsController.news[index].title.toString(),
                 );
               },
               scrollDirection: Axis.horizontal,
             ),
-            itemCount: piAdsController!.news.length,
+            itemCount: piAdsController.news.length,
             itemBuilder: (context, index, realIndex) => Stack(
               alignment: Alignment.topRight,
               children: [

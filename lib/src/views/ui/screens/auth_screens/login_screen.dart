@@ -74,13 +74,13 @@ class LoginScreen extends GetWidget<AuthController> {
                     style: TextStyle(
                       color: kPrimaryColor,
                     ),
-                    obscureText: showPsw.value!,
+                    obscureText: showPsw.value,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                         hintStyle:
                             TextStyle(color: kPrimaryColor.withOpacity(0.7)),
                         suffix: GestureDetector(
-                          onTap: () => showPsw.value = (!showPsw.value!),
+                          onTap: () => showPsw.value = (!showPsw.value),
                           child: FaIcon(
                             FontAwesomeIcons.eye,
                             color: kPrimaryColor,

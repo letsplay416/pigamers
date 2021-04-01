@@ -35,7 +35,7 @@ class PiNewsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Obx(() => Text(
-                    piNewsController!.currentTitle.string,
+                    piNewsController.currentTitle.string,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -82,13 +82,13 @@ class PiNewsWidget extends StatelessWidget {
               autoPlayCurve: Curves.fastOutSlowIn,
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
-                piNewsController!.changeTitle(
+                piNewsController.changeTitle(
                   newTitle: piNewsController.news[index].title.toString(),
                 );
               },
               scrollDirection: Axis.horizontal,
             ),
-            itemCount: piNewsController!.news.length,
+            itemCount: piNewsController.news.length,
             itemBuilder: (context, index, realIndex) => Stack(
               alignment: Alignment.topRight,
               children: [

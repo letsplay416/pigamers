@@ -4,16 +4,14 @@ import 'package:pigamers/src/logic/services/database/database.dart';
 
 class PiAdsController extends GetxController {
   var currentTitle = "".obs;
-  Rx<List<PiAdsModel>> list = Rx<List<PiAdsModel>>();
-  List<PiAdsModel> get news =>
-      list.value ??
-      [
-        PiAdsModel(
-          imgUrl:
-              "https://image.freepik.com/vecteurs-libre/game-over-effet-glitch_225004-661.jpg",
-          title: "Game Over",
-        ),
-      ];
+  RxList<PiAdsModel> list = [
+    PiAdsModel(
+      imgUrl:
+          "https://image.freepik.com/vecteurs-libre/game-over-effet-glitch_225004-661.jpg",
+      title: "Game Over",
+    ),
+  ].obs;
+  List<PiAdsModel> get news => list;
   void changeTitle({required String newTitle}) {
     currentTitle.value = newTitle;
   }

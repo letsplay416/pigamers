@@ -87,7 +87,8 @@ class Menu extends StatelessWidget {
                       ),
                       MenuTile(
                         title: "Aide",
-                        action: () => Get.to(ProfileScreen()),
+                        action: () => Get.changeThemeMode(
+                            Get.isDarkMode ? ThemeMode.light : ThemeMode.dark),
                         icon: FontAwesomeIcons.question,
                         desc: "Besoin d'aide? C'est ici",
                       ),

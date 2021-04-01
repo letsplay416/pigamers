@@ -8,7 +8,7 @@ class UserController extends GetxController {
       UserModel(email: "", id: "", name: "Newbie", exp: 0, profilPic: '').obs;
   set user(UserModel theUser) => this._user.value = theUser;
   UserModel get user =>
-      _user.value ?? UserModel(email: "", id: "", name: "Newbie", exp: 0, profilPic: '');
+      _user.value;
   @override
   Future<void> onInit() async {
     _user.value =
