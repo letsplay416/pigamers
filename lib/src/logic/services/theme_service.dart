@@ -5,13 +5,12 @@ import 'package:get_storage/get_storage.dart';
 class ThemeService {
   final _getStorage = GetStorage();
   final storageKey = "isDarkMode";
-
   ThemeMode getThemeMode() {
     return isSavedDarkMode() ? ThemeMode.dark : ThemeMode.light;
   }
 
   bool isSavedDarkMode() {
-    return _getStorage.read(storageKey);
+    return _getStorage.read(storageKey) ?? false;
   }
 
   void saveThemeMode(bool isDark) {
