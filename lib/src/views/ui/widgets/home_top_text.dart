@@ -17,11 +17,7 @@ class HomeTopText extends StatelessWidget {
               Obx(() => Text(
                     "Hi ${userCtrl.user.name},",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      color: kContentColorDarkTheme,
-                    ),
+                    style: Theme.of(context).textTheme.headline1,
                   )),
               SizedBox(
                 height: kDefaultPadding / 3,
@@ -29,10 +25,7 @@ class HomeTopText extends StatelessWidget {
               Text(
                 "Good day for gaming!",
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 18,
-                    color: kContentColorDarkTheme),
+                style: Theme.of(context).textTheme.subtitle1,
               ),
             ],
           ),

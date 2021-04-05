@@ -6,7 +6,6 @@ import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
 import 'package:pigamers/src/logic/services/theme_service.dart';
 import 'package:pigamers/src/views/ui/widgets/auth_wrapper.dart';
 import 'package:pigamers/src/views/utils/app_strings.dart';
-import 'package:pigamers/src/views/utils/constants.dart';
 import 'package:pigamers/src/views/utils/themes.dart';
 
 import 'logic/controllers/auth_controller.dart';
@@ -25,7 +24,7 @@ class PiGamersApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: AuthWrapper(),
-      color: kPrimaryColor,
+      color: Theme.of(context).primaryColor,
       theme: MyTheme().lightTheme,
       title: AppStrings.appTitle,
       darkTheme: MyTheme().darkTheme,

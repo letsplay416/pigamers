@@ -38,18 +38,21 @@ class Menu extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      DrawerHeader(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              "Pi'Gamers",
-                              style: TextStyle(
-                                fontSize: 20,
+                      GestureDetector(
+                        onDoubleTap: () => ThemeService().changeThemeMode(),
+                        child: DrawerHeader(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                "Pi'Gamers",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ),

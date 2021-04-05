@@ -21,7 +21,7 @@ class HomeScreen extends GetWidget<AuthController> {
       extendBodyBehindAppBar: true,
       drawer: Menu(controller: controller),
       endDrawer: Notifications(controller: controller),
-      backgroundColor: kContentColorLightTheme,
+      backgroundColor: Theme.of(context).backgroundColor,
       onDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
       onEndDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
       body: CustomScrollView(
@@ -32,7 +32,7 @@ class HomeScreen extends GetWidget<AuthController> {
               builder: (context) => IconButton(
                 icon: SvgPicture.asset(
                   "lib/src/assets/svg/menu.svg",
-                  color: kPrimaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
@@ -46,7 +46,7 @@ class HomeScreen extends GetWidget<AuthController> {
                   builder: (context) => IconButton(
                     icon: SvgPicture.asset(
                       "lib/src/assets/svg/bell.svg",
-                      color: kPrimaryColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                     onPressed: () {
                       Scaffold.of(context).openEndDrawer();
@@ -56,7 +56,7 @@ class HomeScreen extends GetWidget<AuthController> {
               ),
             ],
             expandedHeight: Get.size.height * 0.2,
-            backgroundColor: kContentColorLightTheme,
+            backgroundColor: Theme.of(context).backgroundColor,
             stretch: true,
             centerTitle: true,
             floating: true,
@@ -78,7 +78,8 @@ class HomeScreen extends GetWidget<AuthController> {
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
-                          color: kSecondaryColor.withOpacity(0.1),
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.1),
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(40),
                               bottomRight: Radius.circular(40))),
@@ -88,7 +89,7 @@ class HomeScreen extends GetWidget<AuthController> {
                         begin: Alignment(0.0, 1),
                         colors: [
                           Color(0x00000000),
-                          kPrimaryColor.withOpacity(0.05),
+                          Theme.of(context).primaryColor.withOpacity(0.05),
                         ],
                         end: Alignment(0.0, 0.0),
                       ),
@@ -100,31 +101,34 @@ class HomeScreen extends GetWidget<AuthController> {
             ),
           ),
           SliverList(
-              delegate: SliverChildListDelegate([
-            Column(
-              children: [
-                SizedBox(height: kDefaultPadding * 2),
-                HomeTopText(),
-                SizedBox(height: kDefaultPadding * 2),
-                SearchWidget(),
-                SizedBox(height: kDefaultPadding * 1.5),
-                MiniGamesRow(),
-                SizedBox(height: kDefaultPadding * 1.5),
-                PiEventsWidget(),
-                SizedBox(height: kDefaultPadding * 1.5),
-                PiNewsWidget(),
-                SizedBox(height: kDefaultPadding * 1.5),
-                PiAdsWidget(),
-                SizedBox(height: kDefaultPadding * 1.5),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Social footer"),
-                  ),
+            delegate: SliverChildListDelegate(
+              [
+                Column(
+                  children: [
+                    SizedBox(height: kDefaultPadding * 2),
+                    HomeTopText(),
+                    SizedBox(height: kDefaultPadding * 2),
+                    SearchWidget(),
+                    SizedBox(height: kDefaultPadding * 1.5),
+                    MiniGamesRow(),
+                    SizedBox(height: kDefaultPadding * 1.5),
+                    PiEventsWidget(),
+                    SizedBox(height: kDefaultPadding * 1.5),
+                    PiNewsWidget(),
+                    SizedBox(height: kDefaultPadding * 1.5),
+                    PiAdsWidget(),
+                    SizedBox(height: kDefaultPadding * 1.5),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Social footer"),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ]))
+          ),
         ],
       ),
     );

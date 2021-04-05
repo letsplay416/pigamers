@@ -22,14 +22,10 @@ class PiEventsWidget extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
           child: Text(
             "Pi'Events",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: kThirdColor,
-            ),
+            style: Theme.of(context).textTheme.headline3,
           ),
         ),
-        SizedBox(height: kDefaultPadding * 0.2),
+        SizedBox(height: kDefaultPadding * 0.1),
         Padding(
           padding:
               const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
@@ -38,10 +34,7 @@ class PiEventsWidget extends StatelessWidget {
             children: [
               Obx(() => Text(
                     piEventsController.currentTitle.string,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        color: kContentColorDarkTheme),
+                    style: Theme.of(context).textTheme.headline2,
                   )),
               TextButton(
                 onPressed: () => Database().addNews(),

@@ -11,19 +11,20 @@ class SearchWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       height: 45,
       decoration: BoxDecoration(
-        color: kContentColorDarkTheme.withOpacity(0.2),
-        border: Border.all(color: kContentColorDarkTheme.withOpacity(0.1)),
+        color: Theme.of(context).backgroundColor.withOpacity(0.2),
+        border:
+            Border.all(color: Theme.of(context).accentColor.withOpacity(0.1)),
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             offset: Offset(3, 3),
             blurRadius: 1,
-            color: kPrimaryColor.withOpacity(0.23),
+            color: Theme.of(context).primaryColor.withOpacity(0.23),
           ),
           BoxShadow(
             offset: Offset(0, 0),
             // blurRadius: 10,
-            color: kContentColorLightTheme,
+            color: Theme.of(context).backgroundColor,
           ),
         ],
       ),
@@ -31,7 +32,7 @@ class SearchWidget extends StatelessWidget {
         children: <Widget>[
           SvgPicture.asset(
             "lib/src/assets/svg/search.svg",
-            color: kContentColorDarkTheme,
+            color: Theme.of(context).primaryColor,
           ),
           SizedBox(
             width: kDefaultPadding * 0.7,
@@ -41,9 +42,10 @@ class SearchWidget extends StatelessWidget {
               onChanged: (value) {},
               decoration: InputDecoration(
                 hintText: "Search",
-                prefixStyle: TextStyle(color: kContentColorLightTheme),
+                prefixStyle:
+                    TextStyle(color: Theme.of(context).backgroundColor),
                 hintStyle: TextStyle(
-                  color: kPrimaryColor.withOpacity(0.7),
+                  color: Theme.of(context).primaryColor.withOpacity(0.7),
                 ),
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,

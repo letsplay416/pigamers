@@ -7,10 +7,30 @@ class MyTheme {
       primaryColor: kSecondaryColor,
       accentColor: kFourthColor,
       accentColorBrightness: Brightness.light,
-      backgroundColor: kContentColorLightTheme,
+      backgroundColor: kContentColorDarkTheme,
       brightness: Brightness.light,
-      textTheme: GoogleFonts.aclonicaTextTheme()
-          .copyWith(headline1: TextStyle(color: kFourthColor)),
+      textTheme: TextTheme(
+        headline1: GoogleFonts.aclonica(
+          color: kPrimaryColor,
+          fontSize: 26,
+          fontWeight: FontWeight.bold,
+        ),
+        headline2: GoogleFonts.roboto(
+          color: kContentColorLightTheme,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ),
+        headline3: GoogleFonts.abel(
+          color: kThirdColor,
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+        ),
+        subtitle1: GoogleFonts.aclonica(
+          color: kContentColorLightTheme,
+          fontSize: 12,
+          fontWeight: FontWeight.w300,
+        ),
+      ),
       appBarTheme: AppBarTheme(
         brightness: Brightness.light,
         textTheme: TextTheme(
@@ -20,8 +40,34 @@ class MyTheme {
         ),
       ),
       buttonColor: kSecondaryColor);
+
   final darkTheme = ThemeData.dark().copyWith(
       primaryColor: kPrimaryColor,
+      accentColor: kFourthColor,
+      backgroundColor: kContentColorLightTheme,
+      brightness: Brightness.dark,
+      textTheme: TextTheme(
+        headline1: GoogleFonts.aclonica(
+          color: kPrimaryColor,
+          fontSize: 26,
+          fontWeight: FontWeight.bold,
+        ),
+        headline2: GoogleFonts.roboto(
+          color: kContentColorDarkTheme,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+        ),
+        headline3: GoogleFonts.abel(
+          color: kThirdColor,
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+        ),
+        subtitle1: GoogleFonts.aclonica(
+          color: kContentColorDarkTheme,
+          fontSize: 12,
+          fontWeight: FontWeight.w300,
+        ),
+      ),
       appBarTheme: AppBarTheme(
         brightness: Brightness.dark,
         textTheme: TextTheme(

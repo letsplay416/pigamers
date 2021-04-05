@@ -17,23 +17,27 @@ class MiniPiGames extends StatelessWidget {
         width: Get.width * 0.25,
         child: Center(
           child: Text(
-            text.toUpperCase(),
+            activ ? text.toUpperCase() : text,
             style: TextStyle(
-              color: activ ? kContentColorLightTheme : kContentColorDarkTheme,
-              fontWeight: activ ? FontWeight.bold : FontWeight.normal,
+              color: activ
+                  ? Theme.of(context).backgroundColor
+                  : Theme.of(context).primaryColor,
+              fontWeight: activ ? FontWeight.bold : FontWeight.w600,
             ),
           ),
         ),
         decoration: BoxDecoration(
           color: activ ? kPrimaryColor : Colors.transparent,
-          border: Border.all(color: kPrimaryColor.withOpacity(0.8)),
+          border: Border.all(
+              color: activ
+                  ? Theme.of(context).backgroundColor.withOpacity(0.2)
+                  : Theme.of(context).primaryColor.withOpacity(0.2)),
           boxShadow: [
             BoxShadow(
-              offset: Offset(4, 4),
+              offset: Offset(2, 2),
               blurRadius: 2,
-              color: activ
-                  ? kSecondaryColor.withOpacity(0.23)
-                  : Colors.transparent,
+              color:
+                  activ ? Theme.of(context).primaryColor : Colors.transparent,
             ),
           ],
           borderRadius: BorderRadius.circular(20),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'mini_pi_game.dart';
 
@@ -8,9 +7,9 @@ import 'mini_pi_game.dart';
 class MiniGamesRow extends GetWidget {
   RxInt _index = 0.obs;
   List<String> listGames = [
-    "azert",
-    "dgfhjk",
-    "fvghbjk",
+    "Roulette",
+    "Pile ou face",
+    "Jackpot",
   ];
   @override
   Widget build(BuildContext context) {
