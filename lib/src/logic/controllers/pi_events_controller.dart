@@ -4,44 +4,10 @@ import 'package:pigamers/src/logic/services/database/database.dart';
 
 class PiEventsController extends GetxController {
   var currentTitle = "".obs;
-  RxList<PiEventsModel> list = [
-    PiEventsModel(
-      imgUrl:
-          "https://image.freepik.com/vecteurs-libre/game-over-effet-glitch_225004-661.jpg",
-      title: "Game Over",
-    ),
-  ].obs;
-  List<PiEventsModel> get news => list;
   void changeTitle({required String newTitle}) {
     currentTitle.value = newTitle;
   }
 
-  @override
-  void onReady() {
-    list.bindStream(Database().piEventsStream());
-    super.onReady();
-  }
 
-  @override
-  void onInit() {
-    // list.value = [
-    //   PiEventsModel(
-    //     imgUrl:
-    //         "https://image.freepik.com/vecteurs-libre/game-over-effet-glitch_225004-661.jpg",
-    //     title: "Game Over",
-    //   ),
-    //   PiEventsModel(
-    //     imgUrl:
-    //         "https://image.freepik.com/vecteurs-libre/jeu-neon-numerique-banniere_1017-19897.jpg",
-    //     title: "Gamer Over",
-    //   ),
-    //   PiEventsModel(
-    //     imgUrl:
-    //         "https://image.freepik.com/vecteurs-libre/banniere-twitch-moderne-modele-effet-texte-glitch_1361-2572.jpg",
-    //     title: "Game Over",
-    //   ),
-    // ];
-    list.bindStream(Database().piEventsStream());
-    super.onInit();
-  }
+
 }
