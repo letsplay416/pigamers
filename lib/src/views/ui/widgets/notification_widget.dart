@@ -42,9 +42,8 @@ class Notifications extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text("Déconexion"),
-                  trailing: Icon(Icons.logout),
-                  onTap: () => controller.signOut(),
+                  title: Text("Aucune notification"),
+                  onTap: () {},
                 ),
               ],
             ),

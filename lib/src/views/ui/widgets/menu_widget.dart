@@ -55,18 +55,18 @@ class Menu extends StatelessWidget {
                               ),
                             ),
                           ),
-                          MenuTile(
-                            title: "Profile",
-                            action: () => Get.to(ProfileScreen()),
-                            icon: FontAwesomeIcons.userCog,
-                            desc: "Modifier les informations du compte",
-                          ),
-                          MenuTile(
-                            title: "Porte-monnaie",
-                            action: () => Get.to(ProfileScreen()),
-                            icon: FontAwesomeIcons.wallet,
-                            desc: "Acces aux ressources: Exp, Coins, etc.",
-                          ),
+                          // MenuTile(
+                          //   title: "Profile",
+                          //   action: () => Get.to(ProfileScreen()),
+                          //   icon: FontAwesomeIcons.userCog,
+                          //   desc: "Modifier les informations du compte",
+                          // ),
+                          // MenuTile(
+                          //   title: "Porte-monnaie",
+                          //   action: () => Get.to(ProfileScreen()),
+                          //   icon: FontAwesomeIcons.wallet,
+                          //   desc: "Acces aux ressources: Exp, Coins, etc.",
+                          // ),
                           MenuTile(
                             title: "Inviter un ami",
                             action: () => Get.to(ProfileScreen()),
@@ -75,7 +75,12 @@ class Menu extends StatelessWidget {
                           ),
                           MenuTile(
                             title: "Saisir un code",
-                            action: () => Get.to(ProfileScreen()),
+                            action: () {
+                              Get.back();
+                              Get.dialog(AlertDialog(
+                                title: Text("data"),
+                              ));
+                            },
                             icon: FontAwesomeIcons.barcode,
                             desc:
                                 "Saisit un code de promo et gagne de superbes lots",
@@ -93,19 +98,6 @@ class Menu extends StatelessWidget {
                             },
                             icon: FontAwesomeIcons.question,
                             desc: "Besoin d'aide? C'est ici",
-                          ),
-                          Flexible(
-                            child: Wrap(
-                              // scrollDirection: Axis.horizontal,
-                              children: [
-                                SocialBtn(
-                                  couleur: Colors.black,
-                                  icon: Icons.ac_unit,
-                                  title: "ujghy",
-                                ),
-                              ],
-                            ),
-                            fit: FlexFit.tight,
                           ),
                           Flexible(
                             child: Container(),
