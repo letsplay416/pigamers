@@ -7,7 +7,6 @@ import 'package:pigamers/src/views/ui/widgets/home_top_text.dart';
 import 'package:pigamers/src/views/ui/widgets/menu_widget.dart';
 import 'package:pigamers/src/views/ui/widgets/mini_game_row.dart';
 import 'package:pigamers/src/views/ui/widgets/notification_widget.dart';
-import 'package:pigamers/src/views/ui/widgets/pi_ads_widget.dart';
 import 'package:pigamers/src/views/ui/widgets/pi_events.dart';
 import 'package:pigamers/src/views/ui/widgets/pi_news_widget.dart';
 import 'package:pigamers/src/views/ui/widgets/search_widget.dart';

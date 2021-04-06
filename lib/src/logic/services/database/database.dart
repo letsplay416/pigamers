@@ -19,7 +19,9 @@ class Database {
         "uid": user.id,
         "exp": user.exp,
         "profilPic": user.profilPic,
-        "croins": 0.5
+        "croins": 0.5,
+        "flame": 100,
+        "like": 0,
       }).then((value) async {
         Get.snackbar("User created", "L'utilisateur ${user.name} a été créé");
         if (dadId != "") {
