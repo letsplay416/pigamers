@@ -34,10 +34,6 @@ class MyBottomNavBar extends GetWidget<MyBottomNavBarController> {
                                 target: PageEnum.RANKING,
                               ),
                               PageIcon(
-                                icon: "lib/src/assets/svg/star.svg",
-                                target: PageEnum.APPS,
-                              ),
-                              PageIcon(
                                 icon: "lib/src/assets/svg/settings.svg",
                                 target: PageEnum.SETTINGS,
                               ),

@@ -30,12 +30,6 @@ class PageIcon extends StatelessWidget {
                       color: kThirdColor.withOpacity(0.5),
                       size: 20,
                     )
-                  : target == PageEnum.APPS
-                      ? FaIcon(
-                          FontAwesomeIcons.mobile,
-                          color: kThirdColor.withOpacity(0.5),
-                          size: 20,
-                        )
                       : target == PageEnum.SETTINGS
                           ? FaIcon(
                               FontAwesomeIcons.cog,
