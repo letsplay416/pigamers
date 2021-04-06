@@ -115,15 +115,6 @@ class HomeScreen extends GetWidget<AuthController> {
                     PiEventsWidget(),
                     SizedBox(height: kDefaultPadding * 1.5),
                     PiNewsWidget(),
-                    // SizedBox(height: kDefaultPadding * 1.5),
-                    // PiAdsWidget(),
-                    // SizedBox(height: kDefaultPadding * 1.5),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Social footer"),
-                      ),
-                    ),
                   ],
                 ),
               ],

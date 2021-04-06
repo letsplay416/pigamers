@@ -95,11 +95,20 @@ class Menu extends StatelessWidget {
                             desc: "Besoin d'aide? C'est ici",
                           ),
                           Flexible(
-                            child: Container(
-                              child:
-                                  Center(child: Text("Row des résaux sociaux")),
+                            child: Wrap(
+                              // scrollDirection: Axis.horizontal,
+                              children: [
+                                SocialBtn(
+                                  couleur: Colors.black,
+                                  icon: Icons.ac_unit,
+                                  title: "ujghy",
+                                ),
+                              ],
                             ),
                             fit: FlexFit.tight,
+                          ),
+                          Flexible(
+                            child: Container(),
                           ),
                           GestureDetector(
                             onTap: () => controller.signOut(),
@@ -219,6 +228,36 @@ class Menu extends StatelessWidget {
             color: kPrimaryColor.withOpacity(0.2),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SocialBtn extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final Color couleur;
+  const SocialBtn({
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.couleur,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 40,
+        decoration: BoxDecoration(
+            color: kPrimaryColor.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(color: couleur, blurRadius: 3, offset: Offset(2, 2))
+            ]),
+        width: 60,
+        child: Center(child: Text(title)),
       ),
     );
   }

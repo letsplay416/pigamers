@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_connect/sockets/src/sockets_io.dart';
-import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens.dart';
 import 'package:pigamers/src/views/ui/screens/welcome_screen.dart';
 
@@ -33,9 +30,5 @@ class _AuthWrapperState extends State<AuthWrapper> {
         }
       },
     );
-
-    // return Obx(
-    //   () => controller.user != null ? MainScreens() : WelcomeScreen(),
-    // );
   }
 }
