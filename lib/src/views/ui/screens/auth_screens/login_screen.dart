@@ -14,7 +14,7 @@ class LoginScreen extends GetWidget<AuthController> {
   Widget build(BuildContext context) {
     TextEditingController _mailCtrl = TextEditingController();
     TextEditingController _passwordCtrl = TextEditingController();
-    RxBool showPsw = false.obs;
+    RxBool showPsw = true.obs;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -80,7 +80,7 @@ class LoginScreen extends GetWidget<AuthController> {
                         hintStyle:
                             TextStyle(color: kPrimaryColor.withOpacity(0.7)),
                         suffix: GestureDetector(
-                          onTap: () => showPsw.value = (!showPsw.value),
+                          onTap: () => showPsw.toggle(),
                           child: FaIcon(
                             FontAwesomeIcons.eye,
                             color: kPrimaryColor,

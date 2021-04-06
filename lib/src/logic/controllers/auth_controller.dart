@@ -7,7 +7,6 @@ import 'user_controller.dart';
 class AuthController extends GetxController {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-
   void signIn({required String email, required String password}) async {
     try {
       UserCredential authResult =
@@ -30,7 +29,9 @@ class AuthController extends GetxController {
   void registration(
       {required String email,
       required String password,
-      required String name}) async {
+      required String name,
+      required String dadId,
+      required double dadCroins}) async {
     try {
       await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -41,9 +42,14 @@ class AuthController extends GetxController {
           value.user!.uid,
           snackPosition: SnackPosition.BOTTOM,
         );
-        UserModel _user =
-            UserModel(email: email, id: value.user!.uid, name: name, exp: 100, profilPic: '');
-        if (await Database().createNewUser(user: _user)) {
+        UserModel _user = UserModel(
+            email: email,
+            id: value.user!.uid,
+            name: name,
+            exp: 100,
+            profilPic: '');
+        if (await Database()
+            .createNewUser(user: _user, dadId: dadId, dadCroins: dadCroins)) {
           Get.find<UserController>().user = _user;
           Get.snackbar(
             "User mis à jour",
@@ -63,8 +69,6 @@ class AuthController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
-
-  
 
   void signOut() async {
     try {

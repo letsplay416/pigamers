@@ -8,28 +8,36 @@ import 'package:pigamers/src/logic/models/user_model.dart';
 class Database {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<bool> createNewUser({required UserModel user}) async {
+  Future<bool> createNewUser(
+      {required UserModel user,
+      required double dadCroins,
+      required String dadId}) async {
     try {
-      await _firestore
-          .collection("users")
-          .doc(user.id.toString())
-          .set({
-            "name": user.name,
-            "email": user.email,
-            "uid": user.id,
-            "exp": user.exp,
-            "profilPic": user.profilPic,
-          })
-          .then(
-            (value) => Get.snackbar(
-                "User created", "L'utilisateur ${user.name} a été créé"),
-          )
-          .catchError(
-            (error) {
-              printError(info: error.toString());
-              Get.snackbar("Error Firestore", error.toString());
-            },
-          );
+      await _firestore.collection("users").doc(user.id.toString()).set({
+        "name": user.name,
+        "email": user.email,
+        "uid": user.id,
+        "exp": user.exp,
+        "profilPic": user.profilPic,
+        "croins": 0.5
+      }).then((value) async {
+        Get.snackbar("User created", "L'utilisateur ${user.name} a été créé");
+        if (dadId != "") {
+          await _firestore
+              .collection("users")
+              .doc(dadId)
+              .update({"croins": dadCroins + 0.5}).catchError((errorr) {
+            Get.snackbar("erreur ajout au parrain", errorr.toString());
+          });
+        } else {
+          Get.snackbar("erreur au parrain", dadId.length.toString());
+        }
+      }).catchError(
+        (error) {
+          printError(info: error.toString());
+          Get.snackbar("Error Firestore", error.toString());
+        },
+      );
       return true;
     } catch (e) {
       Get.snackbar("Error User Creation", e.toString());
@@ -49,12 +57,6 @@ class Database {
       rethrow;
     }
   }
-
-  // Stream<UserModel> realTimeUser({required String uid}) {
-  //   return _firestore.collection("user").doc(uid).snapshots().map((event) {
-  //     return UserModel.fromDocumentSnapshot(doc: event);
-  //   });
-  // }
 
   Future<bool> addNews() async {
     try {

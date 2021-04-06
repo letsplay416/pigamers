@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,6 +18,10 @@ class RegistrationScreen extends GetWidget<AuthController> {
     TextEditingController _mailCtrl = TextEditingController();
     TextEditingController _pseudoCtrl = TextEditingController();
     TextEditingController _passwordCtrl = TextEditingController();
+    TextEditingController _dadCtrl = TextEditingController();
+    RxBool asDad = false.obs;
+    RxString dadUi = "".obs;
+    RxDouble dadCroins = 0.0.obs;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -110,10 +117,11 @@ class RegistrationScreen extends GetWidget<AuthController> {
               AuthActionButton(
                 title: AppStrings.registrationScreenButton,
                 action: () => controller.registration(
-                  email: _mailCtrl.text.trim(),
-                  password: _passwordCtrl.text.trim(),
-                  name: _pseudoCtrl.text.trim(),
-                ),
+                    email: _mailCtrl.text.trim(),
+                    password: _passwordCtrl.text.trim(),
+                    name: _pseudoCtrl.text.trim(),
+                    dadId: dadUi.value,
+                    dadCroins: dadCroins.value),
               ),
               SwitchAuthText(
                 text1: "Tu as déjà compte ?",
@@ -124,6 +132,90 @@ class RegistrationScreen extends GetWidget<AuthController> {
           ),
         ),
       ),
+      floatingActionButton: Obx(() => asDad.value
+          ? Container()
+          : FloatingActionButton.extended(
+              onPressed: () {
+                Get.defaultDialog(
+                  title: "Ajoute un parrain et gagne des points",
+                  confirm: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        kPrimaryColor,
+                      ),
+                      shadowColor: MaterialStateProperty.all<Color>(
+                        kPrimaryColor.withOpacity(0.4),
+                      ),
+                      overlayColor: MaterialStateProperty.all<Color>(
+                        kPrimaryColor.withOpacity(0.4),
+                      ),
+                    ),
+                    onPressed: () async {
+                      CollectionReference users =
+                          FirebaseFirestore.instance.collection('users');
+
+                      await users.doc(_dadCtrl.text.trim()).get().then((value) {
+                        if (value.exists) {
+                          Get.back();
+                          dadUi.value = _dadCtrl.text.trim();
+                          asDad.toggle();
+                          dadCroins.value = value.data()!['croins'].toDouble();
+                          Get.snackbar("Succès",
+                              "Vous et ${value.data()!['name']} recevez votre récompense",
+                              duration: Duration(seconds: 5));
+                        } else {
+                          Get.snackbar("Echec",
+                              "Aucun utilisateur avec ce id veuillez recommencer",
+                              duration: Duration(seconds: 5));
+                        }
+                      });
+                    },
+                    child: Text("Confimer"),
+                  ),
+                  cancel: OutlinedButton(
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.all<Color>(
+                        kPrimaryColor,
+                      ),
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                        Colors.red,
+                      ),
+                      shadowColor: MaterialStateProperty.all<Color>(
+                        Colors.red,
+                      ),
+                    ),
+                    onPressed: () => Get.back(),
+                    child: Text("Annuler"),
+                  ),
+                  content: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    decoration: BoxDecoration(
+                        color: kPrimaryColor.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(29)),
+                    child: TextField(
+                      controller: _dadCtrl,
+                      autofocus: false,
+                      cursorColor: kPrimaryColor,
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                      ),
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        hintStyle:
+                            TextStyle(color: kPrimaryColor.withOpacity(0.7)),
+                        icon: FaIcon(FontAwesomeIcons.user),
+                        border: InputBorder.none,
+                        hintText: "id du parrain",
+                      ),
+                    ),
+                    width: Get.size.width * 0.8,
+                  ),
+                );
+              },
+              label: Text("Ajouter un parrain"),
+              backgroundColor: kPrimaryColor,
+            )),
     );
   }
 }
