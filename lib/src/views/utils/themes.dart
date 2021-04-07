@@ -4,7 +4,7 @@ import 'package:pigamers/src/views/utils/constants.dart';
 
 class MyTheme {
   final lightTheme = ThemeData.light().copyWith(
-      primaryColor: kSecondaryColor,
+      primaryColor: Colors.green,
       accentColor: kFourthColor,
       accentColorBrightness: Brightness.light,
       backgroundColor: kContentColorDarkTheme,

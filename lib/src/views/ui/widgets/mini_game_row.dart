@@ -4,12 +4,44 @@ import 'package:get/get.dart';
 import 'mini_pi_game.dart';
 
 // ignore: must_be_immutable
-class MiniGamesRow extends GetWidget {
-  RxInt _index = 0.obs;
-  List<String> listGames = [
-    "Roulette",
-    "Pile ou face",
-    "Jackpot",
+class MiniGamesRow extends StatelessWidget {
+  List<SocialWidget> listGames = [
+    SocialWidget(
+      name: "WhatsApp",
+      color: Colors.green,
+      link: "https://www.youtube.com/",
+      icon: "lib/src/assets/svg/flame.svg",
+    ),
+    SocialWidget(
+      name: "Play Store",
+      color: Get.theme!.textTheme.headline2!.color ?? Colors.amber,
+      link: "https://play.google.com/store/apps/details?id=inc.poison.pigamers",
+      icon: "lib/src/assets/svg/flame.svg",
+    ),
+    SocialWidget(
+      name: "Instagram",
+      color: Colors.pinkAccent,
+      link: "https://instagram.com/pigamers_?igshid=sd3uxc62i125",
+      icon: "lib/src/assets/svg/flame.svg",
+    ),
+    SocialWidget(
+      name: "SnapChat",
+      color: Colors.yellow,
+      link: "https://www.youtube.com/",
+      icon: "lib/src/assets/svg/flame.svg",
+    ),
+    SocialWidget(
+      name: "Facebook",
+      color: Colors.blue,
+      link: "https://www.facebook.com/PiGamers-103191205196895/",
+      icon: "lib/src/assets/svg/flame.svg",
+    ),
+    SocialWidget(
+      name: "Web site",
+      color: Get.theme!.textTheme.headline2!.color ?? Colors.amber,
+      link: "https://www.youtube.com/",
+      icon: "lib/src/assets/svg/flame.svg",
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -21,12 +53,27 @@ class MiniGamesRow extends GetWidget {
           itemCount: listGames.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => GestureDetector(
-            onTap: () => _index.value = index,
-            child:
-                Obx(() => MiniPiGames(listGames[index], index == _index.value)),
+            child: MiniPiGames(
+              color: listGames[index].color,
+              text: listGames[index].name,
+              url: listGames[index].link,
+            ),
           ),
         ),
       ),
     );
   }
+}
+
+class SocialWidget {
+  final String name;
+  final Color color;
+  final String link;
+  final String icon;
+
+  SocialWidget(
+      {required this.name,
+      required this.color,
+      required this.link,
+      required this.icon});
 }

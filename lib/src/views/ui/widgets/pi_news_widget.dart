@@ -56,7 +56,7 @@ class PiNewsWidget extends StatelessWidget {
                       style: GoogleFonts.acme(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
-                          color: kContentColorDarkTheme),
+                          color: Theme.of(context).textTheme.subtitle1!.color),
                     ),
                   ),
                   TextButton(

@@ -1,46 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pigamers/src/views/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MiniPiGames extends StatelessWidget {
   final String text;
-  final bool activ;
-  MiniPiGames(
-    this.text,
-    this.activ,
-  );
+  final Color color;
+  final String url;
+  MiniPiGames({
+    required this.text,
+    required this.color,
+    required this.url,
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: Get.width * 0.25,
-        child: Center(
-          child: Text(
-            activ ? text.toUpperCase() : text,
-            style: TextStyle(
-              color: activ
-                  ? Theme.of(context).backgroundColor
-                  : Theme.of(context).primaryColor,
-              fontWeight: activ ? FontWeight.bold : FontWeight.w600,
+      child: GestureDetector(
+        onTap: () async {
+          await canLaunch(url)
+              ? await launch(url)
+              : throw 'Could not launch $url';
+        },
+        child: Container(
+          width: 100,
+          child: Center(
+            child: Text(
+              text.toUpperCase(),
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ),
-        decoration: BoxDecoration(
-          color: activ ? kPrimaryColor : Colors.transparent,
-          border: Border.all(
-              color: activ
-                  ? Theme.of(context).backgroundColor.withOpacity(0.2)
-                  : Theme.of(context).primaryColor.withOpacity(0.2)),
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(2, 2),
-              blurRadius: 2,
-              color:
-                  activ ? Theme.of(context).primaryColor : Colors.transparent,
-            ),
-          ],
-          borderRadius: BorderRadius.circular(20),
+          decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor,
+            border: Border.all(color: color.withOpacity(0.7)),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 0),
+                spreadRadius: 1,
+                blurRadius: 5,
+                color: color.withOpacity(0.4),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(15),
+          ),
         ),
       ),
     );
