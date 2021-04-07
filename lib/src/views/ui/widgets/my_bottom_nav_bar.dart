@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
 import 'package:pigamers/src/views/ui/widgets/page_icon.dart';
-import 'package:pigamers/src/views/utils/constants.dart';
 
 class MyBottomNavBar extends GetWidget<MyBottomNavBarController> {
   @override
@@ -40,9 +39,11 @@ class MyBottomNavBar extends GetWidget<MyBottomNavBarController> {
                             ],
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.transparent,
+                            color: Theme.of(context)
+                                .backgroundColor
+                                .withOpacity(0.5),
                             border: Border.all(
-                                color: kSecondaryColor.withOpacity(0.5)),
+                                color: Theme.of(context).primaryColor),
                             borderRadius: BorderRadius.circular(20),
                           ),
                         )),

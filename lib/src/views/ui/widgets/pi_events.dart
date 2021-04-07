@@ -10,6 +10,8 @@ import 'package:pigamers/src/logic/controllers/pi_events_controller.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
+import 'image_view.dart';
+
 class PiEventsWidget extends StatelessWidget {
   final piEventsController = Get.put<PiEventsController>(PiEventsController());
   @override
@@ -52,7 +54,7 @@ class PiEventsWidget extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline2,
                       )),
                   TextButton(
-                    onPressed: () => Database().addNews(),
+                    onPressed: () {},
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all(EdgeInsets.all(1)),
                         overlayColor: MaterialStateProperty.all<Color>(
@@ -108,10 +110,6 @@ class PiEventsWidget extends StatelessWidget {
                       height: context.orientation == Orientation.portrait
                           ? Get.size.height / 2
                           : Get.size.width / 2,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
                       width: double.infinity,
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
@@ -143,11 +141,15 @@ class PiEventsWidget extends StatelessWidget {
                               "lib/src/assets/svg/expand.svg",
                               color: kThirdColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.dialog(ImageView(
+                                  image: snapshot.data!.docs[index]["imgUrl"]));
+                            },
                           ),
                           decoration: BoxDecoration(
                             color: kContentColorLightTheme.withOpacity(0.2),
                             border: Border.all(
+                                width: 2,
                                 color: kSecondaryColor.withOpacity(0.8)),
                             borderRadius: BorderRadius.circular(15),
                           ),

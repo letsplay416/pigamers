@@ -1,15 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'mini_pi_game.dart';
 
 // ignore: must_be_immutable
 class MiniGamesRow extends StatelessWidget {
+  String uid = FirebaseAuth.instance.currentUser!.uid;
   List<SocialWidget> listGames = [
     SocialWidget(
       name: "WhatsApp",
       color: Colors.green,
-      link: "https://www.youtube.com/",
+      link:
+          "https://api.whatsapp.com/send?phone=22990347744&text=Hello%20je%20viens%20de%20Pi'Gamers",
       icon: "lib/src/assets/svg/flame.svg",
     ),
     SocialWidget(
@@ -45,22 +49,55 @@ class MiniGamesRow extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 60,
-        child: ListView.builder(
-          itemCount: listGames.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => GestureDetector(
-            child: MiniPiGames(
-              color: listGames[index].color,
-              text: listGames[index].name,
-              url: listGames[index].link,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
+          child: Text(
+            "Pi'Social",
+            style: Theme.of(context)
+                .textTheme
+                .headline3!
+                .copyWith(color: Colors.pinkAccent),
+          ),
+        ),
+        SizedBox(height: kDefaultPadding * 0.3),
+        Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Rejoins-nous pour un max de Fun",
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+              ],
             ),
           ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 60,
+            child: ListView.builder(
+              itemCount: listGames.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => GestureDetector(
+                child: MiniPiGames(
+                  color: listGames[index].color,
+                  text: listGames[index].name,
+                  url: listGames[index].link,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

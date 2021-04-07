@@ -8,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/logic/controllers/rankin_widget_controller.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
+import 'image_view.dart';
+
 class RankingWidget extends GetWidget<RankingWidgetController> {
   const RankingWidget({
     Key? key,
@@ -50,24 +52,31 @@ class RankingWidget extends GetWidget<RankingWidgetController> {
                     child: Center(
                       child: Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Container(
-                              height: 90,
-                              width: 90,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(document
-                                                  .data()!['profilPic'] !=
-                                              ""
-                                          ? document.data()!['profilPic']
-                                          : "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/my_logo.png?alt=media&token=42666768-33dd-400e-9976-6e843a83bb4f"),
-                                      fit: BoxFit.cover),
-                                  color: Colors.black.withOpacity(0.3),
-                                  border: Border.all(
-                                      width: 3,
-                                      color: Theme.of(context).backgroundColor),
-                                  borderRadius: BorderRadius.circular(20)),
+                          GestureDetector(
+                            onTap: () => Get.dialog(ImageView(
+                                image: document.data()!['profilPic'] != ""
+                                    ? document.data()!['profilPic']
+                                    : "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/my_logo.png?alt=media&token=42666768-33dd-400e-9976-6e843a83bb4f")),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                height: 90,
+                                width: 90,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(document
+                                                    .data()!['profilPic'] !=
+                                                ""
+                                            ? document.data()!['profilPic']
+                                            : "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/my_logo.png?alt=media&token=42666768-33dd-400e-9976-6e843a83bb4f"),
+                                        fit: BoxFit.cover),
+                                    color: Colors.black.withOpacity(0.3),
+                                    border: Border.all(
+                                        width: 3,
+                                        color:
+                                            Theme.of(context).backgroundColor),
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
                             ),
                           ),
                           Column(

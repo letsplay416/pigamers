@@ -11,6 +11,8 @@ import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
 import 'package:pigamers/src/views/ui/screens/menu_screens/more_news_screen.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
+import 'image_view.dart';
+
 class PiNewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -194,7 +196,11 @@ class PiNewsWidget extends StatelessWidget {
                                 "lib/src/assets/svg/expand.svg",
                                 color: kPrimaryColor,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.dialog(ImageView(
+                                    image: snapshot.data!.docs[index]
+                                        ["imgUrl"]));
+                              },
                             ),
                             decoration: BoxDecoration(
                               color: kContentColorLightTheme.withOpacity(0.2),

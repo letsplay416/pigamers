@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
@@ -36,37 +37,48 @@ class Menu extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           GestureDetector(
-                            onDoubleTap: () => ThemeService().changeThemeMode(),
+                            onTap: () => ThemeService().changeThemeMode(),
                             child: DrawerHeader(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: kPrimaryColor.withOpacity(0.5),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: Text(
-                                    "Pi'Gamers",
-                                    style: TextStyle(
-                                      fontSize: 20,
+                              padding: const EdgeInsets.all(0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: kPrimaryColor.withOpacity(0.5),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: SvgPicture.asset(
+                                        "lib/src/assets/logo/pig.svg",
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  Text(
+                                    "Pi'Gamers",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3!
+                                        .copyWith(
+                                            fontSize: 30,
+                                            color: Theme.of(context)
+                                                .backgroundColor,
+                                            shadows: [
+                                          Shadow(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              blurRadius: 5,
+                                              offset: Offset(1, 1))
+                                        ]),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                          // MenuTile(
-                          //   title: "Profile",
-                          //   action: () => Get.to(ProfileScreen()),
-                          //   icon: FontAwesomeIcons.userCog,
-                          //   desc: "Modifier les informations du compte",
-                          // ),
-                          // MenuTile(
-                          //   title: "Porte-monnaie",
-                          //   action: () => Get.to(ProfileScreen()),
-                          //   icon: FontAwesomeIcons.wallet,
-                          //   desc: "Acces aux ressources: Exp, Coins, etc.",
-                          // ),
                           MenuTile(
                             title: "Inviter un ami",
                             action: () => Get.to(ProfileScreen()),
@@ -76,10 +88,66 @@ class Menu extends StatelessWidget {
                           MenuTile(
                             title: "Saisir un code",
                             action: () {
+                              TextEditingController _textFieldController =
+                                  TextEditingController();
                               Get.back();
-                              Get.dialog(AlertDialog(
-                                title: Text("data"),
-                              ));
+                              Get.dialog(
+                                AlertDialog(
+                                  actions: [
+                                    OutlinedButton(
+                                      style: ButtonStyle(
+                                        overlayColor:
+                                            MaterialStateProperty.all<Color>(
+                                          kPrimaryColor,
+                                        ),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          Colors.red,
+                                        ),
+                                        shadowColor:
+                                            MaterialStateProperty.all<Color>(
+                                          Colors.red,
+                                        ),
+                                      ),
+                                      onPressed: () => Get.back(),
+                                      child: Text("Annuler"),
+                                    ),
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                          kPrimaryColor,
+                                        ),
+                                        shadowColor:
+                                            MaterialStateProperty.all<Color>(
+                                          kPrimaryColor.withOpacity(0.4),
+                                        ),
+                                        overlayColor:
+                                            MaterialStateProperty.all<Color>(
+                                          kPrimaryColor.withOpacity(0.4),
+                                        ),
+                                      ),
+                                      onPressed: () async {
+                                        Get.back();
+                                        // Clipboard.setData(new ClipboardData(text: ));
+                                      },
+                                      child: Text("Appliquer"),
+                                    ),
+                                  ],
+                                  title: Text('Saisir un code'),
+                                  backgroundColor: Theme.of(context)
+                                      .backgroundColor
+                                      .withOpacity(0.8),
+                                  content: TextField(
+                                    onChanged: (value) {},
+                                    controller: _textFieldController,
+                                    decoration: InputDecoration(
+                                      hintText:
+                                          "Mets un code et gagne un bonus",
+                                    ),
+                                  ),
+                                ),
+                              );
                             },
                             icon: FontAwesomeIcons.barcode,
                             desc:

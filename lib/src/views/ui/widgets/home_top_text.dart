@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/user_controller.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
+import 'image_view.dart';
+
 class HomeTopText extends StatelessWidget {
   final userCtrl = Get.find<UserController>();
   @override
@@ -48,18 +50,22 @@ class HomeTopText extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(
-                          width: 1, color: Theme.of(context).primaryColor),
-                      image: DecorationImage(
-                          image: NetworkImage(snapshot.data["profilPic"]),
-                          fit: BoxFit.cover),
+                return GestureDetector(
+                  onTap: () =>
+                      Get.dialog(ImageView(image: snapshot.data["profilPic"])),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                            width: 1, color: Theme.of(context).primaryColor),
+                        image: DecorationImage(
+                            image: NetworkImage(snapshot.data["profilPic"]),
+                            fit: BoxFit.cover),
+                      ),
                     ),
                   ),
                 );
