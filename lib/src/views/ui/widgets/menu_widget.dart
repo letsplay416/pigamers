@@ -185,10 +185,13 @@ class Menu extends StatelessWidget {
                               child: Text(
                                 "Déconnexion",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(
+                                      fontSize: 20,
+                                      color: Theme.of(context).backgroundColor,
+                                    ),
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.red.withOpacity(0.5),
@@ -204,22 +207,45 @@ class Menu extends StatelessWidget {
                           GestureDetector(
                             onDoubleTap: () => ThemeService().changeThemeMode(),
                             child: DrawerHeader(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .primaryColor
-                                      .withOpacity(0.5),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: Text(
-                                    "Pi'Gamers",
-                                    style: TextStyle(
-                                      fontSize: 20,
+                              padding: const EdgeInsets.all(0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(0.5),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: SvgPicture.asset(
+                                        "lib/src/assets/logo/pig.svg",
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  Text(
+                                    "Pi'Gamers",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3!
+                                        .copyWith(
+                                            fontSize: 30,
+                                            color: Theme.of(context)
+                                                .backgroundColor,
+                                            shadows: [
+                                          Shadow(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              blurRadius: 5,
+                                              offset: Offset(1, 1))
+                                        ]),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -263,11 +289,7 @@ class Menu extends StatelessWidget {
                             desc: "Besoin d'aide? C'est ici",
                           ),
                           Flexible(
-                            child: Container(
-                              child:
-                                  Center(child: Text("Row des résaux sociaux")),
-                            ),
-                            fit: FlexFit.tight,
+                            child: Container(),
                           ),
                           GestureDetector(
                             onTap: () => controller.signOut(),
@@ -277,15 +299,16 @@ class Menu extends StatelessWidget {
                               child: Text(
                                 "Déconnexion",
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.abel(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1!
-                                      .color,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(
+                                      fontSize: 20,
+                                      color: Theme.of(context).backgroundColor,
+                                    ),
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.red.withOpacity(0.8),
+                                color: Colors.red.withOpacity(0.5),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),

@@ -64,7 +64,6 @@ class HomeScreen extends GetWidget<AuthController> {
             centerTitle: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(""),
               stretchModes: [
                 StretchMode.zoomBackground,
                 StretchMode.fadeTitle,

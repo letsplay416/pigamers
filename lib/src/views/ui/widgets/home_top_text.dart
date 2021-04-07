@@ -27,7 +27,7 @@ class HomeTopText extends StatelessWidget {
                 height: kDefaultPadding / 3,
               ),
               Text(
-                "Good day for gaming!",
+                "Fun, Game, Chill !",
                 textAlign: TextAlign.left,
                 style: Theme.of(context).textTheme.subtitle1,
               ),

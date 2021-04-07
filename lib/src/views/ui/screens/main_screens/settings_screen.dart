@@ -67,14 +67,14 @@ class SettingsScreen extends StatelessWidget {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50))),
                             side: MaterialStateProperty.all<BorderSide>(
-                                BorderSide(
-                                    color: kPrimaryColor.withOpacity(0.4))),
+                                BorderSide(width: 1, color: kPrimaryColor)),
                             backgroundColor: MaterialStateProperty.all<Color>(
                               Theme.of(context).backgroundColor,
                             ),
                           ),
                           child: SvgPicture.asset(
-                            "lib/src/assets/svg/camera.svg",
+                            "lib/src/assets/svg/fi-br-mode-portrait.svg",
+                            // height: 17,
                             color: kPrimaryColor,
                           ),
                         ),
