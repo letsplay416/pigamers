@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
+import 'package:pigamers/src/logic/services/theme_service.dart';
 import 'package:pigamers/src/views/ui/widgets/home_top_text.dart';
 import 'package:pigamers/src/views/ui/widgets/menu_widget.dart';
-import 'package:pigamers/src/views/ui/widgets/mini_game_row.dart';
-import 'package:pigamers/src/views/ui/widgets/notification_widget.dart';
+import 'package:pigamers/src/views/ui/widgets/social_row.dart';
 import 'package:pigamers/src/views/ui/widgets/pi_events.dart';
 import 'package:pigamers/src/views/ui/widgets/pi_news_widget.dart';
-import 'package:pigamers/src/views/ui/widgets/search_widget.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class HomeScreen extends GetWidget<AuthController> {
@@ -19,7 +19,6 @@ class HomeScreen extends GetWidget<AuthController> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       drawer: Menu(controller: controller),
-      endDrawer: Notifications(controller: controller),
       backgroundColor: Theme.of(context).backgroundColor,
       onDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
       onEndDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
@@ -39,17 +38,22 @@ class HomeScreen extends GetWidget<AuthController> {
               ),
             ),
             actions: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Builder(
-                  builder: (context) => IconButton(
-                    icon: SvgPicture.asset(
-                      "lib/src/assets/svg/bell.svg",
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
+              GestureDetector(
+                onTap: () => ThemeService().changeThemeMode(),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Builder(
+                    builder: (context) => !Get.isDarkMode
+                        ? FaIcon(
+                            FontAwesomeIcons.lightbulb,
+                            size: 30,
+                            color: kContentColorLightTheme,
+                          )
+                        : FaIcon(
+                            FontAwesomeIcons.solidLightbulb,
+                            size: 30,
+                            color: kThirdColor,
+                          ),
                   ),
                 ),
               ),
@@ -106,10 +110,10 @@ class HomeScreen extends GetWidget<AuthController> {
                   children: [
                     SizedBox(height: kDefaultPadding * 2),
                     HomeTopText(),
-                    SizedBox(height: kDefaultPadding * 2),
-                    SearchWidget(),
+                    // SizedBox(height: kDefaultPadding * 2),
+                    // SearchWidget(),
                     SizedBox(height: kDefaultPadding * 1.5),
-                    MiniGamesRow(),
+                    SocialRow(),
                     SizedBox(height: kDefaultPadding * 1.5),
                     PiEventsWidget(),
                     SizedBox(height: kDefaultPadding * 1.5),

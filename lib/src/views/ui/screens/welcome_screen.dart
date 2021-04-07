@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/views/ui/screens/auth_screens/login_screen.dart';
 import 'package:pigamers/src/views/ui/screens/auth_screens/registration_screen.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
@@ -11,18 +12,17 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: Get.size.height * 0.13,
             ),
             Text(
               "Bienvenue Pi'Gamers",
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 30),
+              style: GoogleFonts.abel(
+                color: kPrimaryColor,
+                fontWeight: FontWeight.normal,
+                fontSize: 40,
+              ),
             ),
             SizedBox(
               height: Get.size.height * 0.1,

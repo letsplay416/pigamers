@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 import 'package:pigamers/src/logic/services/theme_service.dart';
 import 'package:pigamers/src/views/ui/screens/menu_screens/profile_screen.dart';
-import 'package:pigamers/src/views/utils/constants.dart';
+// import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'menu_title_widget.dart';
 
@@ -46,7 +47,9 @@ class Menu extends StatelessWidget {
                                   Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      color: kPrimaryColor.withOpacity(0.5),
+                                      color: Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(0.5),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     padding: const EdgeInsets.all(15.0),
@@ -98,7 +101,7 @@ class Menu extends StatelessWidget {
                                       style: ButtonStyle(
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
-                                          kPrimaryColor,
+                                          Theme.of(context).primaryColor,
                                         ),
                                         foregroundColor:
                                             MaterialStateProperty.all<Color>(
@@ -116,15 +119,19 @@ class Menu extends StatelessWidget {
                                       style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                          kPrimaryColor,
+                                          Theme.of(context).primaryColor,
                                         ),
                                         shadowColor:
                                             MaterialStateProperty.all<Color>(
-                                          kPrimaryColor.withOpacity(0.4),
+                                          Theme.of(context)
+                                              .primaryColor
+                                              .withOpacity(0.4),
                                         ),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
-                                          kPrimaryColor.withOpacity(0.4),
+                                          Theme.of(context)
+                                              .primaryColor
+                                              .withOpacity(0.4),
                                         ),
                                       ),
                                       onPressed: () async {
@@ -199,7 +206,9 @@ class Menu extends StatelessWidget {
                             child: DrawerHeader(
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: kPrimaryColor.withOpacity(0.5),
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.5),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 padding: const EdgeInsets.all(8.0),
@@ -268,13 +277,15 @@ class Menu extends StatelessWidget {
                               child: Text(
                                 "Déconnexion",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
+                                style: GoogleFonts.abel(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1!
+                                      .color,
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.red.withOpacity(0.5),
+                                color: Colors.red.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -285,7 +296,7 @@ class Menu extends StatelessWidget {
                   },
                 )),
             width: Get.size.width * 0.7,
-            color: kPrimaryColor.withOpacity(0.2),
+            color: Theme.of(context).primaryColor.withOpacity(0.2),
           ),
         ),
       ),
@@ -311,7 +322,7 @@ class SocialBtn extends StatelessWidget {
       child: Container(
         height: 40,
         decoration: BoxDecoration(
-            color: kPrimaryColor.withOpacity(0.3),
+            color: Theme.of(context).primaryColor.withOpacity(0.3),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(color: couleur, blurRadius: 3, offset: Offset(2, 2))

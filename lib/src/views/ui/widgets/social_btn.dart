@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MiniPiGames extends StatelessWidget {
+class SocialBtn extends StatelessWidget {
   final String text;
   final Color color;
   final String url;
-  MiniPiGames({
+  SocialBtn({
     required this.text,
     required this.color,
     required this.url,

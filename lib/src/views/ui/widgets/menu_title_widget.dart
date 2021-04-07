@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class MenuTile extends StatelessWidget {
@@ -17,16 +18,21 @@ class MenuTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: kPrimaryColor,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(20),
       ),
       margin: EdgeInsets.all(10),
       child: ListTile(
-        subtitle: Text(desc),
+        subtitle: Text(
+          desc,
+          style: GoogleFonts.abel(
+            color: Theme.of(context).textTheme.subtitle1!.color,
+          ),
+        ),
         title: Text(
           title,
           style: TextStyle(
-            color: kContentColorLightTheme.withOpacity(0.6),
+            color: Theme.of(context).backgroundColor,
             fontWeight: FontWeight.bold,
             fontSize: 15,
           ),
