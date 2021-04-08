@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
 import 'package:pigamers/src/views/ui/screens/menu_screens/more_news_screen.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'image_view.dart';
 
@@ -108,7 +109,7 @@ class PiNewsWidget extends StatelessWidget {
                     : Axis.horizontal,
               ),
               itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index, realIndex) => Container(
+              itemBuilder: (context, index, realIndex)  => Container(
                 margin: const EdgeInsets.all(12),
                 height: Get.size.height,
                 decoration: BoxDecoration(
@@ -142,7 +143,7 @@ class PiNewsWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      trailing: ClipRRect(
+                      trailing: snapshot.data!.docs[index]["type"]=="ADS"? ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
@@ -151,29 +152,14 @@ class PiNewsWidget extends StatelessWidget {
                             width: 40,
                             child: IconButton(
                               icon: SvgPicture.asset(
-                                "lib/src/assets/svg/apps.svg",
+                                "lib/src/assets/svg/fi-br-redo.svg",
                                 color: kPrimaryColor,
                               ),
-                              onPressed: () => Get.bottomSheet(
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: kPrimaryColor.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(50),
-                                      topRight: Radius.circular(50),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        snapshot.data!.docs[index]["title"]
-                                            .toString(),
-                                        style: GoogleFonts.acme(fontSize: 30),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              onPressed: () async => await canLaunch(
+                                      snapshot.data!.docs[index]["link"])
+                                  ? await launch(
+                                      snapshot.data!.docs[index]["link"])
+                                  : throw 'Could not launch ${snapshot.data!.docs[index]["link"]}',
                             ),
                             decoration: BoxDecoration(
                               color: kContentColorLightTheme.withOpacity(0.2),
@@ -183,7 +169,7 @@ class PiNewsWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
+                      ):Container(),
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: BackdropFilter(
