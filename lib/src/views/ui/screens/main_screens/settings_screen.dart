@@ -5,6 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pigamers/src/logic/controllers/auth_controller.dart';
+import 'package:pigamers/src/logic/services/database/database.dart';
+import 'package:pigamers/src/logic/services/theme_service.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -17,6 +20,27 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         centerTitle: true,
+        actions: [
+          GestureDetector(
+            onTap: () => ThemeService().changeThemeMode(),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Builder(
+                builder: (context) => !Get.isDarkMode
+                    ? FaIcon(
+                        FontAwesomeIcons.lightbulb,
+                        size: 30,
+                        color: kContentColorLightTheme,
+                      )
+                    : FaIcon(
+                        FontAwesomeIcons.solidLightbulb,
+                        size: 30,
+                        color: kThirdColor,
+                      ),
+              ),
+            ),
+          ),
+        ],
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
@@ -105,28 +129,160 @@ class SettingsScreen extends StatelessWidget {
                     RessourceWidget(
                         number: snapshot.data["exp"].toString(),
                         icon: FontAwesomeIcons.chartLine,
-                        color: Colors.white),
+                        color: Get.isDarkMode
+                            ? Colors.white
+                            : kContentColorLightTheme),
                   ],
                 ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 20,
+                ),
                 SettingBtn(
-                  action: () {},
+                  action: () {
+                    TextEditingController _textFieldController =
+                        TextEditingController();
+                    Get.dialog(
+                      AlertDialog(
+                        actions: [
+                          OutlinedButton(
+                            style: ButtonStyle(
+                              overlayColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor,
+                              ),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                Colors.red,
+                              ),
+                              shadowColor: MaterialStateProperty.all<Color>(
+                                Colors.red,
+                              ),
+                            ),
+                            onPressed: () => Get.back(),
+                            child: Text("Annuler"),
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor,
+                              ),
+                              shadowColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor.withOpacity(0.4),
+                              ),
+                              overlayColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor.withOpacity(0.4),
+                              ),
+                            ),
+                            onPressed: () async {
+                              Database().changeProfilData(
+                                  type: "name",
+                                  newData: _textFieldController.text.trim());
+                              Get.back();
+                              Get.snackbar("Succès", "En cours d'analyse");
+                            },
+                            child: Text("Appliquer"),
+                          ),
+                        ],
+                        title: Text('Saisir le nouveau pseudo'),
+                        backgroundColor: Theme.of(context).backgroundColor,
+                        content: TextField(
+                          keyboardType: TextInputType.name,
+                          maxLength: 16,
+                          controller: _textFieldController,
+                          decoration: InputDecoration(
+                            hintText: "Ex: NoobMaster86",
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                   title: snapshot.data["name"],
                   icon: "lib/src/assets/svg/user.svg",
                 ),
                 SettingBtn(
-                  action: () {},
+                  action: () {
+                    Get.snackbar("Statut V.I.P requis",
+                        "Besoin du statut V.I.P pour modifier son email. Contactez le support pour plus d'infos",
+                        duration: Duration(seconds: 5));
+                  },
                   title: snapshot.data["email"],
-                  icon: "lib/src/assets/svg/check.svg",
+                  icon: "lib/src/assets/svg/fi-br-envelope.svg",
                 ),
                 SettingBtn(
-                  title: snapshot.data["uid"],
-                  icon: "lib/src/assets/svg/user0.svg",
+                  title: snapshot.data["phoneNumber"] == ""
+                      ? "Ajoute un numéro pour être au courant"
+                      : snapshot.data["phoneNumber"],
+                  icon: "lib/src/assets/svg/smartphone.svg",
+                  action: () {
+                    TextEditingController _textFieldController =
+                        TextEditingController();
+                    Get.dialog(
+                      AlertDialog(
+                        actions: [
+                          OutlinedButton(
+                            style: ButtonStyle(
+                              overlayColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor,
+                              ),
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                Colors.red,
+                              ),
+                              shadowColor: MaterialStateProperty.all<Color>(
+                                Colors.red,
+                              ),
+                            ),
+                            onPressed: () => Get.back(),
+                            child: Text("Annuler"),
+                          ),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor,
+                              ),
+                              shadowColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor.withOpacity(0.4),
+                              ),
+                              overlayColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).primaryColor.withOpacity(0.4),
+                              ),
+                            ),
+                            onPressed: () async {
+                              Database().changeProfilData(
+                                  type: "phoneNumber",
+                                  newData: _textFieldController.text.trim());
+                              Get.back();
+                              Get.snackbar("Succès", "En cours d'analyse");
+                            },
+                            child: Text("Appliquer"),
+                          ),
+                        ],
+                        title: Text('Saisir le nouveau numéro'),
+                        backgroundColor: Theme.of(context).backgroundColor,
+                        content: TextField(
+                          keyboardType: TextInputType.phone,
+                          controller: _textFieldController,
+                          decoration: InputDecoration(
+                            hintText: "Ex: +229 90 23 34 12",
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                SettingBtn(
+                  title: "Clique pour copier ton Id",
+                  icon: "lib/src/assets/svg/fi-br-cursor.svg",
                   action: () {
                     String uid = FirebaseAuth.instance.currentUser!.uid;
                     Clipboard.setData(new ClipboardData(text: uid));
                     Get.snackbar("Id copié", uid,
                         duration: Duration(seconds: 5));
                   },
+                ),
+                SettingBtn(
+                  title: "Se déconnecter",
+                  icon: "lib/src/assets/svg/fi-br-power.svg",
+                  isRed: true,
+                  action: () => Get.find<AuthController>().signOut(),
                 ),
               ],
             ),
@@ -187,24 +343,34 @@ class RessourceWidget extends StatelessWidget {
 }
 
 class SettingBtn extends StatelessWidget {
+  final bool isRed;
   final String title;
   final Function action;
   final String icon;
   const SettingBtn(
-      {Key? key, required this.title, required this.icon, required this.action})
+      {Key? key,
+      required this.title,
+      required this.icon,
+      required this.action,
+      this.isRed = false})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+      padding: EdgeInsets.symmetric(
+          horizontal: isRed ? 60 : 20.0, vertical: isRed ? 40 : 10),
       child: TextButton(
         onPressed: () => action(),
         style: ButtonStyle(
+          side: MaterialStateProperty.all<BorderSide>(BorderSide(
+              color: isRed ? Colors.red : Theme.of(context).accentColor)),
           shape: MaterialStateProperty.all<OutlinedBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-          padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+          padding: MaterialStateProperty.all(EdgeInsets.all(isRed ? 10 : 20)),
           backgroundColor: MaterialStateProperty.all<Color>(
-            Theme.of(context).accentColor.withOpacity(0.2),
+            isRed
+                ? Colors.red.withOpacity(0.3)
+                : Theme.of(context).accentColor.withOpacity(0.2),
           ),
         ),
         child: Row(
@@ -212,22 +378,27 @@ class SettingBtn extends StatelessWidget {
             SvgPicture.asset(
               icon,
               width: 22,
-              color: kPrimaryColor,
+              color: isRed ? Colors.red : kPrimaryColor,
             ),
             SizedBox(
               width: 20,
             ),
             Expanded(
-                child: Text(
-              title,
-              style:
-                  Theme.of(context).textTheme.subtitle1!.copyWith(fontSize: 20),
-            )),
-            SvgPicture.asset(
-              "lib/src/assets/svg/caret-right.svg",
-              width: 22,
-              color: kPrimaryColor,
+              child: Text(
+                title,
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle2!
+                    .copyWith(fontSize: 20),
+              ),
             ),
+            !isRed
+                ? SvgPicture.asset(
+                    "lib/src/assets/svg/caret-right.svg",
+                    width: 22,
+                    color: isRed ? Colors.red : kPrimaryColor,
+                  )
+                : Container(),
           ],
         ),
       ),

@@ -1,14 +1,15 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:share/share.dart';
+
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 import 'package:pigamers/src/logic/services/theme_service.dart';
 import 'package:pigamers/src/views/ui/screens/menu_screens/profile_screen.dart';
-// import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'menu_title_widget.dart';
 
@@ -84,8 +85,14 @@ class Menu extends StatelessWidget {
                           ),
                           MenuTile(
                             title: "Inviter un ami",
-                            action: () => Get.to(ProfileScreen()),
-                            icon: FontAwesomeIcons.userCog,
+                            action: () {
+                              String uid =
+                                  FirebaseAuth.instance.currentUser!.uid;
+                              Share.share(
+                                  "Hey. Tu t'ennuies?? J'ai découvert un jeu qui permet de répondre à des questions diverses à temps et jouer d'autres mini-jeux avec d'autres joueurs du monde tout en gagnant des cadeaux Télécharge là maintenant sur https://play.google.com/store/apps/details?id=inc.poison.pigamers. N'oublie pas mon identifiant comme id du parrain: $uid",
+                                  subject: 'Viens gagner des cadeaux');
+                            },
+                            icon: FontAwesomeIcons.share,
                             desc: "Agrandis nos rangs et gagne des récompenses",
                           ),
                           MenuTile(
@@ -162,15 +169,13 @@ class Menu extends StatelessWidget {
                           ),
                           MenuTile(
                             title: "A propos",
-                            action: () => Get.to(ProfileScreen()),
+                            action: () {},
                             icon: FontAwesomeIcons.info,
                             desc: "Tout sur Pi'Gammers et l'entreprise",
                           ),
                           MenuTile(
                             title: "Aide",
-                            action: () {
-                              ThemeService().changeThemeMode();
-                            },
+                            action: () {},
                             icon: FontAwesomeIcons.question,
                             desc: "Besoin d'aide? C'est ici",
                           ),

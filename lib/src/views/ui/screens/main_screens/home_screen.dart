@@ -6,6 +6,7 @@ import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
 import 'package:pigamers/src/logic/services/theme_service.dart';
 import 'package:pigamers/src/views/ui/widgets/home_top_text.dart';
+import 'package:pigamers/src/views/ui/widgets/live_stream.dart';
 import 'package:pigamers/src/views/ui/widgets/menu_widget.dart';
 import 'package:pigamers/src/views/ui/widgets/social_row.dart';
 import 'package:pigamers/src/views/ui/widgets/pi_events.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends GetWidget<AuthController> {
       drawer: Menu(controller: controller),
       backgroundColor: Theme.of(context).backgroundColor,
       onDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
+      floatingActionButton: LiveWidget(),
       onEndDrawerChanged: (isOpened) => navcontroller.changeShowIt(!isOpened),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/models/pi_ads_model.dart';
 import 'package:pigamers/src/logic/models/pi_events_model.dart';
@@ -19,6 +20,7 @@ class Database {
         "uid": user.id,
         "exp": user.exp,
         "profilPic": user.profilPic,
+        "phoneNumber": "",
         "croins": 0.5,
         "flame": 100,
         "like": 0,
@@ -54,6 +56,19 @@ class Database {
       Get.back();
       // Get.snackbar("Bienvenue à toi", doc["name"]);
       return UserModel.fromDocumentSnapshot(doc: doc);
+    } catch (e) {
+      Get.snackbar("Error getting User", e.toString());
+      rethrow;
+    }
+  }
+
+  Future<void> changeProfilData({required String newData,required String type}) async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    try {
+      // DocumentSnapshot doc =
+      await _firestore.collection("users").doc(uid).update({
+        type: newData,
+      });
     } catch (e) {
       Get.snackbar("Error getting User", e.toString());
       rethrow;
