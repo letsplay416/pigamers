@@ -118,7 +118,7 @@ class RankingWidget extends GetWidget<RankingWidgetController> {
                                     Row(
                                       children: [
                                         MySvgBtn(
-                                          name: "lib/src/assets/svg/star.svg",
+                                          name: "lib/src/assets/svg/graph.svg",
                                           color: kThirdColor,
                                           action: () {},
                                         ),

@@ -9,6 +9,5 @@ Future<void> main() async {
   await GetStorage.init();
   runApp(PiGamersApp());
 }
-//! Changer mini!games par nos réseaux sociaux
-//! Voir les actions du menu
-//! Terminer le setting screen
+
+

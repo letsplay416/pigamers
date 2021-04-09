@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens/home_screen.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens/ranking_screen.dart';
-import 'package:pigamers/src/views/ui/screens/main_screens/settings_screen.dart';
+import 'package:pigamers/src/views/ui/screens/main_screens/profile_screen.dart';
 
 class MyBottomNavBarController extends GetxController {
   var curentPage = PageEnum.HOME.obs;
@@ -10,7 +10,7 @@ class MyBottomNavBarController extends GetxController {
     switch (curentPage.value) {
       case PageEnum.RANKING:
         return RankingScreen();
-      case PageEnum.SETTINGS:
+      case PageEnum.PROFILE:
         return SettingsScreen();
       default:
         return HomeScreen();
@@ -38,4 +38,4 @@ class MyBottomNavBarController extends GetxController {
   }
 }
 
-enum PageEnum { HOME, RANKING, SETTINGS }
+enum PageEnum { HOME, RANKING, PROFILE }

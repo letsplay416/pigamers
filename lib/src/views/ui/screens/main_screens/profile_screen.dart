@@ -44,7 +44,7 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "Settings Screen",
+          "Profile Screen",
           style: Theme.of(context).textTheme.headline1,
         ),
       ),

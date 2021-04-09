@@ -32,9 +32,9 @@ class PageIcon extends StatelessWidget {
                           .withOpacity(0.4),
                       size: 20,
                     )
-                  : target == PageEnum.SETTINGS
+                  : target == PageEnum.PROFILE
                       ? FaIcon(
-                          FontAwesomeIcons.cog,
+                          FontAwesomeIcons.user,
                           color: Theme.of(context)
                               .textTheme
                               .headline2!
