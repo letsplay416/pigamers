@@ -111,8 +111,6 @@ class HomeScreen extends GetWidget<AuthController> {
                   children: [
                     SizedBox(height: kDefaultPadding * 2),
                     HomeTopText(),
-                    // SizedBox(height: kDefaultPadding * 2),
-                    // SearchWidget(),
                     SizedBox(height: kDefaultPadding * 1.5),
                     SocialRow(),
                     SizedBox(height: kDefaultPadding * 1.5),

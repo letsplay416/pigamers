@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/models/user_model.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
+import 'package:pigamers/src/views/utils/app_strings.dart';
 import 'user_controller.dart';
 
 class AuthController extends GetxController {
@@ -17,11 +18,8 @@ class AuthController extends GetxController {
 
       Get.find<UserController>().user =
           await Database().getUser(uid: authResult.user!.uid);
-      Get.snackbar("Connexion", "Vous êtes connecté",
-          snackPosition: SnackPosition.BOTTOM);
-      // Get.back();
     } on FirebaseAuthException catch (e) {
-      Get.snackbar("Echec de connexion", e.message.toString(),
+      Get.snackbar(AppStrings.echeConnection, e.message.toString(),
           snackPosition: SnackPosition.BOTTOM);
     }
   }
@@ -37,11 +35,6 @@ class AuthController extends GetxController {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) async {
         Get.back();
-        Get.snackbar(
-          "Compte créé",
-          value.user!.uid,
-          snackPosition: SnackPosition.BOTTOM,
-        );
         UserModel _user = UserModel(
             email: email,
             id: value.user!.uid,
@@ -51,21 +44,10 @@ class AuthController extends GetxController {
         if (await Database()
             .createNewUser(user: _user, dadId: dadId, dadCroins: dadCroins)) {
           Get.find<UserController>().user = _user;
-          Get.snackbar(
-            "User mis à jour",
-            value.user!.uid,
-            snackPosition: SnackPosition.BOTTOM,
-          );
-        } else {
-          Get.snackbar(
-            "Echec",
-            "une erreur s'est produite",
-            snackPosition: SnackPosition.BOTTOM,
-          );
-        }
+        } else {}
       });
     } on FirebaseAuthException catch (e) {
-      Get.snackbar("Echec de création de compte", e.message.toString(),
+      Get.snackbar(AppStrings.echeCountCreation, e.message.toString(),
           snackPosition: SnackPosition.BOTTOM);
     }
   }
@@ -73,11 +55,9 @@ class AuthController extends GetxController {
   void signOut() async {
     try {
       await _firebaseAuth.signOut();
-      Get.snackbar("Déconnexion", "Vous êtes déconnecté",
-          snackPosition: SnackPosition.BOTTOM);
       Get.find<UserController>().clear();
     } on FirebaseAuthException catch (e) {
-      Get.snackbar("Echec de déconnexion", e.message.toString(),
+      Get.snackbar(AppStrings.logoutFail, e.message.toString(),
           snackPosition: SnackPosition.BOTTOM);
     }
   }

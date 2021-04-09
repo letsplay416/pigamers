@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/logic/services/theme_service.dart';
+import 'package:pigamers/src/views/utils/app_strings.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -44,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          "Profile Screen",
+          AppStrings.profilScreenTitle,
           style: Theme.of(context).textTheme.headline1,
         ),
       ),
@@ -87,8 +88,8 @@ class SettingsScreen extends StatelessWidget {
                           height: 40,
                           width: 40,
                           child: TextButton(
-                            onPressed: () => Get.snackbar("Statut V.I.P requis",
-                                "Besoin du statut V.I.P pour modifier sa photo de profile",
+                            onPressed: () => Get.snackbar(AppStrings.viprequiredTitle,
+                                AppStrings.vipRequiredDesc,
                                 duration: Duration(seconds: 5)),
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -201,7 +202,7 @@ class SettingsScreen extends StatelessWidget {
                 SettingBtn(
                   action: () {
                     Get.snackbar("Statut V.I.P requis",
-                        "Besoin du statut V.I.P pour modifier son email. Contactez le support pour plus d'infos",
+                        "Besoin du statut V.I.P. pour modifier son e-mail. Contactez le support pour plus d'infos.",
                         duration: Duration(seconds: 5));
                   },
                   title: snapshot.data["email"],

@@ -56,7 +56,7 @@ class LoginScreen extends GetWidget<AuthController> {
                           TextStyle(color: kPrimaryColor.withOpacity(0.7)),
                       icon: FaIcon(FontAwesomeIcons.user),
                       border: InputBorder.none,
-                      hintText: "Entrez votre mail"),
+                      hintText: AppStrings.mail),
                 ),
                 width: Get.size.width * 0.8,
               ),
@@ -89,7 +89,7 @@ class LoginScreen extends GetWidget<AuthController> {
                         ),
                         icon: FaIcon(FontAwesomeIcons.lock),
                         border: InputBorder.none,
-                        hintText: "Mot de passe"),
+                        hintText: AppStrings.mdp),
                   ),
                   width: Get.size.width * 0.8,
                 ),
@@ -105,8 +105,8 @@ class LoginScreen extends GetWidget<AuthController> {
                 ),
               ),
               SwitchAuthText(
-                text1: "Tu n'as pas encore de compte ?",
-                text2: "  Créer un compte",
+                text1: AppStrings.changeScreen,
+                text2: AppStrings.changeScreenBtn,
                 target: RegistrationScreen(),
               )
             ],

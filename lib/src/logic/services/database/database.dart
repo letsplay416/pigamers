@@ -2,10 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/src/logic/models/pi_ads_model.dart';
-import 'package:pigamers/src/logic/models/pi_events_model.dart';
-import 'package:pigamers/src/logic/models/pi_news_model.dart';
 import 'package:pigamers/src/logic/models/user_model.dart';
+import 'package:pigamers/src/views/utils/app_strings.dart';
 
 class Database {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -26,26 +24,24 @@ class Database {
         "flame": 100,
         "like": 0,
       }).then((value) async {
-        Get.snackbar("User created", "L'utilisateur ${user.name} a été créé");
         if (dadId != "") {
           await _firestore
               .collection("users")
               .doc(dadId)
               .update({"croins": dadCroins + 0.5}).catchError((errorr) {
-            Get.snackbar("erreur ajout au parrain", errorr.toString());
+            Get.snackbar(AppStrings.erreurParrain, errorr.toString());
           });
         } else {
-          Get.snackbar("erreur au parrain", dadId.length.toString());
+          Get.snackbar(AppStrings.erreurParrain, dadId.length.toString());
         }
       }).catchError(
         (error) {
           printError(info: error.toString());
-          Get.snackbar("Error Firestore", error.toString());
         },
       );
       return true;
     } catch (e) {
-      Get.snackbar("Error User Creation", e.toString());
+      Get.snackbar(AppStrings.errorUserCreate, e.toString());
       return false;
     }
   }
@@ -56,7 +52,6 @@ class Database {
           await _firestore.collection("users").doc(uid).get();
       return UserModel.fromDocumentSnapshot(doc: doc);
     } catch (e) {
-      Get.snackbar("Error getting User", e.toString());
       rethrow;
     }
   }
@@ -80,7 +75,7 @@ class Database {
                 ),
               ),
               onPressed: () => Get.back(),
-              child: Text("Fermer"),
+              child: Text(AppStrings.close),
             ),
           ],
           title: Text(title),
@@ -98,9 +93,8 @@ class Database {
       int onDay = doc.data()!["lastConnect"]["onDay"];
       if (azerty > Duration(hours: 48)) {
         showIt(
-          title: "Oups tu viens de perdre tes flames",
-          desc:
-              "Ton compteur de Flame vient de retomber à zéro. Connecte-toi quotidiennement pour grimper dans le classement. Bonne chance",
+          title: AppStrings.flamelostTitle,
+          desc: AppStrings.flamelostDesc,
         );
         _firestore.collection("users").doc(uid).update({
           "lastConnect": {
@@ -110,13 +104,13 @@ class Database {
           "flame": 10,
         });
       } else if (azerty < Duration(hours: 24)) {
-        Get.snackbar("Bonus Flame",
+        Get.snackbar(AppStrings.flameBonusTitle,
             "Connecte toi dans ${(Duration(hours: 24) - azerty).inHours} heures pour une récompense");
       } else {
         switch (onDay) {
           case 1:
             showIt(
-                title: "Bonus de connexion quotidienne",
+                title: AppStrings.flameBonusTitle,
                 desc: "Tu viens de gagner 10 Flames");
             _firestore.collection("users").doc(uid).update({
               "lastConnect": {
@@ -128,7 +122,7 @@ class Database {
             break;
           case 2:
             showIt(
-                title: "Bonus de connexion quotidienne",
+                title: AppStrings.flameBonusTitle,
                 desc: "Tu viens de gagner 20 Flames");
             _firestore.collection("users").doc(uid).update({
               "lastConnect": {
@@ -140,7 +134,7 @@ class Database {
             break;
           case 3:
             showIt(
-                title: "Bonus de connexion quotidienne",
+                title: AppStrings.flameBonusTitle,
                 desc: "Tu viens de gagner 20 Flames");
             _firestore.collection("users").doc(uid).update({
               "lastConnect": {
@@ -152,7 +146,7 @@ class Database {
             break;
           case 4:
             showIt(
-                title: "Bonus de connexion quotidienne",
+                title: AppStrings.flameBonusTitle,
                 desc: "Tu viens de gagner 30 Flames");
             _firestore.collection("users").doc(uid).update({
               "lastConnect": {
@@ -164,7 +158,7 @@ class Database {
             break;
           case 5:
             showIt(
-                title: "Bonus de connexion quotidienne",
+                title: AppStrings.flameBonusTitle,
                 desc: "Tu viens de gagner 40 Flames");
             _firestore.collection("users").doc(uid).update({
               "lastConnect": {
@@ -176,7 +170,7 @@ class Database {
             break;
           case 6:
             showIt(
-                title: "Bonus de connexion quotidienne",
+                title: AppStrings.flameBonusTitle,
                 desc: "Tu viens de gagner 50 Flames");
             _firestore.collection("users").doc(uid).update({
               "lastConnect": {
@@ -188,7 +182,7 @@ class Database {
             break;
           case 7:
             showIt(
-                title: "Bonus de connexion quotidienne",
+                title: AppStrings.flameBonusTitle,
                 desc: "Tu viens de gagner 100 Flames");
             _firestore.collection("users").doc(uid).update({
               "lastConnect": {
@@ -248,47 +242,5 @@ class Database {
       Get.snackbar("Error User Creation", e.toString());
       return false;
     }
-  }
-
-  Stream<List<PiNewsModel>> piNewsStream() {
-    return _firestore
-        .collection("piNews")
-        .orderBy("timeStamp", descending: true)
-        .snapshots()
-        .map((QuerySnapshot piNews) {
-      List<PiNewsModel> retVal = [];
-      piNews.docs.forEach((element) {
-        retVal.add(PiNewsModel.fromSnapshot(element));
-      });
-      return retVal;
-    });
-  }
-
-  Stream<List<PiAdsModel>> piAdsStream() {
-    return _firestore
-        .collection("piAds")
-        .orderBy("timeStamp", descending: true)
-        .snapshots()
-        .map((QuerySnapshot piNews) {
-      List<PiAdsModel> retVal = [];
-      piNews.docs.forEach((element) {
-        retVal.add(PiAdsModel.fromSnapshot(element));
-      });
-      return retVal;
-    });
-  }
-
-  Stream<List<PiEventsModel>> piEventsStream() {
-    return _firestore
-        .collection("piEvents")
-        .orderBy("timeStamp", descending: true)
-        .snapshots()
-        .map((QuerySnapshot piNews) {
-      List<PiEventsModel> retVal = [];
-      piNews.docs.forEach((element) {
-        retVal.add(PiEventsModel.fromSnapshot(element));
-      });
-      return retVal;
-    });
   }
 }

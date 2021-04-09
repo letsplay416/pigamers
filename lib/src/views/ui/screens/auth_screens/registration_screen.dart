@@ -62,7 +62,7 @@ class RegistrationScreen extends GetWidget<AuthController> {
                           TextStyle(color: kPrimaryColor.withOpacity(0.7)),
                       icon: FaIcon(FontAwesomeIcons.user),
                       border: InputBorder.none,
-                      hintText: "Pseudo"),
+                      hintText: AppStrings.pseudo),
                 ),
                 width: Get.size.width * 0.8,
               ),
@@ -83,7 +83,7 @@ class RegistrationScreen extends GetWidget<AuthController> {
                           TextStyle(color: kPrimaryColor.withOpacity(0.7)),
                       icon: FaIcon(FontAwesomeIcons.envelope),
                       border: InputBorder.none,
-                      hintText: "Entrez votre mail"),
+                      hintText: AppStrings.mail),
                 ),
                 width: Get.size.width * 0.8,
               ),
@@ -106,7 +106,7 @@ class RegistrationScreen extends GetWidget<AuthController> {
                           TextStyle(color: kPrimaryColor.withOpacity(0.7)),
                       icon: FaIcon(FontAwesomeIcons.lock),
                       border: InputBorder.none,
-                      hintText: "Mots de passe"),
+                      hintText: AppStrings.mdp),
                 ),
                 width: Get.size.width * 0.8,
               ),
@@ -123,8 +123,8 @@ class RegistrationScreen extends GetWidget<AuthController> {
                     dadCroins: dadCroins.value),
               ),
               SwitchAuthText(
-                text1: "Tu as déjà compte ?",
-                text2: "  Connecte toi",
+                text1: AppStrings.changeScreenReg,
+                text2: AppStrings.changeScreenBtnReg,
                 target: LoginScreen(),
               )
             ],
@@ -136,7 +136,7 @@ class RegistrationScreen extends GetWidget<AuthController> {
           : FloatingActionButton.extended(
               onPressed: () {
                 Get.defaultDialog(
-                  title: "Ajoute un parrain et gagne des points",
+                  title: AppStrings.ajoutDad,
                   confirm: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
@@ -159,17 +159,17 @@ class RegistrationScreen extends GetWidget<AuthController> {
                           dadUi.value = _dadCtrl.text.trim();
                           asDad.toggle();
                           dadCroins.value = value.data()!['croins'].toDouble();
-                          Get.snackbar("Succès",
+                          Get.snackbar(AppStrings.succes,
                               "Vous et ${value.data()!['name']} recevez votre récompense",
                               duration: Duration(seconds: 5));
                         } else {
-                          Get.snackbar("Echec",
-                              "Aucun utilisateur avec ce id veuillez recommencer",
+                          Get.snackbar(AppStrings.fail,
+                             AppStrings.userUnfound,
                               duration: Duration(seconds: 5));
                         }
                       });
                     },
-                    child: Text("Confimer"),
+                    child: Text(AppStrings.confirm),
                   ),
                   cancel: OutlinedButton(
                     style: ButtonStyle(
@@ -184,7 +184,7 @@ class RegistrationScreen extends GetWidget<AuthController> {
                       ),
                     ),
                     onPressed: () => Get.back(),
-                    child: Text("Annuler"),
+                    child: Text(AppStrings.close),
                   ),
                   content: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -205,14 +205,14 @@ class RegistrationScreen extends GetWidget<AuthController> {
                             TextStyle(color: kPrimaryColor.withOpacity(0.7)),
                         icon: FaIcon(FontAwesomeIcons.user),
                         border: InputBorder.none,
-                        hintText: "id du parrain",
+                        hintText: AppStrings.idDad,
                       ),
                     ),
                     width: Get.size.width * 0.8,
                   ),
                 );
               },
-              label: Text("Ajouter un parrain"),
+              label: Text(AppStrings.ajoutDad),
               backgroundColor: kPrimaryColor,
             )),
     );
