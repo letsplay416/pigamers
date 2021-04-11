@@ -88,7 +88,8 @@ class SettingsScreen extends StatelessWidget {
                           height: 40,
                           width: 40,
                           child: TextButton(
-                            onPressed: () => Get.snackbar(AppStrings.viprequiredTitle,
+                            onPressed: () => Get.snackbar(
+                                AppStrings.viprequiredTitle,
                                 AppStrings.vipRequiredDesc,
                                 duration: Duration(seconds: 5)),
                             style: ButtonStyle(
@@ -121,13 +122,22 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     RessourceWidget(
                         number: snapshot.data["flame"].toString(),
+                        title: "Les Flames",
+                        desc:
+                            "Flammes en anglais, tu les gagnes en te connectant quotidiennement. Elles te font grimper dans le classement et te rendent visible par tous",
                         icon: FontAwesomeIcons.fire,
                         color: Colors.redAccent),
                     RessourceWidget(
                         number: snapshot.data["croins"].toString(),
+                        title: "Les Croins",
+                        desc:
+                            "Les Croins???Ils sont la devise principale de Pi'Gamers,Grâce à eux tu peux participer à nos lives,et aussi les gagner tout en parrainant d'autres personnes, ",
                         icon: FontAwesomeIcons.coins,
                         color: Colors.yellow),
                     RessourceWidget(
+                        title: "Les Exp",
+                        desc:
+                            "Gagne les en effectuant des activités. Leur valeur est faible mais grimpe assez vite",
                         number: snapshot.data["exp"].toString(),
                         icon: FontAwesomeIcons.chartLine,
                         color: Get.isDarkMode
@@ -298,46 +308,60 @@ class RessourceWidget extends StatelessWidget {
   final IconData icon;
   final Color color;
   final String number;
+  final String title;
+  final String desc;
   const RessourceWidget({
     Key? key,
     required this.icon,
     required this.color,
     required this.number,
+    required this.title,
+    required this.desc,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 80,
-        width: 60,
-        child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            FaIcon(
-              icon,
-              color: color,
-            ),
-            Text(
-              number,
-              textAlign: TextAlign.center,
-              style:
-                  Theme.of(context).textTheme.headline3!.copyWith(color: color),
-            )
-          ],
-        )),
-        decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor,
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(
-              width: 1,
-              color: color,
-            ),
-            boxShadow: [
-              BoxShadow(color: color, blurRadius: 6, spreadRadius: 1)
-            ]),
+    return GestureDetector(
+      onTap: () => Get.defaultDialog(
+        title: title,
+        content: Text(desc),
+        backgroundColor: Get.theme!.backgroundColor.withOpacity(0.8),
+        titleStyle: TextStyle(color: color),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 80,
+          width: 60,
+          child: Center(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FaIcon(
+                icon,
+                color: color,
+              ),
+              Text(
+                number,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline3!
+                    .copyWith(color: color),
+              )
+            ],
+          )),
+          decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                width: 1,
+                color: color,
+              ),
+              boxShadow: [
+                BoxShadow(color: color, blurRadius: 6, spreadRadius: 1)
+              ]),
+        ),
       ),
     );
   }

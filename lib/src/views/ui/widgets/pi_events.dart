@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/pi_events_controller.dart';
-import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'image_view.dart';

@@ -23,6 +23,10 @@ class Database {
         "croins": 0.5,
         "flame": 100,
         "like": 0,
+        "lastConnect": {
+          "lastConnect": DateTime.now().millisecondsSinceEpoch,
+          "onDay": 1
+        },
       }).then((value) async {
         if (dadId != "") {
           await _firestore
@@ -53,6 +57,21 @@ class Database {
       return UserModel.fromDocumentSnapshot(doc: doc);
     } catch (e) {
       rethrow;
+    }
+  }
+
+  ikeBtn({required String uid, required String pseudo}) async {
+    try {
+      await _firestore.collection("users").doc(uid).get().then((value) {
+        _firestore.collection("users").doc(uid).update({
+          "like": (value.data()!["like"] + 1),
+        }).then((value) => Get.snackbar(
+              "+1 ❤️",
+              "Tu as liké $pseudo",
+            ));
+      });
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
     }
   }
 
@@ -205,42 +224,12 @@ class Database {
       {required String newData, required String type}) async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     try {
-      // DocumentSnapshot doc =
       await _firestore.collection("users").doc(uid).update({
         type: newData,
       });
     } catch (e) {
       Get.snackbar("Error getting User", e.toString());
       rethrow;
-    }
-  }
-
-  Future<bool> addNews() async {
-    try {
-      await _firestore
-          .collection("piAds")
-          .add({
-            "timeStamp": Timestamp.now(),
-            "title": "Sherina",
-            "imgUrl":
-                "https://image.freepik.com/free-psd/luxury-minimalist-logo-mockup-dark-business-card_225928-113.jpg",
-          })
-          .then(
-            (value) => Get.snackbar(
-              "Success",
-              "Pi'News Added",
-            ),
-          )
-          .catchError(
-            (error) {
-              printError(info: error.toString());
-              Get.snackbar("Error Firestore", error.toString());
-            },
-          );
-      return true;
-    } catch (e) {
-      Get.snackbar("Error User Creation", e.toString());
-      return false;
     }
   }
 }

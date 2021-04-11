@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:pigamers/src/logic/controllers/rankin_widget_controller.dart';
+import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'image_view.dart';
@@ -104,10 +106,17 @@ class RankingWidget extends GetWidget<RankingWidgetController> {
                                         MySvgBtn(
                                           name: "lib/src/assets/svg/flame.svg",
                                           color: Colors.red,
-                                          action: () {},
+                                          action: () {
+                                            Get.snackbar(
+                                              document.data()!['name'],
+                                              "Possède ${NumberFormat.decimalPattern().format(document.data()!['flame'])} Flame 🔥",
+                                            );
+                                          },
                                         ),
                                         Text(
-                                          document.data()!['flame'].toString(),
+                                          NumberFormat.compact()
+                                              .format(document.data()!['flame'])
+                                              .toString(),
                                           style: GoogleFonts.acme(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15,
@@ -120,10 +129,17 @@ class RankingWidget extends GetWidget<RankingWidgetController> {
                                         MySvgBtn(
                                           name: "lib/src/assets/svg/graph.svg",
                                           color: kThirdColor,
-                                          action: () {},
+                                          action: () {
+                                            Get.snackbar(
+                                              document.data()!['name'],
+                                              "Possède ${NumberFormat.decimalPattern().format(document.data()!['exp'])} Exp 📈",
+                                            );
+                                          },
                                         ),
                                         Text(
-                                          document.data()!['exp'].toString(),
+                                          NumberFormat.compact()
+                                              .format(document.data()!['exp'])
+                                              .toString(),
                                           style: GoogleFonts.acme(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15,
@@ -136,10 +152,17 @@ class RankingWidget extends GetWidget<RankingWidgetController> {
                                         MySvgBtn(
                                           name: "lib/src/assets/svg/heart.svg",
                                           color: Colors.pinkAccent,
-                                          action: () {},
+                                          action: () {
+                                            Database().ikeBtn(
+                                                pseudo:
+                                                    document.data()!['name'],
+                                                uid: document.data()!['uid']);
+                                          },
                                         ),
                                         Text(
-                                          document.data()!['like'].toString(),
+                                          NumberFormat.compact()
+                                              .format(document.data()!['like'])
+                                              .toString(),
                                           style: GoogleFonts.acme(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15,
@@ -184,12 +207,11 @@ class MySvgBtn extends StatelessWidget {
             height: 40,
             width: 40,
             child: IconButton(
-              icon: SvgPicture.asset(
-                name,
-                color: color,
-              ),
-              onPressed: () {},
-            ),
+                icon: SvgPicture.asset(
+                  name,
+                  color: color,
+                ),
+                onPressed: () => action()),
             decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor.withOpacity(0.4),
               border: Border.all(color: color),
