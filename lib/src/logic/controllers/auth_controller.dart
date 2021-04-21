@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/models/user_model.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
+import 'package:pigamers/src/views/ui/screens/loading_screen.dart';
 import 'package:pigamers/src/views/utils/app_strings.dart';
 import 'user_controller.dart';
 
@@ -9,6 +10,7 @@ class AuthController extends GetxController {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   void signIn({required String email, required String password}) async {
+    Get.to(LoadingScreen());
     try {
       UserCredential authResult =
           await _firebaseAuth.signInWithEmailAndPassword(
@@ -19,6 +21,7 @@ class AuthController extends GetxController {
       Get.find<UserController>().user =
           await Database().getUser(uid: authResult.user!.uid);
     } on FirebaseAuthException catch (e) {
+      Get.back();
       Get.snackbar(AppStrings.echeConnection, e.message.toString(),
           snackPosition: SnackPosition.BOTTOM);
     }
