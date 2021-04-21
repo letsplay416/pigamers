@@ -27,7 +27,7 @@ class PiEventsWidget extends StatelessWidget {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator(
-            color: Theme.of(context).accentColor,
+            // color: Theme.of(context).accentColor,
           );
         }
         return Column(
@@ -116,7 +116,7 @@ class PiEventsWidget extends StatelessWidget {
                           return Center(
                             child: CircularProgressIndicator(
                               value: progress.progress,
-                              color: kThirdColor,
+                              // color: kThirdColor,
                               backgroundColor: kContentColorLightTheme,
                             ),
                           );

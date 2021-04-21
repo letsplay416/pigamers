@@ -122,7 +122,7 @@ class AppsNewsAdsWidget extends StatelessWidget {
               return Center(
                 child: CircularProgressIndicator(
                   value: progress.progress,
-                  color: kThirdColor,
+                  // color: kThirdColor,
                   backgroundColor: kContentColorLightTheme,
                 ),
               );

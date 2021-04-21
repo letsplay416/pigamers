@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
@@ -31,7 +27,10 @@ class LoadingScreen extends StatelessWidget {
               "lib/src/assets/logo/logo_transparent.png",
             ),
           ),
-          CircularProgressIndicator(backgroundColor: kSecondaryColor,color: kContentColorDarkTheme.withOpacity(0.3),),
+          CircularProgressIndicator(
+            backgroundColor: kSecondaryColor,
+            // color: kContentColorDarkTheme.withOpacity(0.3),
+          ),
           Expanded(
             child: SizedBox(
               width: double.infinity,

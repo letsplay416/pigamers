@@ -19,7 +19,7 @@ class MoreNewsScreen extends StatelessWidget {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator(
-            color: Theme.of(context).accentColor,
+            // color: Theme.of(context).accentColor,
           );
         }
         return Scaffold(
