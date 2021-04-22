@@ -2,13 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/src/logic/controllers/user_controller.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'image_view.dart';
 
 class HomeTopText extends StatelessWidget {
-  final userCtrl = Get.find<UserController>();
+  // final userCtrl = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,11 +17,11 @@ class HomeTopText extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Obx(() => Text(
-                    "Hi ${userCtrl.user.name},",
-                    textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.headline1,
-                  )),
+              Text(
+                "Hi Nom du user", // "Hi ${userCtrl.user.name},",
+                textAlign: TextAlign.left,
+                style: Theme.of(context).textTheme.headline1,
+              ),
               SizedBox(
                 height: kDefaultPadding / 3,
               ),

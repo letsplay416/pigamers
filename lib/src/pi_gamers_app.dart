@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pigamers/newSrc/screens/homeScreen.dart';
 import 'package:pigamers/src/logic/controllers/pi_events_controller.dart';
 import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
 import 'package:pigamers/src/logic/services/theme_service.dart';
@@ -17,11 +18,11 @@ class PiGamersApp extends StatelessWidget {
     Get.put(AuthController());
     Get.put(PiEventsController());
     Get.put(MyBottomNavBarController());
-    Get.put(UserController());
+    // Get.put(UserController());
     Get.put(PiNewsController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthWrapper(),
+      home: HomeScreen(),
       color: Theme.of(context).primaryColor,
       theme: MyTheme().lightTheme,
       title: AppStrings.appTitle,

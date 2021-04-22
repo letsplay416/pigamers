@@ -10,7 +10,7 @@ class AuthController extends GetxController {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   void signIn({required String email, required String password}) async {
-    Get.to(LoadingScreen());
+    // Get.to(LoadingScreen());
     try {
       UserCredential authResult =
           await _firebaseAuth.signInWithEmailAndPassword(
@@ -18,8 +18,8 @@ class AuthController extends GetxController {
         password: password,
       );
 
-      Get.find<UserController>().user =
-          await Database().getUser(uid: authResult.user!.uid);
+      // Get.find<UserController>().user =
+      //     await Database().getUser(uid: authResult.user!.uid);
     } on FirebaseAuthException catch (e) {
       Get.back();
       Get.snackbar(AppStrings.echeConnection, e.message.toString(),
@@ -46,7 +46,7 @@ class AuthController extends GetxController {
             profilPic: '');
         if (await Database()
             .createNewUser(user: _user, dadId: dadId, dadCroins: dadCroins)) {
-          Get.find<UserController>().user = _user;
+          // Get.find<UserController>().user = _user;
         } else {}
       });
     } on FirebaseAuthException catch (e) {
@@ -58,7 +58,7 @@ class AuthController extends GetxController {
   void signOut() async {
     try {
       await _firebaseAuth.signOut();
-      Get.find<UserController>().clear();
+      // Get.find<UserController>().clear();
     } on FirebaseAuthException catch (e) {
       Get.snackbar(AppStrings.logoutFail, e.message.toString(),
           snackPosition: SnackPosition.BOTTOM);

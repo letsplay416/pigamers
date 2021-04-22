@@ -33,7 +33,8 @@ class _AuthWrapperState extends State<AuthWrapper> {
               return WelcomeScreen();
             }
           } else {
-            return LoadingScreen();
+            return Container();
+            // LoadingScreen();
           }
         }
       },
