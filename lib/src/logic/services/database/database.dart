@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/src/logic/models/user_model.dart';
+import 'package:pigamers/newSrc/models/user_model.dart';
+// import 'package:pigamers/src/logic/models/user_model.dart';
 import 'package:pigamers/src/views/utils/app_strings.dart';
 
 class Database {

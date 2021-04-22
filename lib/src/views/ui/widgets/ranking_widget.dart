@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:pigamers/src/logic/controllers/rankin_widget_controller.dart';
+import 'package:pigamers/newSrc/screens/RankingScreen/rankin_widget_controller.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 

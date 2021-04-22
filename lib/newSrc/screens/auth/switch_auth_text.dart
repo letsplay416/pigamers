@@ -22,7 +22,7 @@ class SwitchAuthText extends StatelessWidget {
           Text(
             text1,
             style:
-                TextStyle(color: Colors.black38, fontWeight: FontWeight.normal),
+                TextStyle( fontWeight: FontWeight.normal),
           ),
           GestureDetector(
             onTap: () => Get.off(target),

@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/newSrc/screens/homeScreen.dart';
+import 'package:pigamers/newSrc/screens/HomeScreen/homeScreen.dart';
+import 'package:pigamers/newSrc/screens/RankingScreen/rankin_widget_controller.dart';
+import 'package:pigamers/newSrc/screens/auth/auth_controller.dart';
+import 'package:pigamers/newSrc/screens/auth_wrapper/auth_wrapper.dart';
 import 'package:pigamers/src/logic/controllers/pi_events_controller.dart';
 import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
 import 'package:pigamers/src/logic/services/theme_service.dart';
-import 'package:pigamers/src/views/ui/widgets/auth_wrapper.dart';
 import 'package:pigamers/src/views/utils/app_strings.dart';
 import 'package:pigamers/src/views/utils/themes.dart';
-
-import 'logic/controllers/auth_controller.dart';
-import 'logic/controllers/my_bottom_nav_bar.dart';
-import 'logic/controllers/user_controller.dart';
-
 class PiGamersApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(AuthController());
     Get.put(PiEventsController());
-    Get.put(MyBottomNavBarController());
-    // Get.put(UserController());
+    Get.put(RankingWidgetController());
     Get.put(PiNewsController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: AuthWrapper(),
       color: Theme.of(context).primaryColor,
       theme: MyTheme().lightTheme,
       title: AppStrings.appTitle,

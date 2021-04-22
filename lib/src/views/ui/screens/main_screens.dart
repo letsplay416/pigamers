@@ -1,20 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
-import 'package:pigamers/src/views/ui/widgets/my_bottom_nav_bar.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
+// import 'package:pigamers/src/views/ui/widgets/my_bottom_nav_bar.dart';
 
-class MainScreens extends GetWidget {
-  final navcontroller = Get.find<MyBottomNavBarController>();
+// class MainScreens extends GetWidget {
+//   final navcontroller = Get.find<MyBottomNavBarController>();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: Obx(
-        () => navcontroller.getCurentPage,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: MyBottomNavBar(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Theme.of(context).backgroundColor,
+//       body: Obx(
+//         () => navcontroller.getCurentPage,
+//       ),
+//       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+//       floatingActionButton: MyBottomNavBar(),
+//     );
+//   }
+// }
