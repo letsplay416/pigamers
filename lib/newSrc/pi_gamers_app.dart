@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pigamers/newSrc/screens/HomeScreen/homeScreen.dart';
 import 'package:pigamers/newSrc/screens/RankingScreen/rankin_widget_controller.dart';
 import 'package:pigamers/newSrc/screens/auth/auth_controller.dart';
 import 'package:pigamers/newSrc/screens/auth_wrapper/auth_wrapper.dart';

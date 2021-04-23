@@ -24,7 +24,9 @@ class PiNewsWidget extends StatelessWidget {
       future: news.get(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Container();
+          return Center(
+            child: Text(snapshot.error.toString()),
+          );
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,7 +7,6 @@ import 'package:pigamers/newSrc/screens/RankingScreen/rankin_widget_controller.d
 import 'package:pigamers/newSrc/screens/SideMenu/side_menu.dart';
 import 'package:pigamers/newSrc/screens/responsive.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
-import 'package:websafe_svg/websafe_svg.dart';
 
 import 'my_svg_btn.dart';
 import 'ranking_widget.dart';
@@ -179,9 +179,7 @@ class RankingScreen extends GetWidget<RankingWidgetController> {
                       ),
                 SliverList(
                   delegate: SliverChildListDelegate(
-                    [
-                      RankingWidget(),
-                    ],
+                    [RankingWidget()],
                   ),
                 ),
               ],

@@ -22,7 +22,7 @@ class RankingWidget extends GetWidget<RankingWidgetController> {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return Text(snapshot.error.toString());
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {

@@ -22,7 +22,9 @@ class PiEventsWidget extends StatelessWidget {
       future: events.get(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Container();
+          return Center(
+            child: Text(snapshot.error.toString()),
+          );
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {

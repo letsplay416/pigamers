@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'social_btn.dart';
@@ -17,7 +16,7 @@ class SocialRow extends StatelessWidget {
     ),
     SocialWidget(
       name: "Play Store",
-      color: Get.theme!.textTheme.headline2!.color ?? Colors.amber,
+      color: Colors.amber,
       link: "https://play.google.com/store/apps/details?id=inc.poison.pigamers",
     ),
     SocialWidget(
@@ -26,19 +25,9 @@ class SocialRow extends StatelessWidget {
       link: "https://instagram.com/pigamers_?igshid=sd3uxc62i125",
     ),
     SocialWidget(
-      name: "SnapChat",
-      color: Colors.yellow,
-      link: "https://www.youtube.com/",
-    ),
-    SocialWidget(
       name: "Facebook",
       color: Colors.blue,
-      link: "https://www.facebook.com/PiGamers-103191205196895/",
-    ),
-    SocialWidget(
-      name: "Web site",
-      color: Get.theme!.textTheme.headline2!.color ?? Colors.amber,
-      link: "https://www.youtube.com/",
+      link: "https://www.facebook.com/PiGamers-103019665265628",
     ),
   ];
   @override

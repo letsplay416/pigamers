@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // import 'package:websafe_svg/websafe_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,6 +8,7 @@ import 'package:pigamers/newSrc/screens/HomeScreen/widgets/live_widget.dart';
 import 'package:pigamers/newSrc/screens/RankingScreen/ranking_screen.dart';
 import 'package:pigamers/newSrc/screens/SideMenu/side_menu.dart';
 import 'package:pigamers/newSrc/screens/responsive.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class MobileMode extends StatelessWidget {
@@ -51,7 +53,65 @@ class MyAppBar extends StatelessWidget {
       actions: [
         Responsive.isMobile(context)
             ? GestureDetector(
-                onTap: () => Scaffold.of(context).openEndDrawer(),
+                onTap: () => kIsWeb
+                    ? Get.dialog(
+                        AlertDialog(
+                          actions: [
+                            OutlinedButton(
+                              style: ButtonStyle(
+                                overlayColor: MaterialStateProperty.all<Color>(
+                                  Theme.of(context).primaryColor,
+                                ),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Colors.red,
+                                ),
+                                shadowColor: MaterialStateProperty.all<Color>(
+                                  Colors.red,
+                                ),
+                              ),
+                              onPressed: () => Get.back(),
+                              child: Text("Annuler"),
+                            ),
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                  Theme.of(context).primaryColor,
+                                ),
+                                shadowColor: MaterialStateProperty.all<Color>(
+                                  Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.4),
+                                ),
+                                overlayColor: MaterialStateProperty.all<Color>(
+                                  Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.4),
+                                ),
+                              ),
+                              onPressed: () async {
+                                await canLaunch(
+                                        "https://www.facebook.com/PiGamers-103019665265628")
+                                    ? await launch(
+                                        "https://www.facebook.com/PiGamers-103019665265628")
+                                    : throw 'Could not launch https://www.facebook.com/PiGamers-103019665265628';
+                              },
+                              child: Text("Okay"),
+                            ),
+                          ],
+                          title: Text(
+                            'Oups',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          backgroundColor: Theme.of(context)
+                              .backgroundColor
+                              .withOpacity(0.8),
+                          content: Text(
+                              "Désolé, Tu ne peux pas accéder au classement. Rejoint la page FaceBook"),
+                        ),
+                      )
+                    : Scaffold.of(context).openEndDrawer(),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Builder(

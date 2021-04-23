@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pigamers/src/logic/services/database/database.dart';
 import 'package:pigamers/src/views/ui/screens/loading_screen.dart';
 import 'package:pigamers/src/views/ui/screens/main_screens.dart';
-import 'package:pigamers/src/views/ui/screens/welcome_screen.dart';
 /*
 class AuthWrapper extends StatefulWidget {
   @override
