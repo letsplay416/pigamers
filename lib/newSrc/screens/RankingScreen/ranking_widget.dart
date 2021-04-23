@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,33 +43,34 @@ class RankingWidget extends GetWidget<RankingWidgetController> {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        GestureDetector(
-                            onTap: () => Get.dialog(
-                                  ImageView(
-                                      image: document.data()!['profilPic'] != ""
-                                          ? document.data()!['profilPic']
-                                          : "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/my_logo.png?alt=media&token=42666768-33dd-400e-9976-6e843a83bb4f"),
-                                ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                radius: 40,
-                                backgroundColor:
-                                    Get.theme!.primaryColor.withOpacity(0.8),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: CircleAvatar(
-                                    radius: 45,
-                                    backgroundImage: NetworkImage(
-                                      document.data()!['profilPic'] != ""
-                                          ? document.data()!['profilPic']
-                                          : "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/my_logo.png?alt=media&token=42666768-33dd-400e-9976-6e843a83bb4f",
+                        if (!kIsWeb)
+                          GestureDetector(
+                              onTap: () => Get.dialog(
+                                    ImageView(
+                                        image: document.data()!['profilPic'] !=
+                                                ""
+                                            ? document.data()!['profilPic']
+                                            : "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/my_logo.png?alt=media&token=42666768-33dd-400e-9976-6e843a83bb4f"),
+                                  ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CircleAvatar(
+                                  radius: 40,
+                                  backgroundColor:
+                                      Get.theme!.primaryColor.withOpacity(0.8),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: CircleAvatar(
+                                      radius: 45,
+                                      backgroundImage: NetworkImage(
+                                        document.data()!['profilPic'] != ""
+                                            ? document.data()!['profilPic']
+                                            : "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/my_logo.png?alt=media&token=42666768-33dd-400e-9976-6e843a83bb4f",
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                            ),
+                              )),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,

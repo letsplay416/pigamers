@@ -1,8 +1,5 @@
-
-
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/newSrc/screens/auth/registration_screen.dart';
@@ -12,7 +9,6 @@ import 'package:pigamers/src/views/utils/app_strings.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 import 'auth_controller.dart';
-
 
 class LoginScreen extends GetWidget<AuthController> {
   @override
@@ -36,7 +32,7 @@ class LoginScreen extends GetWidget<AuthController> {
               SizedBox(
                 height: Get.size.height * 0.12,
               ),
-              SvgPicture.asset(
+              WebsafeSvg.asset(
                 "lib/src/assets/svg/undraw_Mobile_life_re_jtih.svg",
                 height: Get.size.height * 0.35,
               ),

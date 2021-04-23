@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
+// import 'package:websafe_svg/websafe_svg.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:get/get.dart';
 // import 'package:pigamers/newSrc/screens/HomeScreen/widgets/live_widget.dart';
@@ -30,7 +30,7 @@
 //           SliverAppBar(
 //             leading: Builder(
 //               builder: (context) => IconButton(
-//                 icon: SvgPicture.asset(
+//                 icon: WebsafeSvg.asset(
 //                   "lib/src/assets/svg/menu.svg",
 //                   color: Theme.of(context).primaryColor,
 //                 ),
@@ -74,7 +74,7 @@
 //               background: Stack(
 //                 fit: StackFit.expand,
 //                 children: [
-//                   SvgPicture.asset(
+//                   WebsafeSvg.asset(
 //                     "lib/src/assets/logo/pig1.svg",
 //                     fit: BoxFit.contain,
 //                   ),

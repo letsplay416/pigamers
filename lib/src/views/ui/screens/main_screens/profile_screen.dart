@@ -4,7 +4,7 @@
 // import 'package:flutter/services.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:get/get.dart';
-// import 'package:flutter_svg/svg.dart';
+// import 'package:websafe_svg/websafe_svg.dart';
 // import 'package:pigamers/src/logic/controllers/auth_controller.dart';
 // import 'package:pigamers/src/logic/services/database/database.dart';
 // import 'package:pigamers/src/logic/services/theme_service.dart';
@@ -102,7 +102,7 @@
 //                                 Theme.of(context).backgroundColor,
 //                               ),
 //                             ),
-//                             child: SvgPicture.asset(
+//                             child: WebsafeSvg.asset(
 //                               "lib/src/assets/svg/fi-br-mode-portrait.svg",
 //                               // height: 17,
 //                               color: kPrimaryColor,
@@ -400,7 +400,7 @@
 //         ),
 //         child: Row(
 //           children: [
-//             SvgPicture.asset(
+//             WebsafeSvg.asset(
 //               icon,
 //               width: 22,
 //               color: isRed ? Colors.red : kPrimaryColor,
@@ -418,7 +418,7 @@
 //               ),
 //             ),
 //             !isRed
-//                 ? SvgPicture.asset(
+//                 ? WebsafeSvg.asset(
 //                     "lib/src/assets/svg/caret-right.svg",
 //                     width: 22,
 //                     color: isRed ? Colors.red : kPrimaryColor,

@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
+// import 'package:websafe_svg/websafe_svg.dart';
 // import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:pigamers/src/views/ui/screens/auth_screens/login_screen.dart';
@@ -27,7 +27,7 @@
 //             SizedBox(
 //               height: Get.size.height * 0.1,
 //             ),
-//             SvgPicture.asset(
+//             WebsafeSvg.asset(
 //               "lib/src/assets/svg/undraw_video_game_night_8h8m.svg",
 //               height: Get.size.height * 0.45,
 //             ),

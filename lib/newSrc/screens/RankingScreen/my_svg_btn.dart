@@ -1,11 +1,7 @@
-
-
-
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 class MySvgBtn extends StatelessWidget {
   final String name;
@@ -27,7 +23,7 @@ class MySvgBtn extends StatelessWidget {
             height: 40,
             width: 40,
             child: IconButton(
-                icon: SvgPicture.asset(
+                icon: WebsafeSvg.asset(
                   name,
                   color: color,
                 ),

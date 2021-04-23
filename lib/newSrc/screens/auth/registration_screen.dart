@@ -1,9 +1,6 @@
-
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/newSrc/screens/auth/auth_action_btn.dart';
@@ -40,7 +37,7 @@ class RegistrationScreen extends GetWidget<AuthController> {
               SizedBox(
                 height: Get.size.height * 0.012,
               ),
-              SvgPicture.asset(
+              WebsafeSvg.asset(
                 "lib/src/assets/svg/undraw_mobile_inbox_3h46.svg",
                 height: Get.size.height * 0.35,
               ),
@@ -166,8 +163,7 @@ class RegistrationScreen extends GetWidget<AuthController> {
                               "Vous et ${value.data()!['name']} recevez votre récompense",
                               duration: Duration(seconds: 5));
                         } else {
-                          Get.snackbar(AppStrings.fail,
-                             AppStrings.userUnfound,
+                          Get.snackbar(AppStrings.fail, AppStrings.userUnfound,
                               duration: Duration(seconds: 5));
                         }
                       });

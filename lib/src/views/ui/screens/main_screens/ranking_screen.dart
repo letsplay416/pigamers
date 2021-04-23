@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/newSrc/screens/RankingScreen/rankin_widget_controller.dart';
 import 'package:pigamers/src/views/ui/widgets/ranking_widget.dart';
@@ -17,11 +17,11 @@ class RankingScreen extends StatelessWidget {
             onPressed: () => ctrl.changeRankingType(),
             mini: true,
             child: ctrl.isFlameRanked.value
-                ? SvgPicture.asset(
+                ? WebsafeSvg.asset(
                     "lib/src/assets/svg/star.svg",
                     color: kThirdColor,
                   )
-                : SvgPicture.asset(
+                : WebsafeSvg.asset(
                     "lib/src/assets/svg/flame.svg",
                     color: Colors.red,
                   ),

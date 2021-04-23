@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -207,7 +207,7 @@ class MySvgBtn extends StatelessWidget {
             height: 40,
             width: 40,
             child: IconButton(
-                icon: SvgPicture.asset(
+                icon: WebsafeSvg.asset(
                   name,
                   color: color,
                 ),

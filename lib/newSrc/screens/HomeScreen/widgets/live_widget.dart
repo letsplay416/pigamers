@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 class LiveWidget extends StatelessWidget {
   const LiveWidget({
@@ -33,7 +34,7 @@ class LiveWidget extends StatelessWidget {
               child: FloatingActionButton(
                 mini: true,
                 backgroundColor: Colors.transparent,
-                child: SvgPicture.asset(
+                child: WebsafeSvg.asset(
                   "lib/src/assets/svg/live-streaming.svg",
                 ),
                 onPressed: () {

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/newSrc/screens/auth/auth_controller.dart';
@@ -57,7 +57,7 @@ class Menu extends StatelessWidget {
                                     padding: const EdgeInsets.all(15.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
-                                      child: SvgPicture.asset(
+                                      child: WebsafeSvg.asset(
                                         "lib/src/assets/logo/pig.svg",
                                         fit: BoxFit.cover,
                                       ),
@@ -228,7 +228,7 @@ class Menu extends StatelessWidget {
                                     padding: const EdgeInsets.all(15.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20),
-                                      child: SvgPicture.asset(
+                                      child: WebsafeSvg.asset(
                                         "lib/src/assets/logo/pig.svg",
                                         fit: BoxFit.cover,
                                       ),

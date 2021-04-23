@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/newSrc/screens/RankingScreen/rankin_widget_controller.dart';
 import 'package:pigamers/newSrc/screens/SideMenu/side_menu.dart';
 import 'package:pigamers/newSrc/screens/responsive.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 import 'my_svg_btn.dart';
 import 'ranking_widget.dart';
@@ -111,7 +112,7 @@ class RankingScreen extends GetWidget<RankingWidgetController> {
                         leading: !Responsive.isMobile(context)
                             ? Builder(
                                 builder: (context) => IconButton(
-                                  icon: SvgPicture.asset(
+                                  icon: WebsafeSvg.asset(
                                     "lib/src/assets/svg/menu.svg",
                                     color: Theme.of(context).primaryColor,
                                   ),

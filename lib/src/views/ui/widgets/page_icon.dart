@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
+// import 'package:websafe_svg/websafe_svg.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:get/get.dart';
 // import 'package:pigamers/src/logic/controllers/my_bottom_nav_bar.dart';
@@ -18,7 +18,7 @@
 //       () => Expanded(
 //         child: IconButton(
 //           icon: Get.find<MyBottomNavBarController>().curentPage.value == target
-//               ? SvgPicture.asset(
+//               ? WebsafeSvg.asset(
 //                   icon,
 //                   color: Theme.of(context).primaryColor,
 //                 )

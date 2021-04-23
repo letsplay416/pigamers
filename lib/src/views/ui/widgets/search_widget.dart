@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
 
 class SearchWidget extends StatelessWidget {
@@ -30,7 +30,7 @@ class SearchWidget extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
-          SvgPicture.asset(
+          WebsafeSvg.asset(
             "lib/src/assets/svg/search.svg",
             color: Theme.of(context).primaryColor,
           ),

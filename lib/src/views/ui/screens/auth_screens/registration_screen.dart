@@ -1,7 +1,6 @@
-
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
+// import 'package:websafe_svg/websafe_svg.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:get/get.dart';
 // import 'package:pigamers/src/logic/controllers/auth_controller.dart';
@@ -37,7 +36,7 @@
 //               SizedBox(
 //                 height: Get.size.height * 0.012,
 //               ),
-//               SvgPicture.asset(
+//               WebsafeSvg.asset(
 //                 "lib/src/assets/svg/undraw_mobile_inbox_3h46.svg",
 //                 height: Get.size.height * 0.35,
 //               ),

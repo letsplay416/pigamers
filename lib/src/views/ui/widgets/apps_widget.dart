@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
@@ -46,40 +46,39 @@ class AppsNewsAdsWidget extends StatelessWidget {
                   width: 30,
                   child: IconButton(
                     icon: isNews
-                        ? SvgPicture.asset(
+                        ? WebsafeSvg.asset(
                             "lib/src/assets/svg/menu.svg",
                             color: kPrimaryColor,
                           )
-                        : SvgPicture.asset(
+                        : WebsafeSvg.asset(
                             "lib/src/assets/svg/fi-br-redo.svg",
                             color: kPrimaryColor,
                           ),
                     onPressed: () async {
                       if (!isNews) {
-                        
-                      await canLaunch(link)
-                          ? await launch(link)
-                          : throw 'Could not launch $link';
+                        await canLaunch(link)
+                            ? await launch(link)
+                            : throw 'Could not launch $link';
                       } else {
-                         Get.bottomSheet(
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: kPrimaryColor.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(50),
-                                      topRight: Radius.circular(50),
-                                    ),
-                                  ),
-                                  child: ListView(
-                                    children: [
-                                      Text(
-                                        link,
-                                        style: GoogleFonts.acme(fontSize: 30),
-                                      ),
-                                    ],
-                                  ),
+                        Get.bottomSheet(
+                          Container(
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor.withOpacity(0.5),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                topRight: Radius.circular(50),
+                              ),
+                            ),
+                            child: ListView(
+                              children: [
+                                Text(
+                                  link,
+                                  style: GoogleFonts.acme(fontSize: 30),
                                 ),
-                              );
+                              ],
+                            ),
+                          ),
+                        );
                       }
                     },
                   ),
@@ -99,7 +98,7 @@ class AppsNewsAdsWidget extends StatelessWidget {
                   height: 30,
                   width: 30,
                   child: IconButton(
-                    icon: SvgPicture.asset(
+                    icon: WebsafeSvg.asset(
                       "lib/src/assets/svg/expand.svg",
                       color: kPrimaryColor,
                     ),

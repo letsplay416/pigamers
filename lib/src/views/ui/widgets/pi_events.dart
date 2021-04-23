@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:get/get.dart';
 import 'package:pigamers/src/logic/controllers/pi_events_controller.dart';
 import 'package:pigamers/src/views/utils/constants.dart';
@@ -27,8 +27,8 @@ class PiEventsWidget extends StatelessWidget {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator(
-            // color: Theme.of(context).accentColor,
-          );
+              // color: Theme.of(context).accentColor,
+              );
         }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +136,7 @@ class PiEventsWidget extends StatelessWidget {
                           height: 40,
                           width: 40,
                           child: IconButton(
-                            icon: SvgPicture.asset(
+                            icon: WebsafeSvg.asset(
                               "lib/src/assets/svg/expand.svg",
                               color: kThirdColor,
                             ),
@@ -282,7 +282,7 @@ class PiEventsWidget extends StatelessWidget {
 //                         height: 40,
 //                         width: 40,
 //                         child: IconButton(
-//                           icon: SvgPicture.asset(
+//                           icon: WebsafeSvg.asset(
 //                             "lib/src/assets/svg/expand.svg",
 //                             color: kThirdColor,
 //                           ),

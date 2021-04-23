@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/logic/controllers/pi_news_controller.dart';
@@ -29,8 +29,8 @@ class PiNewsWidget extends StatelessWidget {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator(
-            // color: Theme.of(context).accentColor,
-          );
+              // color: Theme.of(context).accentColor,
+              );
         }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +109,7 @@ class PiNewsWidget extends StatelessWidget {
                     : Axis.horizontal,
               ),
               itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index, realIndex)  => Container(
+              itemBuilder: (context, index, realIndex) => Container(
                 margin: const EdgeInsets.all(12),
                 height: Get.size.height,
                 decoration: BoxDecoration(
@@ -143,33 +143,37 @@ class PiNewsWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      trailing: snapshot.data!.docs[index]["type"]=="ADS"? ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            child: IconButton(
-                              icon: SvgPicture.asset(
-                                "lib/src/assets/svg/fi-br-redo.svg",
-                                color: kPrimaryColor,
-                              ),
-                              onPressed: () async => await canLaunch(
-                                      snapshot.data!.docs[index]["link"])
-                                  ? await launch(
-                                      snapshot.data!.docs[index]["link"])
-                                  : throw 'Could not launch ${snapshot.data!.docs[index]["link"]}',
-                            ),
-                            decoration: BoxDecoration(
-                              color: kContentColorLightTheme.withOpacity(0.2),
-                              border: Border.all(
-                                  color: kSecondaryColor.withOpacity(0.8)),
+                      trailing: snapshot.data!.docs[index]["type"] == "ADS"
+                          ? ClipRRect(
                               borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ):Container(),
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  child: IconButton(
+                                    icon: WebsafeSvg.asset(
+                                      "lib/src/assets/svg/fi-br-redo.svg",
+                                      color: kPrimaryColor,
+                                    ),
+                                    onPressed: () async => await canLaunch(
+                                            snapshot.data!.docs[index]["link"])
+                                        ? await launch(
+                                            snapshot.data!.docs[index]["link"])
+                                        : throw 'Could not launch ${snapshot.data!.docs[index]["link"]}',
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: kContentColorLightTheme
+                                        .withOpacity(0.2),
+                                    border: Border.all(
+                                        color:
+                                            kSecondaryColor.withOpacity(0.8)),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(),
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: BackdropFilter(
@@ -178,7 +182,7 @@ class PiNewsWidget extends StatelessWidget {
                             height: 40,
                             width: 40,
                             child: IconButton(
-                              icon: SvgPicture.asset(
+                              icon: WebsafeSvg.asset(
                                 "lib/src/assets/svg/expand.svg",
                                 color: kPrimaryColor,
                               ),
