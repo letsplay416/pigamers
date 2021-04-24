@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pigamers/src/screens/authentication/auth_services.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -15,6 +16,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool showDad = false;
+  String dadPseudo = "";
   TextEditingController _mailCtrl = TextEditingController();
   TextEditingController _pseudoCtrl = TextEditingController();
   TextEditingController _passwordCtrl = TextEditingController();
@@ -118,18 +120,52 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           placeholder: "Id du parrain",
                           keyboardType: TextInputType.name,
                           controller: _dadCtrl,
-                          onChanged: (value) {
-                            setState(() {});
+                          onChanged: (value) async {
+                            CollectionReference users =
+                                FirebaseFirestore.instance.collection('users');
+
+                            await users
+                                .doc(_dadCtrl.text.trim())
+                                .get()
+                                .then((value) {
+                              if (value.exists) {
+                                setState(() {
+                                  dadPseudo = value.data()!['name'];
+                                });
+                                //   Get.back();
+                                //   dadUi.value = _dadCtrl.text.trim();
+                                //   asDad.toggle();
+                                //   dadCroins.value = value.data()!['croins'].toDouble();
+                                //   Get.snackbar(AppStrings.succes,
+                                //       "Vous et ${value.data()!['name']} recevez votre récompense",
+                                //       duration: Duration(seconds: 5));
+                              } else {
+                                setState(() {
+                                  dadPseudo = "";
+                                });
+                              }
+                            });
                           },
                         ),
                         prefix: "Id du parrain".text.make(),
-                        helper: _dadCtrl.text.isEmpty
+                        helper: dadPseudo == ""
                             ? "Pas de Parrain".text.color(Colors.red).sm.make()
-                            : "Vous et Pseudo recevez 1 Croin chacun"
-                                .text
-                                .color(context.primaryColor)
-                                .sm
-                                .make(),
+                            : Wrap(
+                                children: [
+                                  "Vous "
+                                      .text
+                                      .color(context.primaryColor)
+                                      .sm
+                                      .make(),
+                                  "et ".text.sm.make(),
+                                  "$dadPseudo "
+                                      .text
+                                      .color(context.primaryColor)
+                                      .sm
+                                      .make(),
+                                  "recevez 1 Croin chacun".text.sm.make(),
+                                ],
+                              ),
                       ),
                   ],
                 ),
