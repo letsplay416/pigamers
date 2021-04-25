@@ -10,7 +10,7 @@ class RankingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RxBool rankedByFlame = true.obs;
     return Container(
-      width: context.screenWidth * 0.8,
+      width: context.screenWidth * 0.8, //370,
       color: context.backgroundColor.withOpacity(0.7),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -18,7 +18,7 @@ class RankingScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           slivers: [
             Obx(() => SliverAppBar(
-                  expandedHeight: context.screenHeight * 0.2,
+                  expandedHeight: 188,
                   backgroundColor: Colors.transparent,
                   stretch: true,
                   leading: rankedByFlame.value
@@ -37,7 +37,7 @@ class RankingScreen extends StatelessWidget {
                     stretchModes: [
                       StretchMode.zoomBackground,
                       StretchMode.fadeTitle,
-                      StretchMode.blurBackground
+                      // StretchMode.blurBackground
                     ],
                     background: SafeArea(
                       child: Container(

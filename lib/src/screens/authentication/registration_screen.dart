@@ -40,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   color: context.backgroundColor,
                   borderRadius: BorderRadius.circular(20)),
               width: 423,
-              height: 830,
+              height: 860,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
