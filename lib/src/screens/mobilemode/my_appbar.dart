@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -20,6 +21,21 @@ class MyAppBar extends StatelessWidget {
       stretch: true,
       centerTitle: true,
       floating: true,
+      actions: [
+        InkWell(
+          onTap: () => Scaffold.of(context).openEndDrawer(),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Builder(
+              builder: (context) => FaIcon(
+                FontAwesomeIcons.fire,
+                size: 28,
+                color: context.accentColor,
+              ),
+            ),
+          ),
+        ),
+      ],
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: [
           StretchMode.zoomBackground,
