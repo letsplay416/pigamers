@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pigamers/src/services/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
@@ -102,7 +103,7 @@ class PiNewsWidget extends StatelessWidget {
                     newTitle: snapshot.data!.docs[index]["type"].toString(),
                   );
                 },
-                scrollDirection: context.orientation == Orientation.portrait
+                scrollDirection: Responsive.isMobile(context)
                     ? Axis.vertical
                     : Axis.horizontal,
               ),
@@ -224,7 +225,6 @@ class PiNewsWidget extends StatelessWidget {
     );
   }
 }
-
 
 class PiNewsController extends GetxController {
   var currentTitle = "".obs;

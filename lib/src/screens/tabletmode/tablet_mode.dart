@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pigamers/src/screens/authentication/auth_services.dart';
+import 'package:pigamers/src/screens/mobilemode/body.dart';
 import 'package:pigamers/src/screens/sidemenu/side_menu.dart';
 import 'package:pigamers/src/screens/tabletmode/tablet_app_bar.dart';
 import 'package:pigamers/src/screens/tabletmode/tablet_ranking_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../live_widget.dart';
 
 class TabletMode extends StatelessWidget {
   @override
@@ -22,12 +25,10 @@ class TabletMode extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               slivers: [
                 TabletAppBar(),
+                Body(),
               ],
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => AuthServices().signOut(),
-              child: FaIcon(FontAwesomeIcons.signOutAlt),
-            ),
+            floatingActionButton: LiveWidget(),
           ),
         ),
       ],
