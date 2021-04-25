@@ -5,6 +5,8 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({
     Key? key,
@@ -24,188 +26,211 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController _dadCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var textColor = context.brightness == Brightness.light
+        ? kContentColorLightTheme
+        : kContentColorDarkTheme;
     return Scaffold(
-      backgroundColor: context.canvasColor,
+      backgroundColor: context.primaryColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: Vx.m32,
-            height: context.screenHeight - context.safePercentHeight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Spacer(),
-                "Bienvenue Pi'Gamers"
-                    .text
-                    .xl4
-                    .bold
-                    .color(context.theme.primaryColor)
-                    .make(),
-                "Crée un compte pour commencer ton aventure".text.xl2.make(),
-                Spacer(
-                  flex: 2,
-                ),
-                CupertinoFormSection(
-                  header: "Infos personnelles".text.make(),
-                  children: [
-                    CupertinoFormRow(
-                      child: CupertinoTextFormFieldRow(
-                        controller: _pseudoCtrl,
-                        placeholder: "Choisi un nom d'utilisateur",
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      prefix: "Pseudo".text.make(),
-                    ),
-                    CupertinoFormRow(
-                      child: CupertinoTextFormFieldRow(
-                        controller: _phoneCtrl,
-                        placeholder: "Ex: +33 ** ** ** **",
-                        keyboardType: TextInputType.phone,
-                      ),
-                      prefix: "Numéro".text.make(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                CupertinoFormSection(
-                  header: "Identifiants".text.make(),
-                  children: [
-                    CupertinoFormRow(
-                      child: CupertinoTextFormFieldRow(
-                        placeholder: "Entrez l'adresse email",
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _mailCtrl,
-                      ),
-                      prefix: "Email".text.make(),
-                    ),
-                    CupertinoFormRow(
-                      child: CupertinoTextFormFieldRow(
-                        placeholder: "Mots de passe",
-                        obscureText: true,
-                        keyboardType: TextInputType.name,
-                        controller: _passwordCtrl,
-                      ),
-                      prefix: "Mots de passe".text.make(),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                CupertinoFormSection(
-                  header: "Affiliation".text.make(),
-                  children: [
-                    CupertinoFormRow(
-                      child: CupertinoSwitch(
-                          activeColor: context.primaryColor,
-                          value: showDad,
-                          onChanged: (z) {
-                            setState(() {
-                              showDad = z;
-                            });
-                          }),
-                      prefix: "As-tu un parrain?".text.make(),
-                      helper: "Gagne un bonus!"
-                          .text
-                          .color(context.primaryColor)
-                          .sm
-                          .make(),
-                    ),
-                    if (showDad)
+        child: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: context.backgroundColor,
+                  borderRadius: BorderRadius.circular(20)),
+              width: 423,
+              height: 830,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Spacer(),
+                  "Bienvenue Pi'Gamers"
+                      .text
+                      .xl4
+                      .bold
+                      .color(context.primaryColor)
+                      .make(),
+                  "Crée un compte pour commencer ton aventure"
+                      .text
+                      .color(textColor)
+                      .xl2
+                      .make(),
+                  Spacer(
+                    flex: 2,
+                  ),
+                  CupertinoFormSection(
+                    header: "Infos personnelles"
+                        .text
+                        .color(context.primaryColor.withOpacity(0.7))
+                        .make(),
+                    backgroundColor: Colors.transparent,
+                    children: [
                       CupertinoFormRow(
                         child: CupertinoTextFormFieldRow(
-                          placeholder: "Id du parrain",
-                          keyboardType: TextInputType.name,
-                          controller: _dadCtrl,
-                          onChanged: (value) async {
-                            CollectionReference users =
-                                FirebaseFirestore.instance.collection('users');
-
-                            await users
-                                .doc(_dadCtrl.text.trim())
-                                .get()
-                                .then((value) {
-                              if (value.exists) {
-                                setState(() {
-                                  dadPseudo = value.data()!['name'];
-                                });
-                                //   Get.back();
-                                //   dadUi.value = _dadCtrl.text.trim();
-                                //   asDad.toggle();
-                                //   dadCroins.value = value.data()!['croins'].toDouble();
-                                //   Get.snackbar(AppStrings.succes,
-                                //       "Vous et ${value.data()!['name']} recevez votre récompense",
-                                //       duration: Duration(seconds: 5));
-                              } else {
-                                setState(() {
-                                  dadPseudo = "";
-                                });
-                              }
-                            });
-                          },
+                          controller: _pseudoCtrl,
+                          placeholder: "Choisi un nom d'utilisateur",
+                          keyboardType: TextInputType.emailAddress,
                         ),
-                        prefix: "Id du parrain".text.make(),
-                        helper: dadPseudo == ""
-                            ? "Pas de Parrain".text.color(Colors.red).sm.make()
-                            : Wrap(
-                                children: [
-                                  "Vous "
-                                      .text
-                                      .color(context.primaryColor)
-                                      .sm
-                                      .make(),
-                                  "et ".text.sm.make(),
-                                  "$dadPseudo "
-                                      .text
-                                      .color(context.primaryColor)
-                                      .sm
-                                      .make(),
-                                  "recevez 1 Croin chacun".text.sm.make(),
-                                ],
-                              ),
+                        prefix: "Pseudo".text.color(textColor).make(),
                       ),
-                  ],
-                ),
-                Container(
-                  child: TextButton(
-                    onPressed: () => AuthServices().registration(
-                        email: _mailCtrl.text.trim(),
-                        password: _passwordCtrl.text.trim(),
-                        name: _pseudoCtrl.text.trim(),
-                        dadId: "dadId",
-                        dadCroins: showDad ? 1 : 0),
-                    child: Text("Créer le compte"),
-                    style: TextButton.styleFrom(primary: Colors.white),
-                  ),
-                  width: context.screenWidth * 0.6,
-                  decoration: BoxDecoration(
-                      color: context.primaryColor,
-                      borderRadius: BorderRadius.circular(30)),
-                ).p32().centered(),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    children: [
-                      "Tu n'es pas nouveau ici?".text.make(),
-                      GestureDetector(
-                        onTap: () => context.pop(),
-                        child: "Connectes-toi"
-                            .text
-                            .color(context.primaryColor)
-                            .make()
-                            .px12(),
+                      CupertinoFormRow(
+                        child: CupertinoTextFormFieldRow(
+                          controller: _phoneCtrl,
+                          placeholder: "Ex: +33 ** ** ** **",
+                          keyboardType: TextInputType.phone,
+                        ),
+                        prefix: "Numéro".text.color(textColor).make(),
                       ),
                     ],
-                    mainAxisAlignment: MainAxisAlignment.center,
                   ),
-                ),
-                Spacer(
-                  flex: 3,
-                ),
-              ],
+                  SizedBox(
+                    height: 30,
+                  ),
+                  CupertinoFormSection(
+                    header: "Identifiants"
+                        .text
+                        .color(context.primaryColor.withOpacity(0.7))
+                        .make(),
+                    backgroundColor: Colors.transparent,
+                    children: [
+                      CupertinoFormRow(
+                        child: CupertinoTextFormFieldRow(
+                          placeholder: "Entrez l'adresse email",
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _mailCtrl,
+                        ),
+                        prefix: "Email".text.color(textColor).make(),
+                      ),
+                      CupertinoFormRow(
+                        child: CupertinoTextFormFieldRow(
+                          placeholder: "Mots de passe",
+                          obscureText: true,
+                          keyboardType: TextInputType.name,
+                          controller: _passwordCtrl,
+                        ),
+                        prefix: "Mots de passe".text.color(textColor).make(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  CupertinoFormSection(
+                    header: "Affiliation"
+                        .text
+                        .color(context.primaryColor.withOpacity(0.7))
+                        .make(),
+                    backgroundColor: Colors.transparent,
+                    children: [
+                      CupertinoFormRow(
+                        child: CupertinoSwitch(
+                            activeColor: context.primaryColor,
+                            value: showDad,
+                            onChanged: (z) {
+                              setState(() {
+                                showDad = z;
+                              });
+                            }),
+                        prefix:
+                            "As-tu un parrain?".text.color(textColor).make(),
+                        helper: "Gagne un bonus!"
+                            .text
+                            .color(context.accentColor)
+                            .sm
+                            .make(),
+                      ),
+                      if (showDad)
+                        CupertinoFormRow(
+                          child: CupertinoTextFormFieldRow(
+                            placeholder: "Id du parrain",
+                            keyboardType: TextInputType.name,
+                            controller: _dadCtrl,
+                            onChanged: (value) async {
+                              CollectionReference users = FirebaseFirestore
+                                  .instance
+                                  .collection('users');
+
+                              await users
+                                  .doc(_dadCtrl.text.trim())
+                                  .get()
+                                  .then((value) {
+                                if (value.exists) {
+                                  setState(() {
+                                    dadPseudo = value.data()!['name'];
+                                  });
+                                } else {
+                                  setState(() {
+                                    dadPseudo = "";
+                                  });
+                                }
+                              });
+                            },
+                          ),
+                          prefix: "Id du parrain".text.color(textColor).make(),
+                          helper: dadPseudo == ""
+                              ? "Pas de Parrain"
+                                  .text
+                                  .color(Colors.red)
+                                  .sm
+                                  .make()
+                              : Wrap(
+                                  children: [
+                                    "Vous "
+                                        .text
+                                        .color(context.primaryColor)
+                                        .sm
+                                        .make(),
+                                    "et ".text.sm.make(),
+                                    "$dadPseudo "
+                                        .text
+                                        .color(context.primaryColor)
+                                        .sm
+                                        .make(),
+                                    "recevez 1 Croin chacun".text.sm.make(),
+                                  ],
+                                ),
+                        ),
+                    ],
+                  ),
+                  Container(
+                    child: TextButton(
+                      onPressed: () => AuthServices().registration(
+                          email: _mailCtrl.text.trim(),
+                          password: _passwordCtrl.text.trim(),
+                          name: _pseudoCtrl.text.trim(),
+                          dadId: "dadId",
+                          dadCroins: showDad ? 1 : 0),
+                      child: Text("Créer le compte"),
+                      style: TextButton.styleFrom(primary: Colors.white),
+                    ),
+                    width: context.screenWidth * 0.6,
+                    decoration: BoxDecoration(
+                        color: context.primaryColor,
+                        borderRadius: BorderRadius.circular(30)),
+                  ).p32().centered(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        "Tu n'es pas nouveau ici?".text.color(textColor).make(),
+                        GestureDetector(
+                          onTap: () => context.pop(),
+                          child: "Connectes-toi"
+                              .text
+                              .color(context.primaryColor)
+                              .make()
+                              .px12(),
+                        ),
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+                  ),
+                  Spacer(
+                    flex: 3,
+                  ),
+                ],
+              ).p24(),
             ),
           ),
         ),
