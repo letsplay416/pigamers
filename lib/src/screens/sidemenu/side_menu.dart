@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pigamers/src/screens/authentication/auth_services.dart';
@@ -109,16 +110,20 @@ class SideMenu extends StatelessWidget {
               icon: FontAwesomeIcons.barcode,
               title: "Saisi un code",
             ),
-            SideMenuItem(
-              action: () {
-                String uid = FirebaseAuth.instance.currentUser!.uid;
-                Share.share(
-                    "Hey. Tu t'ennuies?? J'ai découvert un jeu qui permet de répondre à des questions diverses à temps et jouer d'autres mini-jeux avec d'autres joueurs du monde tout en gagnant des cadeaux Télécharge là maintenant sur https://play.google.com/store/apps/details?id=inc.poison.pigamers. N'oublie pas mon identifiant comme id du parrain: $uid",
-                    subject: 'Viens gagner des cadeaux');
-              },
-              icon: FontAwesomeIcons.users,
-              title: "Inviter un Ami",
-            ),
+            kIsWeb
+                ? Container()
+                : SideMenuItem(
+                    action: () {
+                      try {
+                        String uid = FirebaseAuth.instance.currentUser!.uid;
+                        Share.share(
+                            "Hey. Tu t'ennuies?? J'ai découvert un jeu qui permet de répondre à des questions diverses à temps et jouer d'autres mini-jeux avec d'autres joueurs du monde tout en gagnant des cadeaux Télécharge là maintenant sur https://play.google.com/store/apps/details?id=inc.poison.pigamers. N'oublie pas mon identifiant comme id du parrain: $uid",
+                            subject: 'Viens gagner des cadeaux');
+                      } catch (e) {}
+                    },
+                    icon: FontAwesomeIcons.users,
+                    title: "Inviter un Ami",
+                  ),
             SideMenuItem(
               action: () {},
               icon: FontAwesomeIcons.question,

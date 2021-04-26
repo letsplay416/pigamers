@@ -32,21 +32,19 @@ class Responsive extends StatelessWidget {
     return LayoutBuilder(
       // If our width is more than 1100 then we consider it a desktop
       builder: (context, constraints) {
-        if (kIsWeb) {
-          return web;
-        } else {
-          if (constraints.maxWidth >= 1100) {
-            return desktop;
-          }
-          // If width it less then 1100 and more then 650 we consider it as tablet
-          else if (constraints.maxWidth >= 650) {
-            return tablet;
-          }
-          // Or less then that we called it mobile
-          else {
-            return mobile;
-          }
+        // if (kIsWeb) {
+        if (constraints.maxWidth >= 1100) {
+          return desktop;
         }
+        // If width it less then 1100 and more then 650 we consider it as tablet
+        else if (constraints.maxWidth >= 650) {
+          return tablet;
+        }
+        // Or less then that we called it mobile
+        else {
+          return mobile;
+        }
+        // }y
       },
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pigamers/src/screens/mobilemode/pi_event.dart';
 import 'package:pigamers/src/screens/mobilemode/pi_news_widget.dart';
@@ -19,9 +20,9 @@ class Body extends StatelessWidget {
               SizedBox(height: kDefaultPadding * 1.5),
               SocialRow(),
               SizedBox(height: kDefaultPadding * 1.5),
-              PiEventsWidget(),
+              kIsWeb ? Container() : PiEventsWidget(),
               SizedBox(height: kDefaultPadding * 1.5),
-              PiNewsWidget(),
+              kIsWeb ? Container() : PiNewsWidget(),
             ],
           ),
         ],

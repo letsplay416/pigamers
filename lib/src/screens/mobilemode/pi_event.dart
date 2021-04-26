@@ -5,10 +5,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pigamers/src/screens/other/view_screen.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 import '../../constants.dart';
-import '../view_screen.dart';
 
 class PiEventsWidget extends StatelessWidget {
   final piEventsController = Get.put<PiEventsController>(PiEventsController());

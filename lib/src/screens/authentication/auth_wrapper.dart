@@ -36,7 +36,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
             if (snapshot.data != null) {
               return MainScreen();
             } else {
-              return kIsWeb ? WebLoginScreen() : LoginScreen();
+              return LoginScreen();
             }
           } else {
             return LoadingScreen();
@@ -46,8 +46,6 @@ class _AuthWrapperState extends State<AuthWrapper> {
     );
   }
 }
-
-
 
 class WebLoginScreen extends StatelessWidget {
   const WebLoginScreen({
