@@ -6,13 +6,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pigamers/src/screens/other/view_screen.dart';
 import 'package:pigamers/src/services/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 import '../../constants.dart';
-import '../view_screen.dart';
-
 class PiNewsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
