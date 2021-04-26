@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pigamers/src/screens/authentication/auth_services.dart';
 import 'package:pigamers/src/screens/main_screen/main_screen.dart';
 
 import 'package:velocity_x/velocity_x.dart';
@@ -17,7 +18,7 @@ class AuthWrapper extends StatefulWidget {
 
 class _AuthWrapperState extends State<AuthWrapper> {
   void initState() {
-    // Database().updateRessources();
+    AuthServices().updateRessources();
     super.initState();
   }
 

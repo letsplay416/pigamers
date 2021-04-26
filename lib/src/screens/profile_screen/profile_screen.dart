@@ -136,7 +136,7 @@ class ProfileScreen extends StatelessWidget {
                     RessourceWidget(
                         title: "Les Exp",
                         desc:
-                            "Gagne les en effectuant des activités. Leur valeur est faible mais grimpe assez vite",
+                            "Gagne les en participant aux quizzs régulierement",
                         number: snapshot.data["exp"].toString(),
                         icon: FontAwesomeIcons.chartLine,
                         color: Get.isDarkMode

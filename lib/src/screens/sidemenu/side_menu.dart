@@ -7,6 +7,7 @@ import 'package:pigamers/src/screens/authentication/auth_services.dart';
 import 'package:pigamers/src/screens/profile_screen/profile_screen.dart';
 import 'package:pigamers/src/services/theme_service.dart';
 import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../constants.dart';
@@ -125,7 +126,12 @@ class SideMenu extends StatelessWidget {
                     title: "Inviter un Ami",
                   ),
             SideMenuItem(
-              action: () {},
+              action: () async {
+                String url = "https://pi-gamers.web.app/#/";
+                await canLaunch(url)
+                    ? await launch(url)
+                    : throw 'Could not launch $url';
+              },
               icon: FontAwesomeIcons.question,
               title: "A Propos",
             ),

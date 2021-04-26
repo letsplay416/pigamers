@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants.dart';
@@ -17,6 +18,12 @@ class SocialRow extends StatelessWidget {
         color: Colors.green,
         link:
             "https://api.whatsapp.com/send?phone=22990347744&text=Hello%20je%20viens%20de%20Pi'Gamers",
+      ),
+      SocialWidget(
+        name: "Site Web",
+        color:
+            !Get.isDarkMode ? kContentColorLightTheme : kContentColorDarkTheme,
+        link: "https://pi-gamers.web.app/#/",
       ),
       SocialWidget(
         name: "Play Store",
