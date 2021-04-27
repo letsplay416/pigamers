@@ -1,6 +1,6 @@
 # pigamers
 
-A new Flutter project.
+Pi'Gamers: Fun | Game | Chill !
 
 ## Getting Started
 
