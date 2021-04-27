@@ -23,7 +23,7 @@ class SocialRow extends StatelessWidget {
         name: "Site Web",
         color:
             !Get.isDarkMode ? kContentColorLightTheme : kContentColorDarkTheme,
-        link: "https://pi-gamers.web.app/#/",
+        link: "https://pi-gamers.web.app",
       ),
       SocialWidget(
         name: "Play Store",

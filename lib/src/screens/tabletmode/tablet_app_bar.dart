@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:websafe_svg/websafe_svg.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class TabletAppBar extends StatelessWidget {
   @override

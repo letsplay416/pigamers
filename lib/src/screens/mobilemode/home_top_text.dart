@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 
-import 'package:velocity_x/velocity_x.dart';
-
 class HomeTopText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

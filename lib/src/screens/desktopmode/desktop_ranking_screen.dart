@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pigamers/src/constants.dart';
 import 'package:pigamers/src/screens/rankingscreen/my_svg_btn.dart';
 import 'package:pigamers/src/screens/rankingscreen/ranking_list.dart';
@@ -70,11 +72,53 @@ class DesktopRankingScreen extends StatelessWidget {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Obx(
-                    () => RankingList(
-                      rankedByFlame: rankedByFlame.value,
-                    ),
-                  )
+                  kIsWeb
+                      ? Column(
+                          children: [
+                            "Ranking Screen"
+                                .text
+                                .textStyle(GoogleFonts.newRocker(fontSize: 30))
+                                .color(kPrimaryColor)
+                                .center
+                                .make(),
+                            "Classement des Pi'Gamers"
+                                .text
+                                .color(context.brightness == Brightness.light
+                                    ? kContentColorLightTheme
+                                    : kContentColorDarkTheme)
+                                .textStyle(
+                                  GoogleFonts.barlow(fontSize: 15),
+                                )
+                                .make(),
+                            "Ici, retrouve le classement de tous les joueurs.\n\n Le classement est effectué selon deux critères. Soit par les Exp, soit par les Flames.\n\nLes Exp, se gagnent en participant aux nombreux questionnaires hebdomadaires. Le total de tes points récolté est ajouté à ton compte.\n\n Quant aux Flames, recolte les en te connectant quotidiennement à l'application. Mais attention. Si tu rates un seul jour de connection, ton compteur revient à zéro."
+                                .text
+                                // .center
+                                .color(context.brightness == Brightness.light
+                                    ? kContentColorLightTheme
+                                    : kContentColorDarkTheme)
+                                .textStyle(
+                                  GoogleFonts.barlow(fontSize: 15),
+                                )
+                                .make()
+                                .p16(),
+                            "1e jour => 10 Flames\n 2e jour => 20 Flames\n 3e jour => 20 Flames\n 4e jour => 30 Flames\n 5e jour => 40 Flames\n 6e jour => 50 Flames\n 7e jour => 100 Flames"
+                                .text
+                                .center
+                                .color(context.brightness == Brightness.light
+                                    ? kContentColorLightTheme
+                                    : kContentColorDarkTheme)
+                                .textStyle(
+                                  GoogleFonts.barlow(fontSize: 15),
+                                )
+                                .make()
+                                .p16(),
+                          ],
+                        )
+                      : Obx(
+                          () => RankingList(
+                            rankedByFlame: rankedByFlame.value,
+                          ),
+                        )
                 ],
               ),
             ),

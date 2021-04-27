@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pigamers/src/constants.dart';
 
 class AuthServices {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -26,7 +27,7 @@ class AuthServices {
       required String number,
       required double dadCroins}) async {
     try {
-      _firebaseAuth
+      await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) async {
         final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -56,8 +57,7 @@ class AuthServices {
                 await _firestore
                     .collection("users")
                     .doc(dadId)
-                    .update({"croins": dadCroins + 1}).catchError((errorr) {
-                  // Get.snackbar("AppStrings.erreurParrain", errorr.toString());
+                    .update({"croins": dadCroins + 0.1}).catchError((errorr) {
                 });
               } catch (e) {}
             } else {}
@@ -136,7 +136,8 @@ class AuthServices {
         });
       } else if (azerty < Duration(hours: 24)) {
         Get.snackbar("Bonus de connexion quotidienne",
-            "Connecte toi dans ${(Duration(hours: 24) - azerty).inHours} heures pour une récompense");
+            "Connecte toi dans ${(Duration(hours: 24) - azerty).inHours} heures pour une récompense",
+            colorText: kPrimaryColor);
       } else {
         switch (onDay) {
           case 1:

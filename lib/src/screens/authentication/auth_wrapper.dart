@@ -18,7 +18,6 @@ class AuthWrapper extends StatefulWidget {
 
 class _AuthWrapperState extends State<AuthWrapper> {
   void initState() {
-    AuthServices().updateRessources();
     super.initState();
   }
 
@@ -35,6 +34,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
         } else {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.data != null) {
+              AuthServices().updateRessources();
               return MainScreen();
             } else {
               return LoginScreen();

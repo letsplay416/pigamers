@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:pigamers/src/screens/sidemenu/side_menu.dart';
 import 'package:pigamers/src/screens/sidemenu/side_menu_item.dart';
 import 'package:pigamers/src/services/theme_service.dart';
 import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -15,7 +17,8 @@ import 'package:velocity_x/velocity_x.dart';
 class DesktopMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Material(color:  context.backgroundColor,
+    return Material(
+      color: context.backgroundColor,
       child: Container(
         width: 200,
         color: kFourthColor.withOpacity(0.3),
@@ -105,11 +108,17 @@ class DesktopMenu extends StatelessWidget {
                 icon: FontAwesomeIcons.users,
                 title: "Inviter un Ami",
               ),
-              SideMenuItem(
-                action: () {},
-                icon: FontAwesomeIcons.question,
-                title: "A Propos",
-              ),
+              if (!kIsWeb)
+                SideMenuItem(
+                  action: () async {
+                    String url = "https://pi-gamers.web.app";
+                    await canLaunch(url)
+                        ? await launch(url)
+                        : throw 'Could not launch $url';
+                  },
+                  icon: FontAwesomeIcons.question,
+                  title: "À propos",
+                ),
               Spacer(),
               SideMenuItem(
                 isred: true,

@@ -125,16 +125,17 @@ class SideMenu extends StatelessWidget {
                     icon: FontAwesomeIcons.users,
                     title: "Inviter un Ami",
                   ),
-            SideMenuItem(
-              action: () async {
-                String url = "https://pi-gamers.web.app/#/";
-                await canLaunch(url)
-                    ? await launch(url)
-                    : throw 'Could not launch $url';
-              },
-              icon: FontAwesomeIcons.question,
-              title: "A Propos",
-            ),
+            if (!kIsWeb)
+              SideMenuItem(
+                action: () async {
+                  String url = "https://pi-gamers.web.app";
+                  await canLaunch(url)
+                      ? await launch(url)
+                      : throw 'Could not launch $url';
+                },
+                icon: FontAwesomeIcons.question,
+                title: "À propos",
+              ),
             Spacer(),
             SideMenuItem(
               isred: true,

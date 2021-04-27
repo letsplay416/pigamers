@@ -90,6 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               placeholder: "Entrez l'adresse email",
                               keyboardType: TextInputType.emailAddress,
                               controller: _mailCtrl,
+                              style: GoogleFonts.barlow(
+                                  fontSize: 15, color: textColor),
                             ),
                             prefix: "Email".text.color(textColor).make(),
                           ),
@@ -99,6 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               controller: _passwordCtrl,
                               obscureText: true,
                               keyboardType: TextInputType.name,
+                              style: GoogleFonts.barlow(
+                                  fontSize: 15, color: textColor),
                             ),
                             prefix:
                                 "Mots de passe".text.color(textColor).make(),
