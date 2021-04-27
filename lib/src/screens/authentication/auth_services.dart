@@ -54,11 +54,8 @@ class AuthServices {
             Get.back();
             if (dadId != "") {
               try {
-                await _firestore
-                    .collection("users")
-                    .doc(dadId)
-                    .update({"croins": dadCroins + 0.1}).catchError((errorr) {
-                });
+                await _firestore.collection("users").doc(dadId).update(
+                    {"croins": dadCroins + 0.1}).catchError((errorr) {});
               } catch (e) {}
             } else {}
           }).catchError(
@@ -222,6 +219,7 @@ class AuthServices {
                 "onDay": 1
               },
               "flame": (doc.data()!["flame"] + 100),
+              "croins": (doc.data()!["croins"] + 1),
             });
             break;
           default:
