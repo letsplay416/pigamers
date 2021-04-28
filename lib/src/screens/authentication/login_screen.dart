@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           .bold
                           .color(kPrimaryColor)
                           .make(),
-                      "Ravis de te revoir"
+                      "Ravi de te revoir"
                           .text
                           .color(textColor)
                           .textStyle(
@@ -97,15 +97,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           CupertinoFormRow(
                             child: CupertinoTextFormFieldRow(
-                              placeholder: "Mots de passe",
+                              placeholder: "mot de passe",
                               controller: _passwordCtrl,
                               obscureText: true,
                               keyboardType: TextInputType.name,
                               style: GoogleFonts.barlow(
                                   fontSize: 15, color: textColor),
                             ),
-                            prefix:
-                                "Mots de passe".text.color(textColor).make(),
+                            prefix: "mot de passe".text.color(textColor).make(),
                           ),
                         ],
                       ),

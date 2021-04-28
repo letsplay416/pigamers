@@ -45,30 +45,13 @@ class PiEventsWidget extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: kDefaultPadding * 1.5),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Obx(() => Text(
                         piEventsController.currentTitle.string,
                         style: Theme.of(context).textTheme.headline2,
                       )),
-                  TextButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.all(1)),
-                        overlayColor: MaterialStateProperty.all<Color>(
-                          kPrimaryColor.withOpacity(0.4),
-                        ),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            Colors.transparent)),
-                    child: Text(
-                      "Voir plus",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        color: kThirdColor,
-                      ),
-                    ),
-                  ),
+                
                 ],
               ),
             ),

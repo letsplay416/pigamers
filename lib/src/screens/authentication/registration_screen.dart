@@ -153,7 +153,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ),
                           CupertinoFormRow(
                             child: CupertinoTextFormFieldRow(
-                              placeholder: "Mots de passe",
+                              placeholder: "mot de passe",
                               obscureText: true,
                               validator: (value) {
                                 if (value!.isNotEmpty && value.length > 4) {
@@ -167,8 +167,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               keyboardType: TextInputType.name,
                               controller: _passwordCtrl,
                             ),
-                            prefix:
-                                "Mots de passe".text.color(textColor).make(),
+                            prefix: "mot de passe".text.color(textColor).make(),
                           ),
                         ],
                       ),
@@ -259,16 +258,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       InkWell(
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
-          //                   try {
-          //                     UserCredential userCredential = await FirebaseAuth
-          //                         .instance
-          //                         .createUserWithEmailAndPassword(
-          //                             email: _mailCtrl.text.trim(),
-          //                             password: "SuperSecretPassword!");
-          //                   } on FirebaseAuthException catch (e) {
-          //                      Get.snackbar("Erreur de connexion", e.message.toString(),
-          // snackPosition: SnackPosition.BOTTOM);
-          //                   }
+                            //                   try {
+                            //                     UserCredential userCredential = await FirebaseAuth
+                            //                         .instance
+                            //                         .createUserWithEmailAndPassword(
+                            //                             email: _mailCtrl.text.trim(),
+                            //                             password: "SuperSecretPassword!");
+                            //                   } on FirebaseAuthException catch (e) {
+                            //                      Get.snackbar("Erreur de connexion", e.message.toString(),
+                            // snackPosition: SnackPosition.BOTTOM);
+                            //                   }
                             AuthServices().registration(
                                 email: _mailCtrl.text.trim(),
                                 password: _passwordCtrl.text.trim(),

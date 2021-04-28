@@ -51,7 +51,7 @@ class DesktopMenu extends StatelessWidget {
               SideMenuItem(
                 action: () => context.nextPage(ProfileScreen()),
                 icon: FontAwesomeIcons.user,
-                title: "Profile",
+                title: "Profil",
               ),
               SideMenuItem(
                 action: () {
@@ -71,7 +71,7 @@ class DesktopMenu extends StatelessWidget {
                       content: TextField(
                         controller: _textFieldController,
                         decoration: InputDecoration(
-                          hintText: "Saisi un code et reçois ton bonus",
+                          hintText: "Saisis un code et reçois ton bonus",
                         ),
                       ),
                       actions: [
@@ -96,7 +96,7 @@ class DesktopMenu extends StatelessWidget {
                   );
                 },
                 icon: FontAwesomeIcons.barcode,
-                title: "Saisi un code",
+                title: "Saisis un code",
               ),
               SideMenuItem(
                 action: () {
