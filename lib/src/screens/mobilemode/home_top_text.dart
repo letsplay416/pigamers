@@ -49,7 +49,7 @@ class HomeTopText extends StatelessWidget {
                   height: kDefaultPadding / 3,
                 ),
                 Text(
-                  "Fun, Game, Chill !",
+                  "Mets ton savoir sur le Ring !",
                   textAlign: TextAlign.left,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),

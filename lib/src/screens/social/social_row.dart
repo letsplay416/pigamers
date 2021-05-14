@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:velocity_x/velocity_x.dart';
 import '../../constants.dart';
 
 class SocialRow extends StatelessWidget {
@@ -81,12 +82,10 @@ class SocialRow extends StatelessWidget {
             child: ListView.builder(
               itemCount: listGames.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => GestureDetector(
-                child: SocialBtn(
-                  color: listGames[index].color,
-                  text: listGames[index].name,
-                  url: listGames[index].link,
-                ),
+              itemBuilder: (context, index) => SocialBtn(
+                color: listGames[index].color,
+                text: listGames[index].name,
+                url: listGames[index].link,
               ),
             ),
           ),
@@ -122,6 +121,15 @@ class SocialBtn extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
+        onLongPress: () {
+          Clipboard.setData(new ClipboardData(text: url));
+          context.showToast(
+              msg: "Le lien à été copié!",
+              position: VxToastPosition.top,
+              bgColor: context.backgroundColor,
+              showTime: 4000,
+              textColor: context.primaryColor);
+        },
         onTap: () async {
           await canLaunch(url)
               ? await launch(url)

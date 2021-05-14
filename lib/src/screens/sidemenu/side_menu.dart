@@ -165,64 +165,66 @@ bonusCode(
       ),
     ),
     onPressed: () async {
-      try {
-        await FirebaseFirestore.instance
-            .collection('codeBonus')
-            .doc(ctrl.text.trim())
-            .get()
-            .then((value) {
-          if (value.exists) {
-            List users = value.data()!['users'];
-            if (users.contains(FirebaseAuth.instance.currentUser!.uid)) {
-              context.showToast(
-                  msg: "Tu as déjà bénéficié de ton bonus",
-                  position: VxToastPosition.center,
-                  bgColor: context.backgroundColor,
-                  textColor: context.primaryColor);
-            } else {
-              users.add(FirebaseAuth.instance.currentUser!.uid);
-              FirebaseFirestore.instance
-                  .collection('codeBonus')
-                  .doc(ctrl.text.trim())
-                  .update({"users": users}).then((_) async {
-                await FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                    .get()
-                    .then((val) {
-                  var croins = val.data()!['croins'];
-                  if (val.exists) {
-                    FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .update({"croins": croins + value.data()!['croins']});
-                  }
+      if (ctrl.text.isNotEmpty)
+        try {
+          await FirebaseFirestore.instance
+              .collection('codeBonus')
+              .doc(ctrl.text.trim())
+              .get()
+              .then((value) {
+            if (value.exists) {
+              List users = value.data()!['users'];
+              if (users.contains(FirebaseAuth.instance.currentUser!.uid)) {
+                context.showToast(
+                    msg: "Tu as déjà bénéficié de ton bonus",
+                    position: VxToastPosition.center,
+                    bgColor: context.backgroundColor,
+                    textColor: context.primaryColor);
+              } else {
+                users.add(FirebaseAuth.instance.currentUser!.uid);
+                FirebaseFirestore.instance
+                    .collection('codeBonus')
+                    .doc(ctrl.text.trim())
+                    .update({"users": users}).then((_) async {
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .get()
+                      .then((val) {
+                    var croins = val.data()!['croins'];
+                    if (val.exists) {
+                      FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .update({"croins": croins + value.data()!['croins']});
+                    }
+                  });
                 });
-              });
+                context.showToast(
+                    msg:
+                        "Tu viens de gagner ${value.data()!['croins']} Croin(s)",
+                    position: VxToastPosition.center,
+                    bgColor: context.backgroundColor,
+                    textColor: context.primaryColor);
+              }
+
+              Get.back();
+            } else {
               context.showToast(
-                  msg: "Tu viens de gagner ${value.data()!['croins']} Croin(s)",
+                  msg: "Code mauvais ou expiré",
                   position: VxToastPosition.center,
                   bgColor: context.backgroundColor,
                   textColor: context.primaryColor);
+              Get.back();
             }
-
-            Get.back();
-          } else {
-            context.showToast(
-                msg: "Code mauvais ou expiré",
-                position: VxToastPosition.center,
-                bgColor: context.backgroundColor,
-                textColor: context.primaryColor);
-            Get.back();
-          }
-        });
-      } on FirebaseAuthException catch (e) {
-        context.showToast(
-            msg: e.message.toString(),
-            position: VxToastPosition.center,
-            bgColor: context.backgroundColor,
-            textColor: context.primaryColor);
-      }
+          });
+        } on FirebaseAuthException catch (e) {
+          context.showToast(
+              msg: e.message.toString(),
+              position: VxToastPosition.center,
+              bgColor: context.backgroundColor,
+              textColor: context.primaryColor);
+        }
     },
     child: Text("Appliquer"),
   );

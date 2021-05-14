@@ -9,6 +9,7 @@ import 'package:pigamers/src/screens/profile_screen/database.dart';
 import 'package:pigamers/src/services/theme_service.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
+import 'package:intl/intl.dart';
 import '../../constants.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -120,24 +121,24 @@ class ProfileScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RessourceWidget(
-                        number: snapshot.data["flame"].toString(),
+                        number: snapshot.data["flame"].toDouble(),
                         title: "Les Flames",
                         desc:
                             "Flammes en anglais, tu les gagnes en te connectant quotidiennement. Elles te font grimper dans le classement et te rendent visible par tous",
                         icon: FontAwesomeIcons.fire,
                         color: Colors.redAccent),
                     RessourceWidget(
-                        number: snapshot.data["croins"].toString(),
+                        number: snapshot.data["croins"].toDouble(),
                         title: "Les Croins",
                         desc:
-                            "Les Croins???Ils sont la devise principale de Pi'Gamers,Grâce à eux tu peux participer à nos lives,et aussi les gagner tout en parrainant d'autres personnes, ",
+                            "Les Croins??? Ils sont la devise principale de Pi'Gamers,Grâce à eux tu peux participer à nos lives,et aussi les gagner tout en parrainant d'autres personnes, ",
                         icon: FontAwesomeIcons.coins,
                         color: Colors.yellow),
                     RessourceWidget(
                         title: "Les Exp",
                         desc:
                             "Gagne les en participant aux quizzs régulierement",
-                        number: snapshot.data["exp"].toString(),
+                        number: snapshot.data["exp"].toDouble(),
                         icon: FontAwesomeIcons.chartLine,
                         color: Get.isDarkMode
                             ? Colors.white
@@ -306,7 +307,7 @@ class ProfileScreen extends StatelessWidget {
 class RessourceWidget extends StatelessWidget {
   final IconData icon;
   final Color color;
-  final String number;
+  final double number;
   final String title;
   final String desc;
   const RessourceWidget({
@@ -341,7 +342,7 @@ class RessourceWidget extends StatelessWidget {
                 color: color,
               ),
               Text(
-                number,
+                NumberFormat.compact().format(number),
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme

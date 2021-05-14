@@ -99,7 +99,7 @@ class TabletRankingScreen extends StatelessWidget {
                                   GoogleFonts.barlow(fontSize: 15),
                                 )
                                 .make(),
-                            "Ici, retrouve le classement de tous les joueurs.\n\n Le classement est effectué selon deux critères. Soit par les Exp, soit par les Flames.\n\nLes Exp, se gagnent en participant aux nombreux questionnaires hebdomadaires. Le total de tes points récolté est ajouté à ton compte.\n\n Quant aux Flames, recolte les en te connectant quotidiennement à l'application. Mais attention. Si tu rates un seul jour de connection, ton compteur revient à zéro."
+                            "Ici, retrouve le classement de tous les joueurs.\n\n Le classement est effectué selon deux critères. Soit par les Exp, soit par les Flames.\n\nLes Exp, se gagnent en participant aux nombreux questionnaires hebdomadaires. Le total de tes points récolté est ajouté à ton compte.\n\n Quant aux Flames, recolte les en te connectant quotidiennement à l'application. Mais attention. Si tu rates un seul jour de connexion, ton compteur revient à zéro."
                                 .text
                                 .color(context.brightness == Brightness.light
                                     ? kContentColorLightTheme

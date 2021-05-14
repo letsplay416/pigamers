@@ -1,6 +1,6 @@
 # pigamers
 
-Pi'Gamers: Fun | Game | Chill !
+Pi'Gamers: Mets ton savoir sur le ring !
 
 ## Getting Started
 
