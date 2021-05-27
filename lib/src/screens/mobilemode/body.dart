@@ -21,9 +21,9 @@ class Body extends StatelessWidget {
               SizedBox(height: kDefaultPadding * 1.5),
               SocialRow(),
               SizedBox(height: kDefaultPadding * 1.5),
-              kIsWeb ? Container() : PiEventsWidget(),
+               PiEventsWidget(),
               SizedBox(height: kDefaultPadding * 1.5),
-              kIsWeb ? Container() : PiNewsWidget(),
+              PiNewsWidget(),
               !kIsWeb
                   ? Container()
                   : Column(

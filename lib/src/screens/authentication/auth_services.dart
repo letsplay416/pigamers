@@ -43,7 +43,7 @@ class AuthServices {
             "profilPic":
                 "https://firebasestorage.googleapis.com/v0/b/pi-gamers.appspot.com/o/logo_transparent.png?alt=media&token=330c9cb0-01b9-4bc5-afa5-209117f59fe7",
             "phoneNumber": number,
-            "croins": dadId != "" ? 2 : 1,
+            "croins": 1,
             "flame": 100,
             "like": 12,
             "lastConnect": {
@@ -54,8 +54,10 @@ class AuthServices {
             Get.back();
             if (dadId != "") {
               try {
-                await _firestore.collection("users").doc(dadId).update(
-                    {"croins": dadCroins + 0.1}).catchError((errorr) {});
+                await _firestore
+                    .collection("users")
+                    .doc(dadId)
+                    .update({"croins": dadCroins + 1}).catchError((errorr) {});
               } catch (e) {}
             } else {}
           }).catchError(
